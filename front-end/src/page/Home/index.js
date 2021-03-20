@@ -27,7 +27,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Sidebar.Pushable>
+                <Sidebar.Pushable id="sidebarneedsstyle">
                     <Sidebar
                         as={Menu}
                         animation='overlay'
@@ -57,9 +57,9 @@ class Home extends React.Component {
                         </Menu.Item>
                     </Sidebar>
                     
-                    <Sidebar.Pusher dimmed={this.state.visible} style={{overflowY: 'scroll', height: '100vh'}}>
+                    <Sidebar.Pusher dimmed={this.state.visible} >
                         <Grid>
-                            <Grid.Row style={{height: '50vh'}}>
+                            <Grid.Row>
                                 <Grid.Column>
                                     <Button.Group size='large' color='grey' style={{position: 'relative', left: '10px'}}>
                                         <Button as={Link} to='/login'>Log in</Button>
@@ -73,11 +73,14 @@ class Home extends React.Component {
                                     }}/>
                                 </Grid.Column>
                             </Grid.Row>
+                            <Grid.Row  style={{height: '40vh'}} />
                             <Grid.Row centered>
                                 <PlayModal buttonText='Play Against the Computer' />
                             </Grid.Row>
                             <Grid.Row centered>
                                 <PlayModal buttonText='Play Locally' />
+                            </Grid.Row>
+                            <Grid.Row style={{height: '50vh'}}>
                             </Grid.Row>
                         </Grid>
                     </Sidebar.Pusher>    

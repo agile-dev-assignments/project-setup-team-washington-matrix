@@ -126,7 +126,7 @@ class Info extends React.Component {
         ]
         return (
             <div>
-                <Sidebar.Pushable style={{backgroundColor: '#00141b'}}>
+                <Sidebar.Pushable id="sidebarneedsstyle">
                     <Sidebar
                         as={Menu}
                         animation='overlay'
@@ -156,16 +156,16 @@ class Info extends React.Component {
                         </Menu.Item>
                     </Sidebar>
                     
-                    <Sidebar.Pusher dimmed={this.state.visible} style={{overflowY: 'scroll', height: '100vh'}}>
+                    <Sidebar.Pusher dimmed={this.state.visible}>
                         <Grid style={{color: 'lightgrey'}}>
                             <Grid.Row>
                                 <Grid.Column width={3} floated='right'>
-                                    <Image src={imgsrc} size='medium' verticalAlign='top' floated='right' onClick={() => {
+                                    <Image src={imgsrc} size='medium' verticalAlign='top' onClick={() => {
                                     this.toggleVisible();
                                 }}/>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row></Grid.Row>
+                            <Grid.Row />
                         </Grid>
                         
                         <Tab 

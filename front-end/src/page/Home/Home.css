@@ -1,8 +1,14 @@
-body #root {
+#root {
     height: 100%;
     width: 100%;
     background-color: #00141b;
     opacity: 100%;
+}
+
+#sidebarneedsstyle {
+    background: #00141b;
+    overflow-y: scroll;
+    height: 100%
 }
 
 .modalalign {
