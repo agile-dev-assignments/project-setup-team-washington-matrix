@@ -1,6 +1,0 @@
-.stretch {
-    min-height: 100vh;
-    display: flex;
-    flex-flow: column nowrap;
-    background-color: #00141b;
-}
