@@ -1,5 +1,5 @@
 import React from 'react';
-import Chessboard from 'chessboardjsx';
+import WithMoveValidation from './../../components/boards/WithMoveValidation';
 
 class Practice extends React.Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class Practice extends React.Component {
     render() {
         return (
             <div className="practice-container">
-                <Chessboard position="start" />
+                <WithMoveValidation />
             </div>
         )
     }
