@@ -60,20 +60,23 @@ class Home extends React.Component {
                     <Sidebar.Pusher dimmed={this.state.visible} >
                         <Grid>
                             <Grid.Row>
-                                <Grid.Column>
+                                <Grid.Column width={11}>
                                     <Button.Group size='large' color='grey' style={{position: 'relative', left: '10px'}}>
                                         <Button as={Link} to='/login'>Log in</Button>
                                         <Button.Or />
                                         <Button as={Link} to='/signup'>Sign Up</Button>
                                     </Button.Group>
                                 </Grid.Column>
-                                <Grid.Column floated="right" width={3}>
-                                    <Image src={imgsrc} size='medium' verticalAlign='top' onClick={() => {
+                                <Grid.Column width={3} >
+                                    <Image src={imgsrc} size='medium' verticalAlign='top' as={Link} to='/'/>
+                                </Grid.Column>
+                                <Grid.Column floated='right' width={2}>
+                                    <Icon inverted size='massive' name='bars' style={{position: 'relative', right: '-45px'}} link onClick={() => {
                                         this.toggleVisible();
                                     }}/>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row  style={{height: '40vh'}} />
+                            <Grid.Row style={{height: '40vh'}} />
                             <Grid.Row centered>
                                 <PlayModal buttonText='Play Against the Computer' />
                             </Grid.Row>
