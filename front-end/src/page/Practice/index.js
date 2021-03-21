@@ -1,4 +1,5 @@
 import React from 'react';
+import Chessboard from 'chessboardjsx';
 
 class Practice extends React.Component {
     constructor(props) {
@@ -7,8 +8,8 @@ class Practice extends React.Component {
     
     render() {
         return (
-            <div>
-                Practice Page
+            <div className="practice-container">
+                <Chessboard position="start" />
             </div>
         )
     }
