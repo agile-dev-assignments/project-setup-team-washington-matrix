@@ -157,13 +157,13 @@ class Info extends React.Component {
                     </Sidebar>
                     
                     <Sidebar.Pusher dimmed={this.state.visible}>
-                        <Grid style={{color: 'lightgrey'}}>
+                        <Grid padded>
                             <Grid.Row>
                                 <Grid.Column width={11} />
-                                <Grid.Column width={3} floated='right'>
+                                <Grid.Column width={3} floated='right' style={{position: 'relative', right: '-60px'}}>
                                     <Image src={imgsrc} size='medium' verticalAlign='top' as={Link} to='/'/>
                                 </Grid.Column>
-                                <Grid.Column floated='right' width={2}>
+                                <Grid.Column width={2}>
                                     <Icon inverted size='massive' name='bars' style={{position: 'relative', right: '-45px'}} link onClick={() => {
                                         this.toggleVisible();
                                     }}/>

@@ -58,16 +58,16 @@ class Home extends React.Component {
                     </Sidebar>
                     
                     <Sidebar.Pusher dimmed={this.state.visible} >
-                        <Grid>
+                        <Grid padded>
                             <Grid.Row>
                                 <Grid.Column width={11}>
-                                    <Button.Group size='large' color='grey' style={{position: 'relative', left: '10px'}}>
+                                    <Button.Group size='large' color='grey'>
                                         <Button as={Link} to='/login'>Log in</Button>
                                         <Button.Or />
                                         <Button as={Link} to='/signup'>Sign Up</Button>
                                     </Button.Group>
                                 </Grid.Column>
-                                <Grid.Column width={3} >
+                                <Grid.Column width={3} style={{position: 'relative', right: '-60px'}}>
                                     <Image src={imgsrc} size='medium' verticalAlign='top' as={Link} to='/'/>
                                 </Grid.Column>
                                 <Grid.Column floated='right' width={2}>
