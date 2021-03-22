@@ -1,0 +1,87 @@
+
+#links:link, a:visited {
+    background-color: grey;
+    height: 75px;
+    width: 210px;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 40%;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: large;
+    
+  }
+  
+  #links:hover, a:active {
+    background-color: lightblue;
+  }
+  
+  .possLink{
+    margin-top: 17%;
+    font-family: Palatino;
+  }
+
+   body { 
+    background-color: rgb(34,193,195);
+    background-color: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); 
+   background-color: white;
+    color: white; 
+    background-color: #00141b;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    margin-right: auto;
+   }
+  
+.LearnTitle{
+    color:lightblue;
+    font-size: 100px;
+    font-family: Palatino;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body #root {
+    height: 100%;
+    width: 100%;
+    background-color: #00141b;
+    opacity: 100%;
+}
+
+
+.rightAlign {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #00141b;
+}
+
+.background {
+    height: 100%;
+    width: 100%;
+    background-color: #00141b;
+}
+
+.teaChessLogo{
+  position: absolute;
+  right: 170px;
+  width: 300px;
+  top: 0px;
+  /* border: 3px solid #73AD21; */
+  padding: 10px;
+}
+
+.hamburger{
+  position: absolute;
+  right: -70px;
+  width: 300px;
+  top: 0px;
+  /* border: 3px solid #73AD21; */
+  padding: 10px;
+
+}
