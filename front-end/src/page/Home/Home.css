@@ -1,33 +1,14 @@
-body #root {
+#root {
     height: 100%;
     width: 100%;
     background-color: #00141b;
     opacity: 100%;
 }
 
-.textcolor {
-    color: lightgrey;
-}
-
-.rightAlign {
-    min-height: 100vh;
-    display: flex;
-    flex-flow: column nowrap;
-    background-color: #00384d;
-}
-.background {
-    height: 100%;
-    width: 100%;
-    background-color: #00141b;
-}
-
-.columnheight {
-    height: 500px;
-}
-
-.fillheight {
-    background-color: #1a1812;
-    flex-grow: 1;
+#sidebarneedsstyle {
+    background: #00141b;
+    overflow-y: scroll;
+    height: 100%
 }
 
 .modalalign {
