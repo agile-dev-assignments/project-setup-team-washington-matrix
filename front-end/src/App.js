@@ -14,10 +14,10 @@ import Login from './page/Login';
 import Play from './page/Play';
 import Profile from './page/Profile';
 import Signup from './page/Signup';
-import BasicMovements from './page/learn/Learn-subpages/basic-movement';
-import BasicPatterns from './page/learn/Learn-subpages/basic-patterns';
-import Mechanics from './page/learn/Learn-subpages/mechanics';
-import Puzzles from './page/learn/Learn-subpages/puzzles';
+import BasicMovements from './page/Learn/Learn-subpages/basic-movement';
+import BasicPatterns from './page/Learn/Learn-subpages/basic-patterns';
+import Mechanics from './page/Learn/Learn-subpages/mechanics';
+import Puzzles from './page/Learn/Learn-subpages/puzzles';
 
 function App() {
   return (
@@ -47,9 +47,6 @@ function App() {
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/">
-              <Home />
-            </Route>
             <Route path="/basic-movements">
               <BasicMovements />
             </Route>
@@ -61,6 +58,9 @@ function App() {
             </Route>
             <Route path="/puzzles">
               <Puzzles />
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
 
           </Switch>
