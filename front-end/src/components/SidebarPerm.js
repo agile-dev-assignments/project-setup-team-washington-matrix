@@ -43,7 +43,7 @@ const SidebarPerm = (props) => {
             </Sidebar>
             
             <Sidebar.Pusher dimmed={visible} >
-                <Grid padded>
+                <Grid padded style={{backgroundColor: '#00141b'}}>
                     <Grid.Row>
                         <Grid.Column width={11}>
                             {props.buttongroup}
