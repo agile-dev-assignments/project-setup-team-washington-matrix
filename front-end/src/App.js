@@ -47,9 +47,6 @@ function App() {
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/">
-              <Home />
-            </Route>
             <Route path="/basic-movements">
               <BasicMovements />
             </Route>
@@ -61,6 +58,9 @@ function App() {
             </Route>
             <Route path="/puzzles">
               <Puzzles />
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
 
           </Switch>
