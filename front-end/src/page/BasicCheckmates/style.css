@@ -1,0 +1,18 @@
+p {
+    text-align: center;
+}
+
+.infotext{
+    bottom: 200px;
+    color: lightgrey;
+    width: 300px;
+    height: 100px;
+    border: 1px solid lightgrey;
+    position: absolute;
+    left: 50%;
+    margin: -150px;
+}
+
+.click{
+    cursor: pointer;
+}
