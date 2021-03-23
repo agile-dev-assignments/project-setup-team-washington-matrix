@@ -47,6 +47,11 @@ Alexander Bobb, Joseph Wang, Michelle Han, Michael Zhong, Pepi Martinez, William
 
 [Michael_Zhong_Github](https://github.com/mzhong360)
 
+[William Huang Github](https://github.com/williamhuang0623)
+
+[Pepi Martinez Github](https://github.com/pepimartinez)
+
+
 ## History
 All of our members have a background playing chess and we noticed issues with some of the bigger more main-stream websites.
 
