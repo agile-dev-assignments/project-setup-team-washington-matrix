@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import css from '/Users/Abobb/Desktop/project-setup-team-washington-matrix/front-end/src/page/Learn/style.css'
+import css from './style.css'
 import { 
     Image,
     Sidebar,
