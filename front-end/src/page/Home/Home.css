@@ -6,9 +6,13 @@
 }
 
 #sidebarneedsstyle {
-    background: #00141b;
+    background-color: #00141b;
     overflow-y: scroll;
     height: 100%
+}
+
+.univbackground {
+    background-color: #00141b;
 }
 
 .modalalign {
