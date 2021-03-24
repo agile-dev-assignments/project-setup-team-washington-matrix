@@ -14,6 +14,7 @@ import Login from './page/Login';
 import Play from './page/Play';
 import Profile from './page/Profile';
 import Signup from './page/Signup';
+import BasicCheckmates from './page/Learn/Learn-subpages/basic-checkmates';
 import BasicMovements from './page/Learn/Learn-subpages/basic-movement';
 import BasicPatterns from './page/Learn/Learn-subpages/basic-patterns';
 import Mechanics from './page/Learn/Learn-subpages/mechanics';
@@ -46,6 +47,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <Signup />
+            </Route>
+            <Route path="/basic-checkmates">
+              <BasicCheckmates />
             </Route>
             <Route path="/basic-movements">
               <BasicMovements />
