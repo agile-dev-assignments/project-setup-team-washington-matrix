@@ -1,27 +1,21 @@
 import React from 'react';
-import App from "./dropdown";
+import Dropdown from "./dropdown";
 import "./style.css";
 
-const rootElement = document.getElementById("root");
-
 const imgsrc = '/img/chesslogoQueen.png';
-class Profile extends React.Component {
+class BasicCheckmates extends React.Component {
     constructor(props) {
         super(props);
     }
 
-
-
   render() {
         return (
             <div>
-                <React.StrictMode>
-                   <App />
-                </React.StrictMode>
+                   <Dropdown />
                 {/* insert chessboard underneath */}
             </div>
         )
     }
 }
 
-export default Profile;
+export default BasicCheckmates;

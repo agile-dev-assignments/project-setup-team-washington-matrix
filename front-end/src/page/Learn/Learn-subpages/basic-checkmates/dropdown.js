@@ -62,7 +62,7 @@ const ListItem = styled("li")`
 
 const options = ["Smothered", "Back Rank", "Scholars", "Fools", "Mate with Queen and King", "Mate with two Rooks", "Mate with King and Rook"];
 
-export default function App() {
+const Dropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -105,3 +105,5 @@ export default function App() {
   );
 }
 
+
+export default Dropdown;
