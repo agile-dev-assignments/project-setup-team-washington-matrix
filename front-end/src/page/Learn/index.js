@@ -27,7 +27,7 @@ class Learn extends React.Component {
             
                     <h1 class  = "LearnTitle">Learn</h1>
                     <div class="possLink">
-                        <a id="links" href="basic-movement" >Basic Movement</a>
+                        <a id="links" href="basic-movements" >Basic Movements</a>
                         <br />
                         <a id="links" href="basic-patterns" >Basic Patterns</a>
                         <br />
@@ -35,6 +35,9 @@ class Learn extends React.Component {
                         <br />
                         <a id="links" href="puzzles" >Puzzles</a>
                         <br />
+                        <a id="links" href="basic-checkmates" >Basic Checkmates</a>
+                        <br />
+
                      
                     </div>
                     <Grid className='univbackground'>
