@@ -1,17 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import css from './style.css'
-import { 
-    Image,
-    Sidebar,
-    Icon,
-    Menu,
-    Segment,
-    Grid,
-    Button,
- } from 'semantic-ui-react';
- const imgsrc = '/img/chesslogo.png';
- const imgsrc2 = '/img/hamburger.png'
+import SidebarPerm from '../../components/SidebarPerm';
+import { Grid, GridRow } from 'semantic-ui-react';
 class Learn extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +10,7 @@ class Learn extends React.Component {
         this.state = {
             visible: false,
         }
+        
     }
     toggleVisible() {
         this.setState({
@@ -31,28 +23,28 @@ class Learn extends React.Component {
     render() {
         return (
         <>
-               <h1 class  = "LearnTitle">Learn</h1>
+            <SidebarPerm id="sidebarneedsstyle"> 
+            
+                    <h1 class  = "LearnTitle">Learn</h1>
+                    <div class="possLink">
+                        <a id="links" href="basic-movement" >Basic Movement</a>
+                        <br />
+                        <a id="links" href="basic-patterns" >Basic Patterns</a>
+                        <br />
+                        <a id="links" href="mechanics" >Mechanics</a>
+                        <br />
+                        <a id="links" href="puzzles" >Puzzles</a>
+                        <br />
+                     
+                    </div>
+                    <Grid className='univbackground'>
+                    <Grid.Row style={{height: '40vh'}}>
+                    </Grid.Row>
+                </Grid>
+                                              
+            </SidebarPerm>
 
-               <div class="possLink">
-                                        <a id="links" href="BasicMovement" >Basic Movement</a>
-                                        <br />
-                                        <a id="links" href="BasicPatterns" >Basic Patterns</a>
-                                        <br />
-                                        <a id="links" href="BasicCheckmates" >Basic Checkmates</a>
-                                        <br />
-                                        <a id="links" href="BasicMechanics" >Basic Mechanics</a>
-                                        <br />
-                                        <a id="links" href="BasicMovements" >Basic Movements</a>
-                                    </div>
-                                    {/* Image of logo that links to homepage */}
-                                    <div class = "teaChessLogo">
-                                        <Image
-                                            src={imgsrc}
-                                            size='medium'
-                                            href='Homepage'
-                                            verticalAlign='top'
-                                        />
-                                        </div>
+               
         </>
         )
     }
