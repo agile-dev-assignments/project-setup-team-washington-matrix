@@ -26,9 +26,9 @@ class Puzzles extends React.Component {
                 </h1>
                 buttongroup={
                 <Button.Group id= "difficulty" size='large' color='grey'>
-                    <Button as={Link} to='/login'>Easy</Button>
-                    <Button as={Link} to='/signup'>Medium</Button>
-                    <Button as={Link} to='/signup'>Hard</Button>
+                    <Button as={Link} to=''>Easy</Button>
+                    <Button as={Link} to=''>Medium</Button>
+                    <Button as={Link} to="">Hard</Button>
                 </Button.Group>
                 }
                 <div id= "board" className="practice-container">
