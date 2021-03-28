@@ -10,17 +10,14 @@ class Practice extends React.Component {
     render() {
         return (
             <SidebarPerm id="sidebarneedsstyle">
+                <div className="chessboard-wrapper">
+                    <div className="chessboard-body">
+                        <WithMoveValidation />
+                    </div>
+                </div>
                 <Grid centered className='univbackground'>
-                    <Grid.Row style={{height: '30vh'}}/>
-                    <Grid.Row>
-                        <Grid.Column width={4} />
-                        <Grid.Column width={6}>
-                            <Segment compact raised inverted color='teal'>
-                                <WithMoveValidation />
-                            </Segment>
-                        </Grid.Column>
-                        
-                        <Grid.Column floated='right' width={5}>
+                    <Grid.Row>                
+                        <Grid.Column width={12}>
                              <div className="table-container">
                                 <Table inverted color='grey' celled> 
                                 <Table.Header>

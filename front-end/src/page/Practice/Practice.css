@@ -44,3 +44,14 @@ table thead, table tbody tr, table tfoot tr {
     display: table;
     table-layout: fixed;
 }
+
+.chessboard-wrapper {
+    width: 100%;
+}
+
+.chessboard-body {
+    display: block;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 20px;
+}
