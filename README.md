@@ -62,6 +62,43 @@ All of our members have a background playing chess and we noticed issues with so
 
 [Contributing.md](https://github.com/agile-dev-assignments/project-setup-team-washington-matrix/blob/master/CONTRIBUTING.md)
 
+## Additional Tooling
+
+### How to use Prettier
+
+First remember to run
+
+```
+npm install
+```
+
+**For VS Code**
+
+1. Head to Code > Preferences > Extensions and search for the ESCode and Prettier extensions and install them.
+2. Make a settings file at .vscode/settings.json and add the following configuration:
+
+```
+
+{
+    "editor.formatOnSave": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
+```
+
+**For Atom**
+Install the prettier-atom package.
+
+Head to Packages > prettier and check "Format on Save" and "Format on Prettier Config" and then restart Atom.
+
 ## Additional Links
 
 [Project_Proposal](https://github.com/agile-dev-assignments/project-proposal-joal)
