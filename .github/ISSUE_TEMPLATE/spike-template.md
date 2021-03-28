@@ -4,14 +4,15 @@ about: A template to use for Spikes
 title: ''
 labels: spike
 assignees: ''
-
 ---
 
 ## Estimation of work
-- TBD
+
+-   TBD
 
 ## Acceptance criteria
-- [ ] foo
-- [ ] bar
-- [ ] etc
-- [ ] etc
+
+-   [ ] foo
+-   [ ] bar
+-   [ ] etc
+-   [ ] etc

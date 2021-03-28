@@ -40,7 +40,9 @@ table tfoot tr {
     width: 100%;
 }
 
-table thead, table tbody tr, table tfoot tr {
+table thead,
+table tbody tr,
+table tfoot tr {
     display: table;
     table-layout: fixed;
 }

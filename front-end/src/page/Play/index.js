@@ -4,13 +4,9 @@ class Play extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
-        return (
-            <div>
-                Play Page
-            </div>
-        )
+        return <div>Play Page</div>;
     }
 }
 

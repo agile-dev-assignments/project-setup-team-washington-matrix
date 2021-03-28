@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-    Form,
-    Segment,
-    Button,
-    Grid
- } from 'semantic-ui-react';
+import { Form, Segment, Button, Grid } from 'semantic-ui-react';
 
 class Signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
-        }
+        };
     }
-    
+
     render() {
         return (
             <Grid>
@@ -23,24 +18,22 @@ class Signup extends React.Component {
                         <Form inverted>
                             <Form.Field required width={6}>
                                 <label>Username</label>
-                                <input placeholder='Enter Username' />
+                                <input placeholder="Enter Username" />
                             </Form.Field>
-                            <Form.Field required width = {6}>
+                            <Form.Field required width={6}>
                                 <label>Password</label>
-                                <input placeholder='Enter Password' />
+                                <input placeholder="Enter Password" />
                             </Form.Field>
-                            <Form.Field required width = {6}>
+                            <Form.Field required width={6}>
                                 <label>Email</label>
-                                <input placeholder='Enter Email' />
+                                <input placeholder="Enter Email" />
                             </Form.Field>
-                            <Button type='submit'>Submit</Button>
+                            <Button type="submit">Submit</Button>
                         </Form>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-          
-            
-        )
+        );
     }
 }
 

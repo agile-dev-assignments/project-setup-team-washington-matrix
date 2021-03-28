@@ -1,4 +1,4 @@
-h1{
+h1 {
     position: relative;
     left: 10px;
     top: 0px;
@@ -8,7 +8,7 @@ p {
     text-align: center;
 }
 
-.infotext{
+.infotext {
     bottom: 200px;
     color: lightgrey;
     width: 300px;
@@ -19,12 +19,12 @@ p {
     margin: -150px;
 }
 
-.ui.compact.menu{
+.ui.compact.menu {
     position: absolute;
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
-  }
+}
 
 #sidebarneedsstyle {
     position: relative;
@@ -32,27 +32,26 @@ p {
     right: 10px;
     background-color: #00141b;
     overflow-y: scroll;
-    height: 100%
+    height: 100%;
 }
 
-#title{
-    color:teal;
+#title {
+    color: teal;
     font-size: 30px;
     position: absolute;
     left: 10px;
     top: 0px;
-    
-  }
+}
 
-#difficulty{
-    position:absolute;
+#difficulty {
+    position: absolute;
     left: 50%;
     top: 150px;
     transform: translateX(-50%);
 }
 
-#board{
-    position:absolute;
+#board {
+    position: absolute;
     left: 50%;
     top: 225px;
     transform: translateX(-50%);

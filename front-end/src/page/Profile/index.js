@@ -4,13 +4,9 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
-        return (
-            <div>
-                Profile Page
-            </div>
-        )
+        return <div>Profile Page</div>;
     }
 }
 
