@@ -36,7 +36,7 @@ class Puzzles extends React.Component {
                 </div>
                 
                 <Grid className='univbackground'>
-                    <Grid.Row style={{height: '70vh'}}>
+                    <Grid.Row style={{height: '100vh'}}>
                     </Grid.Row>
                 </Grid>
                 </SidebarPerm>

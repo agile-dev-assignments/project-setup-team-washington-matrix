@@ -42,20 +42,19 @@ class BasicMovements extends React.Component {
                 </div>                
                 
                 <Grid className='univbackground'>
-                    <Grid.Row style={{height: '70vh'}}>
+                    <Grid.Row style={{height: '110vh'}}>
                     </Grid.Row>
                 </Grid>
                 </SidebarPerm>
 
-                <div class="infotext">
+                <div id="infotext">
                     <p>Text about the movements</p>
                 </div>
-                
                 
             </div>
             
         )
     }
 }
-// npm install --save styled-components
+
 export default BasicMovements;

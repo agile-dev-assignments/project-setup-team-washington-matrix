@@ -8,16 +8,18 @@ p {
     text-align: center;
 }
 
-.infotext{
-    bottom: 200px;
+#textbox{
+    bottom: 100px;
     color: lightgrey;
-    width: 300px;
+    width: 500px;
     height: 100px;
     border: 1px solid lightgrey;
     position: absolute;
     left: 50%;
-    margin: -150px;
+    margin: -250px;
+    z-index: 10;
 }
+
 
 .ui.compact.menu{
     position: absolute;

@@ -38,26 +38,25 @@ class BasicCheckmates extends React.Component {
                         </div>
                     </div>
                 </div>
+                
 
                 <div id= "board" className="practice-container">
                     <WithMoveValidation />
-                </div>                
-                
+                </div>    
+
                 <Grid className='univbackground'>
-                    <Grid.Row style={{height: '70vh'}}>
+                    <Grid.Row style={{height: '110vh'}}>
                     </Grid.Row>
                 </Grid>
-                </SidebarPerm>
+                </SidebarPerm>  
 
-                <div class="infotext">
+                <div id="textbox">
                     <p>Text about the checkmates</p>
-                </div>
-                
-                
+                </div> 
+
             </div>
             
         )
     }
 }
-// npm install --save styled-components
 export default BasicCheckmates;
