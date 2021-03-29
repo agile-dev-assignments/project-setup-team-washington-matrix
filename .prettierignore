@@ -1,0 +1,5 @@
+front-end/build*
+coverage*
+node_modules
+ux-design*
+.github*

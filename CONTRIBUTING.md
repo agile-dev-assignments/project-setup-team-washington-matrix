@@ -1,12 +1,13 @@
 # Contributing
+
 ## Team Values and Norms
 
 We want a comfortable and efficient working environment where everyone does their part. Everyone is expected to be respectful and communicate with one another. Some basic expectations of the team include:
 
-	* Attend all sprints on time with updated work
-	* Communicate all issues
-	* Take responsibility
-	* Regularly check communication channels
+    * Attend all sprints on time with updated work
+    * Communicate all issues
+    * Take responsibility
+    * Regularly check communication channels
 
 In the case of any disagreements, we will take the majority vote. If the issue persists, the Stakeholders (aka the professor or graders) will be involved to defuse the situation.
 
@@ -26,8 +27,6 @@ Sunday, Tuesday, Friday 7pm EST
 
 ## Roles
 
-	* Sprint 1
-		* Product Owner: Michael
-		* Scrum Master: Alex 
-
-
+    * Sprint 1
+    	* Product Owner: Michael
+    	* Scrum Master: Alex

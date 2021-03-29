@@ -4,14 +4,15 @@ about: A template to use for User Stories
 title: ''
 labels: user story
 assignees: ''
-
 ---
 
 ## Estimation of work
-- TBD
+
+-   TBD
 
 ## Acceptance criteria
-- [ ] foo
-- [ ] bar
-- [ ] baz
-- [ ] etc
+
+-   [ ] foo
+-   [ ] bar
+-   [ ] baz
+-   [ ] etc
