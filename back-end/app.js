@@ -1,6 +1,14 @@
-// import and instantiate express
-const express = require("express") // CommonJS import style!
-const app = express() // instantiate an Express object
-// we will put some server logic here later...
-// export the express app we created to make it available to other modules
-module.exports = app
+const express = require('express'); // CommonJS import style!
+
+const app = express(); // instantiate an Express object
+
+const authController = require('./controllers/auth');
+
+app.use('/auth', authController);
+
+const PORT = 3000; // the port to listen to for incoming requests
+app.listen(port, function () {
+    console.log(`Server running on port: ${port}`);
+});
+
+module.exports = app;
