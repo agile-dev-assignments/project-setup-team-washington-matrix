@@ -1,14 +1,22 @@
-const express = require('express'); // CommonJS import style!
+const express = require('express');
 
 const app = express(); // instantiate an Express object
 
-const authController = require('./controllers/auth');
+// Main Routes
+app.get('/', (req, res, next) => {
+    res.json({
+        status: 'live',
+    });
+});
 
+// Controllers
+const authController = require('./controllers/auth');
 app.use('/auth', authController);
 
-const PORT = 3000; // the port to listen to for incoming requests
-app.listen(port, function () {
-    console.log(`Server running on port: ${port}`);
+// Start the server
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port: ${PORT}`);
 });
 
 module.exports = app;
