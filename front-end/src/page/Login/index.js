@@ -1,34 +1,28 @@
 import React from 'react';
-import { Form, Button, Grid } from 'semantic-ui-react';
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loggedIn: false,
-        };
-    }
+import {Link} from 'react-router-dom';
+import { Header, Form, Button, Grid, Image, Segment, Message} from 'semantic-ui-react';
+import './style.css'
 
-    render() {
-        return (
-            <Grid>
-                <Grid.Row centered>
-                    <Grid.Column width={6}>
-                        <Form inverted>
-                            <Form.Field required width={6}>
-                                <label>Email</label>
-                                <input placeholder="Enter Email" />
-                            </Form.Field>
-                            <Form.Field required width={6}>
-                                <label>Password</label>
-                                <input placeholder="Enter Password" />
-                            </Form.Field>
-                            <Button type="submit">Submit</Button>
-                        </Form>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        );
-    }
-}
+const LoginForm = () => (
+    <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
+        <Grid.Column style={{maxWidth: 450}}>
+            <Header as='h2' color='teal' textAlign='center'>
+                <Image src='/img/chesslogo.png' /> Login to your account
+            </Header>
+        <Form size='large'>
+            <Segment stacked>
+                <Form.Input fluid icon='user' iconPosition='left' placeholder='Email Address' />
+                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' />
+                <Button color='teal' fluid size='large' type='submit'>
+                    Login
+                </Button>
+            </Segment>
+        </Form>
+        <Message >
+            New here? <Link to='/signup'>Sign up</Link>
+        </Message>
+        </Grid.Column>
+    </Grid>
+)
 
-export default Login;
+export default LoginForm;
