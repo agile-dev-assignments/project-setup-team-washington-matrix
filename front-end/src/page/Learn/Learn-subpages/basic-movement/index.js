@@ -6,7 +6,30 @@ import SidebarPerm from "../../../../components/SidebarPerm";
 import WithMoveValidation from "./../../../../components/boards/WithMoveValidation";
 
 const imgsrc = "/img/chesslogoQueen.png";
-
+// function text(piece){
+//   var text;
+//   switch(piece){
+//     case 1:
+//       text = "text about king movement";
+//       break;
+//     case 2:
+//       text = "text about rook movement";
+//       break;
+//     case 3:
+//       text = "text about bishop movement";
+//       break;
+//     case 4:
+//       text = "text about queen movement";
+//       break;
+//     case 5:
+//       text = "text about knight movement";
+//       break;
+//     case 6:
+//       text = "text about pawn movement";
+//       break;
+//   }
+//   alert(text);
+// }
 class BasicMovements extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +45,7 @@ class BasicMovements extends React.Component {
               Basic Movements
               <i class="dropdown icon"></i>
               <div class="menu">
-                <div class="item" data-value="1">
+                <div onclick="text(this)" class="item" data-value="1">
                   King
                 </div>
                 <div class="item" data-value="2">
@@ -44,9 +67,13 @@ class BasicMovements extends React.Component {
             </div>
           </div>
 
-          <div id="board" className="practice-container">
-            <WithMoveValidation />
-          </div>
+          <Grid>
+            <Grid.Row centered>
+              <Grid.Column width={6}>
+                <WithMoveValidation />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
 
           <Grid className="univbackground">
             <Grid.Row style={{ height: "110vh" }}></Grid.Row>

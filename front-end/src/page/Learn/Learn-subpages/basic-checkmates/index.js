@@ -46,10 +46,14 @@ class BasicCheckmates extends React.Component {
               </div>
             </div>
           </div>
-
-          <div id="board" className="practice-container">
-            <WithMoveValidation />
-          </div>
+          
+          <Grid>
+            <Grid.Row centered>
+              <Grid.Column width={6}>
+                <WithMoveValidation />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
 
           <Grid className="univbackground">
             <Grid.Row style={{ height: "110vh" }}></Grid.Row>

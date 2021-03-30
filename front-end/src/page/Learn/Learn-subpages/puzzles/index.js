@@ -20,20 +20,25 @@ class Puzzles extends React.Component {
           buttongroup=
           {
             <Button.Group id="difficulty" size="large" color="grey">
-              <Button as={Link} to="">
+              <Button>
                 Easy
               </Button>
-              <Button as={Link} to="">
+              <Button>
                 Medium
               </Button>
-              <Button as={Link} to="">
+              <Button>
                 Hard
               </Button>
             </Button.Group>
           }
-          <div id="board" className="practice-container">
-            <WithMoveValidation />
-          </div>
+          <Grid>
+            <Grid.Row centered>
+              <Grid.Column width={6}>
+                <WithMoveValidation />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
           <Grid className="univbackground">
             <Grid.Row style={{ height: "100vh" }}></Grid.Row>
           </Grid>
