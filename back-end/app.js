@@ -17,7 +17,7 @@ const gameController = require('./controllers/game');
 app.use('/game/', gameController);
 
 // Start the server
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });
