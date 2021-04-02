@@ -6,7 +6,7 @@ import SidebarPerm from '../../components/SidebarPerm';
 
 const Signup = () => (
     <SidebarPerm id="sidebarneedsstyle">
-        <Grid textAlign="center" style={{ height: '50vh' }} verticalAlign="middle">
+        <Grid textAlign="center" style={{ height: '73vh' }} verticalAlign="middle">
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" color="teal" textAlign="center">
                     <Image src="/img/chesslogo.png" /> Create a new account
