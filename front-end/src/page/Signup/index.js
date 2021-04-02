@@ -1,58 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Segment, Button, Grid } from 'semantic-ui-react';
+import { Header, Form, Button, Grid, Image, Segment, Message } from 'semantic-ui-react';
+import './style.css';
 import SidebarPerm from '../../components/SidebarPerm';
 
-class Signup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: false,
-        };
-    }
-
-    render() {
-        return (
-            <div>
-                <SidebarPerm
-                    buttongroup={
-                        <Button.Group size="large" color="grey">
-                            <Button as={Link} to="/login">
-                                Log in
-                            </Button>
-                            <Button.Or />
-                            <Button as={Link} to="/signup">
-                                Sign Up
-                            </Button>
-                        </Button.Group>
-                    }
-                    id="sidebarneedsstyle"
-                >
-                    <Grid>
-                        <Grid.Row centered>
-                            <Grid.Column width={6}>
-                                <Form inverted>
-                                    <Form.Field required width={6}>
-                                        <label>Username</label>
-                                        <input placeholder="Enter Username" />
-                                    </Form.Field>
-                                    <Form.Field required width={6}>
-                                        <label>Password</label>
-                                        <input placeholder="Enter Password" />
-                                    </Form.Field>
-                                    <Form.Field required width={6}>
-                                        <label>Email</label>
-                                        <input placeholder="Enter Email" />
-                                    </Form.Field>
-                                    <Button type="submit">Submit</Button>
-                                </Form>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </SidebarPerm>
-            </div>
-        );
-    }
-}
+const Signup = () => (
+    <SidebarPerm id="sidebarneedsstyle">
+        <Grid textAlign="center" style={{ height: '50vh' }} verticalAlign="middle">
+            <Grid.Column style={{ maxWidth: 450 }}>
+                <Header as="h2" color="teal" textAlign="center">
+                    <Image src="/img/chesslogo.png" /> Create a new account
+                </Header>
+                <Form size="large">
+                    <Segment stacked>
+                        <Form.Input fluid icon="user" iconPosition="left" placeholder="Username" />
+                        <Form.Input
+                            fluid
+                            icon="envelope outline"
+                            iconPosition="left"
+                            placeholder="Email"
+                        />
+                        <Form.Input
+                            fluid
+                            icon="lock"
+                            iconPosition="left"
+                            placeholder="Password"
+                            type="password"
+                        />
+                        <Button color="teal" fluid size="large" type="submit">
+                            Signup
+                        </Button>
+                    </Segment>
+                </Form>
+            </Grid.Column>
+        </Grid>
+    </SidebarPerm>
+);
 
 export default Signup;
