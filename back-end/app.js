@@ -13,6 +13,9 @@ app.get('/', (req, res, next) => {
 const authController = require('./controllers/auth');
 app.use('/auth', authController);
 
+const gameController = require('./controllers/game');
+app.use('/game/', gameController);
+
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
