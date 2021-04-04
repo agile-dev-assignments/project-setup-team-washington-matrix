@@ -55,7 +55,7 @@ class HumanVsHuman extends Component {
         }));
     };
 
-    onDrop = ({ sourceSquare, targetSquare }) => {
+    onDrop = async ({ sourceSquare, targetSquare }) => {
         // see if the move is legal
         let move = this.game.move({
             from: sourceSquare,
@@ -70,6 +70,8 @@ class HumanVsHuman extends Component {
             history: this.game.history({ verbose: true }),
             squareStyles: squareStyling({ pieceSquare, history }),
         }));
+
+        await this.props.postMoveHook(this.game);
     };
 
     onMouseOverSquare = (square) => {
@@ -102,7 +104,7 @@ class HumanVsHuman extends Component {
         });
     };
 
-    onSquareClick = (square) => {
+    onSquareClick = async (square) => {
         this.setState(({ history }) => ({
             squareStyles: squareStyling({ pieceSquare: square, history }),
             pieceSquare: square,
@@ -122,6 +124,8 @@ class HumanVsHuman extends Component {
             history: this.game.history({ verbose: true }),
             pieceSquare: '',
         });
+
+        await this.props.postMoveHook(this.game);
     };
 
     onSquareRightClick = (square) =>
@@ -146,10 +150,10 @@ class HumanVsHuman extends Component {
     }
 }
 
-function WithMoveValidation() {
+function WithMoveValidation({ postMoveHook }) {
     return (
         <div>
-            <HumanVsHuman>
+            <HumanVsHuman postMoveHook={postMoveHook}>
                 {({
                     position,
                     onDrop,
