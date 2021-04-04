@@ -1,15 +1,18 @@
 import React from 'react';
-import { Modal, Button, Icon } from 'semantic-ui-react';
-import IconToggleButton from './IconToggleButton';
-import ToggleButton from './ToggleButton';
+import { Modal, Button, Icon, Form, Grid, Menu } from 'semantic-ui-react';
 
 class PlayModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
+            activeItem: 'first',
+            activeItem2: 'white',
         };
     }
+
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    handleItemClick2 = (e, { name }) => this.setState({ activeItem2: name });
 
     toggleOpen(newstate) {
         this.setState({
@@ -18,6 +21,7 @@ class PlayModal extends React.Component {
     }
 
     render() {
+        const { activeItem, activeItem2 } = this.state;
         return (
             <Modal
                 onClose={() => this.toggleOpen(false)}
@@ -31,22 +35,90 @@ class PlayModal extends React.Component {
                     Play Settings
                 </Modal.Header>
                 <Modal.Content className="modalalign">
-                    <ToggleButton activeColor="blue" textContent="3+2" />
-                    <ToggleButton activeColor="blue" textContent="3+5" />
-                    <ToggleButton activeColor="blue" textContent="5+5" />
-                    <ToggleButton activeColor="blue" textContent="10+15" />
-                    <ToggleButton activeColor="blue" textContent="15+15" />
+                    <Button
+                        as={Menu.Item}
+                        name="first"
+                        size="massive"
+                        color={activeItem === 'first' ? 'blue' : null}
+                        active={activeItem === 'first'}
+                        onClick={this.handleItemClick}
+                    >
+                        3+2
+                    </Button>
+                    <Button
+                        as={Menu.Item}
+                        name="second"
+                        size="massive"
+                        color={activeItem === 'second' ? 'blue' : null}
+                        active={activeItem === 'Second'}
+                        onClick={this.handleItemClick}
+                    >
+                        3+5
+                    </Button>
+                    <Button
+                        as={Menu.Item}
+                        name="third"
+                        size="massive"
+                        color={activeItem === 'third' ? 'blue' : null}
+                        active={activeItem === 'third'}
+                        onClick={this.handleItemClick}
+                    >
+                        5+5
+                    </Button>
+                    <Button
+                        as={Menu.Item}
+                        name="fourth"
+                        size="massive"
+                        color={activeItem === 'fourth' ? 'blue' : null}
+                        active={activeItem === 'fourth'}
+                        onClick={this.handleItemClick}
+                    >
+                        10+15
+                    </Button>
+                    <Button
+                        as={Menu.Item}
+                        name="fifth"
+                        size="massive"
+                        color={activeItem === 'fifth' ? 'blue' : null}
+                        active={activeItem === 'fifth'}
+                        onClick={this.handleItemClick}
+                    >
+                        15+15
+                    </Button>
                     <br /> <br />
                     <Button.Group size="massive">
-                        <IconToggleButton
-                            activeColor="teal"
-                            iconName="chess king"
-                            isInverted="true"
-                        />
+                        <Button
+                            as={Menu.Item}
+                            name="white"
+                            size="massive"
+                            color={activeItem2 === 'white' ? 'teal' : null}
+                            active={activeItem2 === 'white'}
+                            onClick={this.handleItemClick2}
+                        >
+                            <Icon name="chess king" inverted={true} />
+                        </Button>
                         <Button.Or />
-                        <IconToggleButton activeColor="teal" iconName="shuffle" />
+                        <Button
+                            as={Menu.Item}
+                            name="random"
+                            size="massive"
+                            color={activeItem2 === 'random' ? 'teal' : null}
+                            active={activeItem2 === 'random'}
+                            onClick={this.handleItemClick2}
+                        >
+                            <Icon name="shuffle" />
+                        </Button>
                         <Button.Or />
-                        <IconToggleButton activeColor="teal" iconName="chess king" />
+                        <Button
+                            as={Menu.Item}
+                            name="black"
+                            size="massive"
+                            color={activeItem2 === 'black' ? 'teal' : null}
+                            active={activeItem2 === 'black'}
+                            onClick={this.handleItemClick2}
+                        >
+                            <Icon name="chess king" />
+                        </Button>
                     </Button.Group>
                 </Modal.Content>
                 <Modal.Actions>
