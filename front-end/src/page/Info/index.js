@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Tab, Transition } from 'semantic-ui-react';
 import SidebarPerm from '../../components/SidebarPerm';
 
+
 class Info extends React.Component {
     constructor(props) {
         super(props);
@@ -33,71 +34,12 @@ class Info extends React.Component {
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text Some Info Text Some Info Text Some Info Text Some
-                            Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text Some Info Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text Some Info
-                            Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text Some Info Text
-                            <br />
-                            Some Info Text Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
-                            <br />
-                            Some Info Text
+                        <iframe id="history"
+                            title="History"
+                            width="1250"
+                            height="1000"
+                            src="https://en.wikipedia.org/wiki/History_of_chess">
+                        </iframe>
                         </Tab.Pane>
                     </Transition>
                 ),
@@ -106,8 +48,8 @@ class Info extends React.Component {
                 menuItem: (
                     <Menu.Item
                         style={{ color: 'lightgrey' }}
-                        name="notable players"
-                        active={activeItem === 'notable players'}
+                        name="Player Rankings"
+                        active={activeItem === 'Player Rankings'}
                         onClick={this.handleItemClick}
                         color="teal"
                     />
@@ -116,11 +58,18 @@ class Info extends React.Component {
                     <Transition
                         animation="fade left"
                         duration={125}
-                        visible={activeItem === 'notable players'}
+                        visible={activeItem === 'Player Rankings'}
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                            Some Info Text Some Info Text
+                        <iframe id="ratings"
+                            title="Ratings"
+                            width="1250"
+                            height="825"
+                            src="https://ratings.fide.com/top.phtml?list=men">
+                        </iframe>
+
+                            
                         </Tab.Pane>
                     </Transition>
                 ),
@@ -143,36 +92,17 @@ class Info extends React.Component {
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                            Some Info Text Some Info Text Some Info Text
+                        <iframe id="recentEvents"
+                            title="Recent Events"
+                            width="1250"
+                            height="1000"
+                            src="https://theweekinchess.com/chessnews/events">
+                        </iframe>
                         </Tab.Pane>
                     </Transition>
                 ),
             },
-            {
-                menuItem: (
-                    <Menu.Item
-                        style={{ color: 'lightgrey' }}
-                        name="Resources"
-                        active={activeItem === 'Resources'}
-                        onClick={this.handleItemClick}
-                        color="teal"
-                    />
-                ),
-                pane: (
-                    <Transition
-                        animation="fade left"
-                        duration={125}
-                        visible={activeItem === 'Resources'}
-                        unmountOnHide={true}
-                    >
-                        <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                            Some Info Text Some Info Text Some Info Text Some Info Text
-                            <br />
-                            <a href="https://en.wikipedia.org/wiki/Chess">Hey it's a link</a>
-                        </Tab.Pane>
-                    </Transition>
-                ),
-            },
+
         ];
         return (
             <div>

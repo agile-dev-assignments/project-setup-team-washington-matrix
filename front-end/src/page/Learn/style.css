@@ -26,8 +26,13 @@ a:active {
 }
 
 .LearnTitle {
-    color: lightblue;
+    /* color: lightblue;
     font-size: 90px;
+    position: absolute;
+    left: 10px;
+    top: 0px; */
+    color: teal;
+    font-size: 30px;
     position: absolute;
     left: 10px;
     top: 0px;
