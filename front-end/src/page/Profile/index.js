@@ -18,17 +18,19 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            opengame: false,
+            openpuzzle: false,
         };
-        this.toggle = this.toggle.bind(this);
+        this.toggleg = this.toggleg.bind(this);
+        this.togglep = this.togglep.bind(this);
     }
 
-    toggle(game) {
-        this.setState({ open: !this.state.open });
+    toggleg(game) {
+        this.setState({ opengame: !this.state.opengame });
     }
 
-    toggle(puzzle) {
-        this.setState({ open: !this.state.open });
+    togglep(puzzle) {
+        this.setState({ openpuzzle: !this.state.openpuzzle });
     }
 
     render() {
@@ -45,10 +47,10 @@ class Profile extends React.Component {
                     </div>
                     <Line />
                     <div>
-                        <div name="game" onClick={(game) => this.toggle(game)} className="header">
+                        <div name="game" onClick={(game) => this.toggleg(game)} className="header">
                             Games
                         </div>
-                        {this.state.open ? (
+                        {this.state.opengame ? (
                             <div className="content">
                                 <h4>Total Games Played: 48</h4>
                                 <h4>Wins: 32</h4>
@@ -60,12 +62,12 @@ class Profile extends React.Component {
                     <div>
                         <div
                             name="puzzle"
-                            onClick={(puzzle) => this.toggle(puzzle)}
+                            onClick={(puzzle) => this.togglep(puzzle)}
                             className="header"
                         >
                             Puzzles
                         </div>
-                        {this.state.open ? (
+                        {this.state.openpuzzle ? (
                             <div className="content">
                                 <h4>Total Puzzles Completed: 152</h4>
                             </div>
