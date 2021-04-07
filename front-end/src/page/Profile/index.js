@@ -41,7 +41,7 @@ class Profile extends React.Component {
                         <div>
                             <h2 id="user">Username</h2>
                             <h4 id="name">Name</h4>
-                            <img src={profilepic} alt="ProfilePic" />
+                            <img id="propic" src={profilepic} alt="ProfilePic" />
                             <Button id="edit">Edit</Button>
                         </div>
                     </div>
