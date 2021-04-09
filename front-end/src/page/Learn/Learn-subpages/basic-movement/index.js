@@ -48,77 +48,42 @@ const pieces = [
     {
         key: 1,
         text: 'King',
-        value: 'King',
+        value: 1,
     },
     {
         key: 2,
         text: 'Queen',
-        value: 'Queen',
+        value: 2,
     },
     {
         key: 3,
         text: 'Rook',
-        value: 'Rook',
+        value: 3,
     },
     {
         key: 4,
         text: 'Bishop',
-        value: 'Bishop',
+        value: 4,
     },
     {
         key: 5,
         text: 'Knight',
-        value: 'Knight',
+        value: 5,
     },
     {
         key: 6,
         text: 'Pawn',
-        value: 'Pawn',
+        value: 6,
     },
 ];
 
-const DropdownMenu = () => (
-    <Dropdown
-        placeholder="Select Option"
-        fluid
-        selection
-        options={pieces}
-        onChange={handleDropdownClick}
-    />
-);
-
-const handleDropdownClick = (e, data) => {
-    this.setState({ piece: data.key });
-};
 class BasicMovements extends React.Component {
     constructor(props) {
         super(props);
-        this.handleKingClick = this.handleKingClick.bind(this);
-        this.handleQueenClick = this.handleQueenClick.bind(this);
-        this.handleRookClick = this.handleRookClick.bind(this);
-        this.handleBishopClick = this.handleBishopClick.bind(this);
-        this.handleKnightClick = this.handleKnightClick.bind(this);
-        this.handlePawnClick = this.handlePawnClick.bind(this);
         this.state = { piece: 6 };
     }
-    handleKingClick() {
-        this.setState({ piece: 1 });
-    }
-    handleQueenClick() {
-        this.setState({ piece: 2 });
-    }
-    handleRookClick() {
-        this.setState({ piece: 3 });
-    }
-    handleBishopClick() {
-        this.setState({ piece: 4 });
-    }
-    handleKnightClick() {
-        this.setState({ piece: 5 });
-    }
-    handlePawnClick() {
-        this.setState({ piece: 6 });
-    }
+
+    handleDropdownClick = (e, data) => this.setState({ piece: data.value });
 
     render() {
         const { piece } = this.state;
@@ -127,11 +92,28 @@ class BasicMovements extends React.Component {
                 <SidebarPerm id="sidebarneedsstyle">
                     <h1 class="title">Basic Movements</h1>
 
-                    <Grid>
-                        <DropdownMenu />
+                    <Grid style={{ height: '30vh' }}>
+                        <Grid.Row centered>
+                            <Grid.Column width={6}>
+                                <Dropdown
+                                    placeholder="Select Option"
+                                    fluid
+                                    selection
+                                    options={pieces}
+                                    onChange={this.handleDropdownClick}
+                                />
+                            </Grid.Column>
+                        </Grid.Row>
                         <Grid.Row centered>
                             <Grid.Column width={6}>
                                 <WithMoveValidation />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <Grid.Column width={6}>
+                                <div id="infotext">
+                                    <DisplayedText piece={piece} />
+                                </div>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -140,10 +122,6 @@ class BasicMovements extends React.Component {
                         <Grid.Row style={{ height: '110vh' }}></Grid.Row>
                     </Grid>
                 </SidebarPerm>
-
-                <div id="infotext">
-                    <DisplayedText piece={piece} />
-                </div>
             </div>
         );
     }
