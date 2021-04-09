@@ -1,29 +1,88 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './style.css';
-import { Link } from 'react-router-dom';
 import { Grid, Dropdown } from 'semantic-ui-react';
 import SidebarPerm from '../../../../components/SidebarPerm';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 
-const imgsrc = '/img/chesslogoQueen.png';
 function KingText(props) {
-    return <p>Text about King</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/king').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function QueenText(props) {
-    return <p>Text about Queen</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/queen').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function RookText(props) {
-    return <p>Text about Rook</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/rook').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function BishopText(props) {
-    return <p>Text about Bishop</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/bishop').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function KnightText(props) {
-    return <p>Text about Knight</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/knight').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function PawnText(props) {
-    return <p>Text about Pawn</p>;
+    const [data, setData] = useState('');
+    useEffect(() => {
+        axios.get('http://localhost:4000/learn/movements/pawn').then((res) => {
+            setData(res.data.data);
+        });
+        return () => {
+            setData('');
+        };
+    }, []);
+    return <p>{data}</p>;
 }
+
 function DisplayedText(props) {
     const piece = props.piece;
     switch (piece) {
@@ -77,54 +136,48 @@ const pieces = [
     },
 ];
 
-class BasicMovements extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { piece: 6 };
-    }
+const BasicMovements = () => {
+    const handleDropdownClick = async (event, data) => {
+        setPieceSelected(data.value);
+    };
+    const [pieceSelected, setPieceSelected] = useState();
+    return (
+        <div>
+            <SidebarPerm id="sidebarneedsstyle">
+                <h1 class="title">Basic Movements</h1>
 
-    handleDropdownClick = (e, data) => this.setState({ piece: data.value });
+                <Grid style={{ height: '30vh' }}>
+                    <Grid.Row centered>
+                        <Grid.Column width={6}>
+                            <Dropdown
+                                placeholder="Select Option"
+                                fluid
+                                selection
+                                options={pieces}
+                                onChange={handleDropdownClick}
+                            />
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <Grid.Column width={6}>
+                            <WithMoveValidation />
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <Grid.Column width={6}>
+                            <div id="infotext">
+                                <DisplayedText piece={pieceSelected} />
+                            </div>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
 
-    render() {
-        const { piece } = this.state;
-        return (
-            <div>
-                <SidebarPerm id="sidebarneedsstyle">
-                    <h1 class="title">Basic Movements</h1>
-
-                    <Grid style={{ height: '30vh' }}>
-                        <Grid.Row centered>
-                            <Grid.Column width={6}>
-                                <Dropdown
-                                    placeholder="Select Option"
-                                    fluid
-                                    selection
-                                    options={pieces}
-                                    onChange={this.handleDropdownClick}
-                                />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row centered>
-                            <Grid.Column width={6}>
-                                <WithMoveValidation />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row centered>
-                            <Grid.Column width={6}>
-                                <div id="infotext">
-                                    <DisplayedText piece={piece} />
-                                </div>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-
-                    <Grid className="univbackground">
-                        <Grid.Row style={{ height: '110vh' }}></Grid.Row>
-                    </Grid>
-                </SidebarPerm>
-            </div>
-        );
-    }
-}
+                <Grid className="univbackground">
+                    <Grid.Row style={{ height: '110vh' }}></Grid.Row>
+                </Grid>
+            </SidebarPerm>
+        </div>
+    );
+};
 
 export default BasicMovements;

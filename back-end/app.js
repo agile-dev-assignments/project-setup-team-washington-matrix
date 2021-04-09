@@ -1,7 +1,8 @@
 const express = require('express');
-
 const app = express(); // instantiate an Express object
+const cors = require('cors');
 
+app.use(cors());
 // Main Routes
 app.get('/', (req, res, next) => {
     res.json({
@@ -14,7 +15,10 @@ const authController = require('./controllers/auth');
 app.use('/auth', authController);
 
 const gameController = require('./controllers/game');
-app.use('/game/', gameController);
+app.use('/game', gameController);
+
+const learnController = require('./controllers/learn');
+app.use('/learn', learnController);
 
 // Start the server
 const PORT = 4000;
