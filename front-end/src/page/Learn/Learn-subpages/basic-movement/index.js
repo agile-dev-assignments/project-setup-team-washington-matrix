@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Dropdown } from 'semantic-ui-react';
 import SidebarPerm from '../../../../components/SidebarPerm';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 
@@ -43,97 +43,77 @@ function DisplayedText(props) {
             return <PawnText />;
     }
 }
-//function text(props){
-//   var text;
-//   switch(piece){
-//     case 1:
-//       text = "text about king movement";
-//       break;
-//     case 2:
-//       text = "text about rook movement";
-//       break;
-//     case 3:
-//       text = "text about bishop movement";
-//       break;
-//     case 4:
-//       text = "text about queen movement";
-//       break;
-//     case 5:
-//       text = "text about knight movement";
-//       break;
-//     case 6:
-//       text = "text about pawn movement";
-//       break;
-//   }
-//   alert(text);
-// }
+
+const pieces = [
+    {
+        key: 1,
+        text: 'King',
+        value: 1,
+    },
+    {
+        key: 2,
+        text: 'Queen',
+        value: 2,
+    },
+    {
+        key: 3,
+        text: 'Rook',
+        value: 3,
+    },
+    {
+        key: 4,
+        text: 'Bishop',
+        value: 4,
+    },
+    {
+        key: 5,
+        text: 'Knight',
+        value: 5,
+    },
+    {
+        key: 6,
+        text: 'Pawn',
+        value: 6,
+    },
+];
+
 class BasicMovements extends React.Component {
     constructor(props) {
         super(props);
-        this.handleKingClick = this.handleKingClick.bind(this);
-        this.handleQueenClick = this.handleQueenClick.bind(this);
-        this.handleRookClick = this.handleRookClick.bind(this);
-        this.handleBishopClick = this.handleBishopClick.bind(this);
-        this.handleKnightClick = this.handleKnightClick.bind(this);
-        this.handlePawnClick = this.handlePawnClick.bind(this);
         this.state = { piece: 6 };
     }
-    handleKingClick() {
-        this.setState({ piece: 1 });
-    }
-    handleQueenClick() {
-        this.setState({ piece: 2 });
-    }
-    handleRookClick() {
-        this.setState({ piece: 3 });
-    }
-    handleBishopClick() {
-        this.setState({ piece: 4 });
-    }
-    handleKnightClick() {
-        this.setState({ piece: 5 });
-    }
-    handlePawnClick() {
-        this.setState({ piece: 6 });
-    }
+
+    handleDropdownClick = (e, data) => this.setState({ piece: data.value });
 
     render() {
-        const piece = this.state.piece;
+        const { piece } = this.state;
         return (
             <div>
                 <SidebarPerm id="sidebarneedsstyle">
                     <h1 class="title">Basic Movements</h1>
-                    <div class="ui compact menu">
-                        <div class="ui simple dropdown item">
-                            Basic Movements
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <div onClick={this.handleKingClick} class="item" data-value="1">
-                                    King
-                                </div>
-                                <div onClick={this.handleRookClick} class="item" data-value="2">
-                                    Rook
-                                </div>
-                                <div onClick={this.handleBishopClick} class="item" data-value="3">
-                                    Bishop
-                                </div>
-                                <div onClick={this.handleQueenClick} class="item" data-value="4">
-                                    Queen
-                                </div>
-                                <div onClick={this.handleKnightClick} class="item" data-value="5">
-                                    Knight
-                                </div>
-                                <div onClick={this.handlePawnClick} class="item" data-value="6">
-                                    Pawn
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <Grid>
+                    <Grid style={{ height: '30vh' }}>
+                        <Grid.Row centered>
+                            <Grid.Column width={6}>
+                                <Dropdown
+                                    placeholder="Select Option"
+                                    fluid
+                                    selection
+                                    options={pieces}
+                                    onChange={this.handleDropdownClick}
+                                />
+                            </Grid.Column>
+                        </Grid.Row>
                         <Grid.Row centered>
                             <Grid.Column width={6}>
                                 <WithMoveValidation />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <Grid.Column width={6}>
+                                <div id="infotext">
+                                    <DisplayedText piece={piece} />
+                                </div>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -142,10 +122,6 @@ class BasicMovements extends React.Component {
                         <Grid.Row style={{ height: '110vh' }}></Grid.Row>
                     </Grid>
                 </SidebarPerm>
-
-                <div id="infotext">
-                    <DisplayedText piece={piece} />
-                </div>
             </div>
         );
     }
