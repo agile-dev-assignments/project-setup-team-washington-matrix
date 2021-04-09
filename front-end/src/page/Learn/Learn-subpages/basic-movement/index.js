@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Dropdown } from 'semantic-ui-react';
 import SidebarPerm from '../../../../components/SidebarPerm';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 
@@ -43,30 +43,53 @@ function DisplayedText(props) {
             return <PawnText />;
     }
 }
-//function text(props){
-//   var text;
-//   switch(piece){
-//     case 1:
-//       text = "text about king movement";
-//       break;
-//     case 2:
-//       text = "text about rook movement";
-//       break;
-//     case 3:
-//       text = "text about bishop movement";
-//       break;
-//     case 4:
-//       text = "text about queen movement";
-//       break;
-//     case 5:
-//       text = "text about knight movement";
-//       break;
-//     case 6:
-//       text = "text about pawn movement";
-//       break;
-//   }
-//   alert(text);
-// }
+
+const pieces = [
+    {
+        key: 1,
+        text: 'King',
+        value: 'King',
+    },
+    {
+        key: 2,
+        text: 'Queen',
+        value: 'Queen',
+    },
+    {
+        key: 3,
+        text: 'Rook',
+        value: 'Rook',
+    },
+    {
+        key: 4,
+        text: 'Bishop',
+        value: 'Bishop',
+    },
+    {
+        key: 5,
+        text: 'Knight',
+        value: 'Knight',
+    },
+    {
+        key: 6,
+        text: 'Pawn',
+        value: 'Pawn',
+    },
+];
+
+const DropdownMenu = () => (
+    <Dropdown
+        placeholder="Select Option"
+        fluid
+        selection
+        options={pieces}
+        onChange={handleDropdownClick}
+    />
+);
+
+const handleDropdownClick = (e, data) => {
+    this.setState({ piece: data.key });
+};
 class BasicMovements extends React.Component {
     constructor(props) {
         super(props);
@@ -98,39 +121,14 @@ class BasicMovements extends React.Component {
     }
 
     render() {
-        const piece = this.state.piece;
+        const { piece } = this.state;
         return (
             <div>
                 <SidebarPerm id="sidebarneedsstyle">
                     <h1 class="title">Basic Movements</h1>
-                    <div class="ui compact menu">
-                        <div class="ui simple dropdown item">
-                            Basic Movements
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <div onClick={this.handleKingClick} class="item" data-value="1">
-                                    King
-                                </div>
-                                <div onClick={this.handleRookClick} class="item" data-value="2">
-                                    Rook
-                                </div>
-                                <div onClick={this.handleBishopClick} class="item" data-value="3">
-                                    Bishop
-                                </div>
-                                <div onClick={this.handleQueenClick} class="item" data-value="4">
-                                    Queen
-                                </div>
-                                <div onClick={this.handleKnightClick} class="item" data-value="5">
-                                    Knight
-                                </div>
-                                <div onClick={this.handlePawnClick} class="item" data-value="6">
-                                    Pawn
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <Grid>
+                        <DropdownMenu />
                         <Grid.Row centered>
                             <Grid.Column width={6}>
                                 <WithMoveValidation />
