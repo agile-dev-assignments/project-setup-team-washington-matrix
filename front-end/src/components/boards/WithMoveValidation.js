@@ -8,7 +8,7 @@ class HumanVsHuman extends Component {
     static propTypes = { children: PropTypes.func };
 
     state = {
-        fen: 'start',
+        fen: this.props.setFen ? this.props.setFen : 'start',
         // square styles for active drop square
         dropSquareStyle: {},
         // custom square styles
@@ -150,10 +150,10 @@ class HumanVsHuman extends Component {
     }
 }
 
-function WithMoveValidation({ postMoveHook }) {
+function WithMoveValidation({ postMoveHook, setFen }) {
     return (
         <div>
-            <HumanVsHuman postMoveHook={postMoveHook}>
+            <HumanVsHuman postMoveHook={postMoveHook} setFen={setFen}>
                 {({
                     position,
                     onDrop,
