@@ -15,7 +15,7 @@ function KingText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The king can move one square in any direction, so long as that square is not attacked by an enemy piece. Additionally, kings are able to make a special move, know as castling.</p>;
 }
 
 function QueenText(props) {
@@ -28,7 +28,7 @@ function QueenText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The queen can move diagonally, horizontally, or vertically any number of squares. They are unable to jump over pieces.</p>;
 }
 
 function RookText(props) {
@@ -41,7 +41,7 @@ function RookText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The queen can move diagonally, horizontally, or vertically any number of squares. They are unable to jump over pieces.</p>;
 }
 
 function BishopText(props) {
@@ -54,7 +54,7 @@ function BishopText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The bishop can move diagonally any number of squares. They are unable to jump over pieces.</p>;
 }
 
 function KnightText(props) {
@@ -67,7 +67,7 @@ function KnightText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The knight can move in an ‘L’ shape’: two squares in a horizontal or vertical direction, then move one square horizontally or vertically. They are the only piece able to jump over other pieces.</p>;
 }
 
 function PawnText(props) {
@@ -80,7 +80,7 @@ function PawnText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>The pawn can move vertically forward one square, with the option to move two squares if they have not yet moved. Pawns are the only piece to capture different to how they move. Pawns capture one square diagonally in a forward direction. Pawns are unable to move backward on captures or moves. Upon reaching the other side of the board a pawn promotes into any other piece, except for a king.</p>;
 }
 
 function DisplayedText(props) {
