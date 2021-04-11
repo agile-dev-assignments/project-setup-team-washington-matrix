@@ -1,3 +1,5 @@
+
+
 h1 {
   position: relative;
   left: 10px;
@@ -24,7 +26,6 @@ p {
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
 }
 
 #sidebarneedsstyle {
@@ -42,11 +43,4 @@ p {
   position: absolute;
   left: 10px;
   top: 0px;
-}
-
-#board {
-  position: absolute;
-  left: 50%;
-  top: 200px;
-  transform: translateX(-50%);
 }

@@ -54,6 +54,40 @@ learnRouter.get('/movements/pawn', async (req, res, next) => {
     });
 });
 
+
+
+// mechanics below 
+
+learnRouter.get('/mechanics/castling', async (req, res, next) => {
+    res.json({
+        data: {
+            pieceInfo: 'Text about castling',
+            fen: '8/8/8/8/4P3/1PN5/PBPQ1PPP/R3KBNR w - - 0 1',
+        },
+    });
+});
+learnRouter.get('/mechanics/enpassant', async (req, res, next) => {
+    res.json({
+        data: {
+            pieceInfo: 'Text about en passant',
+            fen: 'rnbqkb1r/ppppp1pp/8/3nPp2/3P4/8/PPP2PPP/RNBQKBNR w KQkq f6 0 4',
+        },
+    });
+});
+learnRouter.get('/mechanics/pawnpromotion', async (req, res, next) => {
+    res.json({
+        data: {
+            pieceInfo: 'Text about pawn promotion',
+            fen: '2r5/1P6/8/8/8/8/8/8 w - - 0 1',
+        },
+    });
+});
+
+
+
+
+
+
 learnRouter.get('/patterns', async (req, res, next) => {
     res.json({
         data: {
