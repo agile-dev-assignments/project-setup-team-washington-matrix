@@ -34,7 +34,7 @@ class PlayModal extends React.Component {
                     <Icon name="chess pawn" />
                     Play Settings
                 </Modal.Header>
-                <Modal.Content className="modalalign">
+                <Modal.Content className="modalalign" style={{ margin: '0px' }}>
                     <Button
                         as={Menu.Item}
                         name="first"
