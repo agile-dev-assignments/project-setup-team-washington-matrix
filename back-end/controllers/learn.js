@@ -61,7 +61,7 @@ learnRouter.get('/movements/pawn', async (req, res, next) => {
 learnRouter.get('/mechanics/castling', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'Text about castling',
+            pieceInfo: 'Castling is a rule which you can move the rook and the king at the same time. This move only works if both the king and rook that you are aiming to castle with has not been moved at that point in the game. In addition, you can never castle while being in check and you can not move your king into a check by castling. ',
             fen: '8/8/8/8/4P3/1PN5/PBPQ1PPP/R3KBNR w - - 0 1',
         },
     });
@@ -69,7 +69,7 @@ learnRouter.get('/mechanics/castling', async (req, res, next) => {
 learnRouter.get('/mechanics/enpassant', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'Text about en passant',
+            pieceInfo: 'En passant is a French word which means in passing. This is a rule which allows a pawn to capture a pawn after it has just passed it. You may only capture a pawn which has just moved 2 spaces. ',
             fen: 'rnbqkb1r/ppppp1pp/8/3nPp2/3P4/8/PPP2PPP/RNBQKBNR w KQkq f6 0 4',
         },
     });
@@ -77,7 +77,7 @@ learnRouter.get('/mechanics/enpassant', async (req, res, next) => {
 learnRouter.get('/mechanics/pawnpromotion', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'Text about pawn promotion',
+            pieceInfo: 'Pawn promotion is a rule that allows you to replace your pawn piece for any piece once it reaches the opponents back rank. ',
             fen: '2r5/1P6/8/8/8/8/8/8 w - - 0 1',
         },
     });
