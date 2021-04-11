@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
-import { Grid, Dropdown } from 'semantic-ui-react';
+import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import SidebarPerm from '../../../../components/SidebarPerm';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 
@@ -15,7 +15,7 @@ function KingText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function QueenText(props) {
@@ -28,7 +28,7 @@ function QueenText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function RookText(props) {
@@ -41,7 +41,7 @@ function RookText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function BishopText(props) {
@@ -54,7 +54,7 @@ function BishopText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function KnightText(props) {
@@ -67,7 +67,7 @@ function KnightText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function PawnText(props) {
@@ -80,7 +80,7 @@ function PawnText(props) {
             setData('');
         };
     }, []);
-    return <p>{data}</p>;
+    return <p>{data.pieceInfo}</p>;
 }
 
 function DisplayedText(props) {
@@ -108,72 +108,72 @@ const pieces = [
         key: 1,
         text: 'King',
         value: 1,
+        fen: '8/1p2p2p/8/8/4K2p/2p3p1/8/8 w - - 0 1',
     },
     {
         key: 2,
         text: 'Queen',
         value: 2,
+        fen: '8/1p2p2p/4p3/8/1pp1Q1pp/8/4p3/1p2p2p w - - 0 1',
     },
     {
         key: 3,
         text: 'Rook',
         value: 3,
+        fen: 'p5p1/2p1p3/8/8/4R3/8/2p3p1/p6p w - - 0 1',
     },
     {
         key: 4,
         text: 'Bishop',
         value: 4,
+        fen: 'p1p1p3/8/p7/7p/p7/7p/2B1p1p1/8 w - - 0 1',
     },
     {
         key: 5,
         text: 'Knight',
         value: 5,
+        fen: '8/4p3/2p3p1/p7/3p3p/1p3p2/8/N7 w - - 0 1',
     },
     {
         key: 6,
         text: 'Pawn',
         value: 6,
+        fen: '8/1p6/8/2p5/8/3p4/4P3/8 w - - 0 1',
     },
 ];
 
 const BasicMovements = () => {
     const handleDropdownClick = async (event, data) => {
+        console.log(data);
         setPieceSelected(data.value);
+        setPieceBoard(pieces.find(({ value }) => value === data.value).fen);
     };
     const [pieceSelected, setPieceSelected] = useState();
+    const [pieceBoard, setPieceBoard] = useState(pieces.find(({ text }) => text === 'Pawn').fen);
+    console.log(pieceBoard);
     return (
         <div>
             <SidebarPerm id="sidebarneedsstyle">
                 <h1 class="title">Basic Movements</h1>
 
-                <Grid style={{ height: '30vh' }}>
-                    <Grid.Row centered>
-                        <Grid.Column width={6}>
-                            <Dropdown
-                                placeholder="Select Option"
-                                fluid
-                                selection
-                                options={pieces}
-                                onChange={handleDropdownClick}
-                            />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Grid.Column width={6}>
-                            <WithMoveValidation />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Grid.Column width={6}>
-                            <div id="infotext">
-                                <DisplayedText piece={pieceSelected} />
-                            </div>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-
                 <Grid className="univbackground">
-                    <Grid.Row style={{ height: '110vh' }}></Grid.Row>
+                    <Grid.Row centered>
+                        <Dropdown
+                            placeholder="Select Option"
+                            selection
+                            options={pieces}
+                            onChange={handleDropdownClick}
+                        />
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <WithMoveValidation setFen={pieceBoard} />
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <Container text>
+                            <DisplayedText piece={pieceSelected} />
+                        </Container>
+                    </Grid.Row>
+                    <Grid.Row style={{ height: '50vh' }}></Grid.Row>
                 </Grid>
             </SidebarPerm>
         </div>

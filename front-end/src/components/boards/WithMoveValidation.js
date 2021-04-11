@@ -25,6 +25,14 @@ class HumanVsHuman extends Component {
         this.game = new Chess();
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.setFen !== this.props.setFen) {
+            this.setState({
+                fen: this.props.setFen,
+            });
+        }
+    }
+
     // keep clicked square style and remove hint squares
     removeHighlightSquare = () => {
         this.setState(({ pieceSquare, history }) => ({
