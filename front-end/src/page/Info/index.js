@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Tab, Transition } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
+import css from './Info.css';
 
 class Info extends React.Component {
     constructor(props) {
