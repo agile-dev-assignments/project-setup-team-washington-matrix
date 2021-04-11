@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Tab, Transition } from 'semantic-ui-react';
-import SidebarPerm from '../../components/SidebarPerm';
-
+import Layout from '../../components/Layout';
 
 class Info extends React.Component {
     constructor(props) {
@@ -34,12 +33,13 @@ class Info extends React.Component {
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                        <iframe id="history"
-                            title="History"
-                            width="1250"
-                            height="1000"
-                            src="https://en.wikipedia.org/wiki/History_of_chess">
-                        </iframe>
+                            <iframe
+                                id="history"
+                                title="History"
+                                width="1250"
+                                height="1000"
+                                src="https://en.wikipedia.org/wiki/History_of_chess"
+                            ></iframe>
                         </Tab.Pane>
                     </Transition>
                 ),
@@ -62,14 +62,13 @@ class Info extends React.Component {
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                        <iframe id="ratings"
-                            title="Ratings"
-                            width="1250"
-                            height="825"
-                            src="https://ratings.fide.com/top.phtml?list=men">
-                        </iframe>
-
-                            
+                            <iframe
+                                id="ratings"
+                                title="Ratings"
+                                width="1250"
+                                height="825"
+                                src="https://ratings.fide.com/top.phtml?list=men"
+                            ></iframe>
                         </Tab.Pane>
                     </Transition>
                 ),
@@ -92,21 +91,21 @@ class Info extends React.Component {
                         unmountOnHide={true}
                     >
                         <Tab.Pane style={{ backgroundColor: '#00141b', color: 'lightgrey' }}>
-                        <iframe id="recentEvents"
-                            title="Recent Events"
-                            width="1250"
-                            height="1000"
-                            src="https://theweekinchess.com/chessnews/events">
-                        </iframe>
+                            <iframe
+                                id="recentEvents"
+                                title="Recent Events"
+                                width="1250"
+                                height="1000"
+                                src="https://theweekinchess.com/chessnews/events"
+                            ></iframe>
                         </Tab.Pane>
                     </Transition>
                 ),
             },
-
         ];
         return (
             <div>
-                <SidebarPerm id="sidebarneedsstyle">
+                <Layout id="sidebarneedsstyle">
                     <Tab
                         className="univbackground"
                         style={{ height: '700px' }}
@@ -122,7 +121,7 @@ class Info extends React.Component {
                         renderActiveOnly={false}
                         panes={panes}
                     />
-                </SidebarPerm>
+                </Layout>
             </div>
         );
     }

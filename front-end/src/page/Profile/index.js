@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import profilepic from './profile.png';
 import { Grid, Button } from 'semantic-ui-react';
-import SidebarPerm from '../../components/SidebarPerm';
+import Layout from '../../components/Layout';
 
 const Line = () => (
     <hr
@@ -36,7 +36,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                <SidebarPerm id="sidebarneedsstyle">
+                <Layout id="sidebarneedsstyle">
                     <div>
                         <div>
                             <h2 id="user">Username</h2>
@@ -74,7 +74,7 @@ class Profile extends React.Component {
                         ) : null}
                         {/* i'm assuming we will have more info about statistics */}
                     </div>
-                </SidebarPerm>
+                </Layout>
                 <Grid className="univbackground">
                     <Grid.Row style={{ height: '80vh' }}></Grid.Row>
                 </Grid>

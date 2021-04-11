@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
-import SidebarPerm from '../../../../components/SidebarPerm';
+import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import axios from 'axios';
 
@@ -160,7 +160,7 @@ const BasicPatterns = () => {
     console.log(patternBoard);
     return (
         <div>
-            <SidebarPerm id="sidebarneedsstyle">
+            <Layout id="sidebarneedsstyle">
                 <h1 class="title">Basic Patterns</h1>
 
                 <Grid className="univbackground">
@@ -182,7 +182,7 @@ const BasicPatterns = () => {
                     </Grid.Row>
                     <Grid.Row style={{ height: '50vh' }}></Grid.Row>
                 </Grid>
-            </SidebarPerm>
+            </Layout>
         </div>
     );
 };

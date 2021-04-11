@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Grid, Button } from 'semantic-ui-react';
-import SidebarPerm from '../../../../components/SidebarPerm';
+import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import Chess from 'chess.js';
 import axios from 'axios';
@@ -29,7 +29,7 @@ const Puzzles = () => {
     }
     return (
         <div>
-            <SidebarPerm id="sidebarneedsstyle">
+            <Layout id="sidebarneedsstyle">
                 <h1 id="title">Puzzles</h1>
                 <Grid className="univbackground">
                     <Grid.Row centered>
@@ -44,7 +44,7 @@ const Puzzles = () => {
                     </Grid.Row>
                     <Grid.Row style={{ height: '40vh' }}></Grid.Row>
                 </Grid>
-            </SidebarPerm>
+            </Layout>
         </div>
     );
 };

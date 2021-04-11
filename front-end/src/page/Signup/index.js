@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Form, Button, Grid, Image, Segment, Message } from 'semantic-ui-react';
 import './style.css';
-import SidebarPerm from '../../components/SidebarPerm';
+import Layout from '../../components/Layout';
 
 const Signup = () => (
-    <SidebarPerm id="sidebarneedsstyle">
+    <Layout id="sidebarneedsstyle">
         <Grid textAlign="center" style={{ height: '73vh' }} verticalAlign="middle">
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" color="teal" textAlign="center">
@@ -34,7 +34,7 @@ const Signup = () => (
                 </Form>
             </Grid.Column>
         </Grid>
-    </SidebarPerm>
+    </Layout>
 );
 
 export default Signup;

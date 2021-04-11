@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
-import SidebarPerm from '../../../../components/SidebarPerm';
+import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 
 function KingText(props) {
@@ -153,7 +153,7 @@ const BasicMovements = () => {
     console.log(pieceBoard);
     return (
         <div>
-            <SidebarPerm id="sidebarneedsstyle">
+            <Layout id="sidebarneedsstyle">
                 <h1 class="title">Basic Movements</h1>
 
                 <Grid className="univbackground">
@@ -175,7 +175,7 @@ const BasicMovements = () => {
                     </Grid.Row>
                     <Grid.Row style={{ height: '50vh' }}></Grid.Row>
                 </Grid>
-            </SidebarPerm>
+            </Layout>
         </div>
     );
 };

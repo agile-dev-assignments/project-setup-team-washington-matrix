@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import css from './style.css';
-import SidebarPerm from '../../components/SidebarPerm';
+import Layout from '../../components/Layout';
 import { Grid, GridRow } from 'semantic-ui-react';
 class Learn extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class Learn extends React.Component {
     render() {
         return (
             <>
-                <SidebarPerm id="sidebarneedsstyle">
+                <Layout id="sidebarneedsstyle">
                     <h1 class="LearnTitle">Learn</h1>
                     <div class="possLink">
                         <a id="links" href="basic-movements">
@@ -47,7 +47,7 @@ class Learn extends React.Component {
                     <Grid className="univbackground">
                         <Grid.Row style={{ height: '40vh' }}></Grid.Row>
                     </Grid>
-                </SidebarPerm>
+                </Layout>
             </>
         );
     }

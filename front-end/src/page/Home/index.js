@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import { Grid, Button } from 'semantic-ui-react';
 import PlayModal from '../../components/PlayModal';
-import SidebarPerm from '../../components/SidebarPerm';
+import Layout from '../../components/Layout';
 
 const Home = () => {
     return (
         <div>
-            <SidebarPerm
+            <Layout
                 buttongroup={
                     <Button.Group size="large" color="grey">
                         <Button as={Link} to="/login">
@@ -32,7 +32,7 @@ const Home = () => {
                     </Grid.Row>
                     <Grid.Row style={{ height: '50vh' }}></Grid.Row>
                 </Grid>
-            </SidebarPerm>
+            </Layout>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import WithMoveValidation from './../../components/boards/WithMoveValidation';
-import SidebarPerm from '../../components/SidebarPerm';
+import Layout from '../../components/Layout';
 import { Grid, Menu, Icon, Segment, Table } from 'semantic-ui-react';
 import './Practice.css';
 
@@ -23,7 +23,7 @@ class Practice extends React.Component {
 
     render() {
         return (
-            <SidebarPerm id="sidebarneedsstyle">
+            <Layout id="sidebarneedsstyle">
                 <Grid>
                     <Grid.Row centered>
                         <Grid.Column width={6}>
@@ -63,7 +63,7 @@ class Practice extends React.Component {
 
                     <Grid.Row style={{ height: '40vh' }} />
                 </Grid>
-            </SidebarPerm>
+            </Layout>
         );
     }
 }

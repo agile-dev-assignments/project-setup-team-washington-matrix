@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Image, Sidebar, Icon, Menu, Grid } from 'semantic-ui-react';
 const imgsrc = '/img/chesslogoQueen.png';
 
-const SidebarPerm = (props) => {
+const Layout = (props) => {
     const [visible, setVisible] = React.useState(false);
     return (
         <Sidebar.Pushable>
@@ -74,4 +74,4 @@ const SidebarPerm = (props) => {
     );
 };
 
-export default SidebarPerm;
+export default Layout;
