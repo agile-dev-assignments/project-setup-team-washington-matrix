@@ -7,7 +7,7 @@ const fs = require('fs');
 learnRouter.get('/movements/king', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The king can move one square in any direction, so long as that square is not attacked by an enemy piece. Additionally, kings are able to make a special move, know as castling.',
+            pieceInfo: 'The king can move one square in any direction, but you cannot move your king into check. ',
             fen: '8/1p2p2p/8/8/4K2p/2p3p1/8/8 w - - 0 1',
         },
     });
@@ -16,7 +16,7 @@ learnRouter.get('/movements/king', async (req, res, next) => {
 learnRouter.get('/movements/queen', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The queen can move diagonally, horizontally, or vertically any number of squares. They are unable to jump over pieces.',
+            pieceInfo: 'The queen can move 1-8 squares at a time in 1 of 3 directions. Vertically, horizontally, or diagonally. The queen cannot travel over other pieces.',
             fen: '8/1p2p2p/4p3/8/1pp1Q1pp/8/4p3/1p2p2p w - - 0 1',
         },
     });
@@ -24,7 +24,7 @@ learnRouter.get('/movements/queen', async (req, res, next) => {
 learnRouter.get('/movements/rook', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The rook can move horizontally or vertically any number of squares. They are unable to jump over pieces. Rooks move when the king castles.',
+            pieceInfo: 'The rook can move 1-8 squares at a time in 1 of 2 directions. Vertically or horizontally. The rook cannot travel over other pieces.',
             fen: 'p5p1/2p1p3/8/8/4R3/8/2p3p1/p6p w - - 0 1',
         },
     });
@@ -32,7 +32,7 @@ learnRouter.get('/movements/rook', async (req, res, next) => {
 learnRouter.get('/movements/bishop', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The bishop can move diagonally any number of squares. They are unable to jump over pieces.',
+            pieceInfo: 'The bishop can move 1-8 squares at a time horizontally.  The bishop cannot travel over other pieces.',
             fen: 'p1p1p3/8/p7/7p/p7/7p/2B1p1p1/8 w - - 0 1',
         },
     });
@@ -40,7 +40,7 @@ learnRouter.get('/movements/bishop', async (req, res, next) => {
 learnRouter.get('/movements/knight', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The knight can move in an ‘L’ shape’: two squares in a horizontal or vertical direction, then move one square horizontally or vertically. They are the only piece able to jump over other pieces.',
+            pieceInfo: 'The knight has 2 variations of movements. It can either move 2 squares up or down and 1 to the left or right. The other option is 1 squares up or down and 2 squares to the left or right. The knight can travel over other pieces.',
             fen: '8/4p3/2p3p1/p7/3p3p/1p3p2/8/N7 w - - 0 1',
         },
     });
@@ -48,7 +48,7 @@ learnRouter.get('/movements/knight', async (req, res, next) => {
 learnRouter.get('/movements/pawn', async (req, res, next) => {
     res.json({
         data: {
-            pieceInfo: 'The pawn can move vertically forward one square, with the option to move two squares if they have not yet moved. Pawns are the only piece to capture different to how they move. Pawns capture one square diagonally in a forward direction. Pawns are unable to move backward on captures or moves. Upon reaching the other side of the board a pawn promotes into any other piece, except for a king.',
+            pieceInfo: 'The pawn can move forward one square with the exception of the first movement with that pawn. If it is the first move that pawn has made it can move up to 2 squares forward. ',
             fen: '8/1p6/8/2p5/8/3p4/4P3/8 w - - 0 1',
         },
     });
