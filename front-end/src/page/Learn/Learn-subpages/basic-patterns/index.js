@@ -5,107 +5,36 @@ import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import axios from 'axios';
 
-function PinText(props) {
+function PatternText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
         axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.pin);
-            console.log(res.data.data);
+            setData(res.data.data);
         });
         return () => {
             setData('');
         };
     }, []);
-    return <p>{data.info}</p>;
-}
-
-function ForkText(props) {
-    const [data, setData] = useState('');
-    useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.fork);
-            console.log(res.data.data);
-        });
-        return () => {
-            setData('');
-        };
-    }, []);
-    return <p>{data.info}</p>;
-}
-
-function DiscoveryText(props) {
-    const [data, setData] = useState('');
-    useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.discovered);
-            console.log(res.data.data);
-        });
-        return () => {
-            setData('');
-        };
-    }, []);
-    return <p>{data.info}</p>;
-}
-
-function SkewerText(props) {
-    const [data, setData] = useState('');
-    useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.skewer);
-            console.log(res.data.data);
-        });
-        return () => {
-            setData('');
-        };
-    }, []);
-    return <p>{data.info}</p>;
-}
-
-function MaterialAdvText(props) {
-    const [data, setData] = useState('');
-    useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.materialAdv);
-            console.log(res.data.data);
-        });
-        return () => {
-            setData('');
-        };
-    }, []);
-    return <p>{data.info}</p>;
-}
-
-function RemoveDefText(props) {
-    const [data, setData] = useState('');
-    useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
-            setData(res.data.data.removeDef);
-            console.log(res.data.data);
-        });
-        return () => {
-            setData('');
-        };
-    }, []);
-    return <p>{data.info}</p>;
+    return <p>{data[props.patterntext]}</p>;
 }
 
 function DisplayedText(props) {
     const pattern = props.pattern;
     switch (pattern) {
         case 1:
-            return <PinText />;
+            return <PatternText patterntext="pin" />;
         case 2:
-            return <ForkText />;
+            return <PatternText patterntext="fork" />;
         case 3:
-            return <DiscoveryText />;
+            return <PatternText patterntext="discovered" />;
         case 4:
-            return <SkewerText />;
+            return <PatternText patterntext="skewer" />;
         case 5:
-            return <RemoveDefText />;
+            return <PatternText patterntext="removeDef" />;
         case 6:
-            return <MaterialAdvText />;
+            return <PatternText patterntext="materialAdv" />;
         default:
-            return <PinText />;
+            return <PatternText patterntext="pin" />;
     }
 }
 
@@ -157,7 +86,6 @@ const BasicPatterns = () => {
     const [patternBoard, setPatternBoard] = useState(
         patterns.find(({ text }) => text === 'Pin').fen
     );
-    console.log(patternBoard);
     return (
         <div>
             <Layout id="sidebarneedsstyle">

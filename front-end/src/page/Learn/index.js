@@ -31,16 +31,16 @@ class Learn extends React.Component {
                             Basic Patterns
                         </a>
                         <br />
+                        <a id="links" href="basic-checkmates">
+                            Basic Checkmates
+                        </a>
+                        <br />
                         <a id="links" href="mechanics">
                             Mechanics
                         </a>
                         <br />
                         <a id="links" href="puzzles">
                             Puzzles
-                        </a>
-                        <br />
-                        <a id="links" href="basic-checkmates">
-                            Basic Checkmates
                         </a>
                         <br />
                     </div>
