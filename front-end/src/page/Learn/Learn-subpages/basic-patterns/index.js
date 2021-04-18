@@ -67,13 +67,13 @@ const patterns = [
         key: 5,
         text: 'Remove Defender',
         value: 5,
-        fen: 'start',
+        fen: '8/4pp1k/r3b1p1/7p/1pq5/1Q5P/2N2PP1/2R3K1 w - - 0 41', // source:https://lichess.org/ntiafdYa/
     },
     {
         key: 6,
         text: 'Material Advantage',
         value: 6,
-        fen: 'start',
+        fen: '2kr4/ppp2ppp/3rb3/5n2/1P3P2/P1PqP2P/3BBRP1/R2Q2K1 b - - 6 19', // source: https://lichess.org/EASIizUV/
     },
 ];
 

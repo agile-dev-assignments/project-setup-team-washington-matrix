@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express(); // instantiate an Express object
 const cors = require('cors');
+const mongoConn = require('./controllers/mongoConn');
+
+mongoConn.connectToServer((err, client) => {
+    if (err) console.log(err);
+});
 
 app.use(cors());
 // Main Routes
