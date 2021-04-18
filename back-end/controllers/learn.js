@@ -103,13 +103,20 @@ learnRouter.get('/mechanics/pawnpromotion', async (req, res, next) => {
 learnRouter.get('/checkmates', async (req, res, next) => {
     res.json({
         data: {
-            smothered: 'smothered info',
-            backrank: 'back rank info',
-            scholars: "scholar's info",
-            fools: "fool's info",
-            kqmate: 'King and Queen info',
-            tworooks: '2 Rooks info',
-            krmate: 'King and Rook info',
+            smothered:
+                "A smothered mate occurs when the knight checks the opponent's king while the king is mostly or completely surrounded by it own pieces. Any options to take the knight are unavailable because they would result in the king being placed in check. As a result, the king is checkmated because it has nowhere to go mainly because of its own pieces.",
+            backrank:
+                "A back-rank checkmate occurs when usually a rook or queen attack the back rank (first rank for White and eigth rank for Black). Any options for the opponent's king to move out of the rank are blocked by either the opponent's own pieces or the player's pieces, and any pieces that can be used to block the attack cannot be defended.",
+            scholars:
+                "The Scholar's mate is a checkmating pattern for White that can lead to a four turn checkmate when not properly defended against by Black. The sequence of moves that occur is 1.e4 e5, 2.Bc4 Nc6, 3.Qh5 Nf6, and 4.Qxf7. When this checkmate occurs, Black's only option to take White's Queen would be using the King, but White's Queen is defended by White's bishop. As a result, Black's King has nowhere to go and Black is checkmated.",
+            fool:
+                "The Fool's mate is the fastest checkmating pattern that can occur where White is checkmated in two moves or Black is checkmated in three moves. The checkmate occurs when either side moves their king-side bishop pawn one or two spaces and their king-side knight pawn two spaces in their first two turns while the opposite side moves their King pawn. As a result, the side that moved their King pawn can move their Queen to wither h4 or h5, resulting in a checkmate.",
+            kqmate:
+                "When one side has just their King left, and the other side has both their King and a Queen, the side with the King and Queen can checkmate the other side. This checkmate occurs by moving the moving the Queen to a position that is two squares away from the King in one direction and one square away in a direction perpendicular to the first direction. From there, the Queen follows the movement of the opponent's King (if the King goes up one square, the Queen should also go up one square). This will result, in the Queen slowly boxing the King into a corner. The Queen keeps following the opponent's King until the opponent's King only has two squares to move between. From there, the side with the Queen can move its King to a square that can protect the Queen when the Queen moves in to checkmate the other side.",
+            tworooks:
+                "The Two-Rooks checkmate is a mating pattern that forces the opponent to move their King either vertically or horizontally by using two rooks. One rook checks the King and the other rook blocks the row or column on one side of the King. As a result, the King in check must move in a certain direction. Afterwards, alternate moving Rooks until the King is forced to the edge of the board which results in a checkmate. The side with the Rooks must also avoid getting the Rook taken by the other side's King.",
+            krmate:
+                "The checkmate pattern for a King and a Rook involves cornering the other side's King into a row or column using the Rook while protecting the Rook and blocking the opponent's King's escape squares with the player's King. Once the opponent's King is on the edge of the board, the player can use their own King to block the escape squares of the opponent's King and then checkmating with the Rook.",
         },
     });
 });
