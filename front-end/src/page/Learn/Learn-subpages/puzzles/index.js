@@ -13,10 +13,9 @@ const Puzzles = () => {
 
     useEffect(() => {
         axios
-            .get('https://lichess.org/api/puzzle/daily')
+            .get('http://localhost:4000/learn/puzzles')
             .then((response) => {
-                boardstate.load_pgn(response.data.game.pgn);
-                setBoardState(boardstate.fen());
+                setBoardState(response.data.data.puzzleFen);
                 setLoading(false);
             })
             .catch((error) => {

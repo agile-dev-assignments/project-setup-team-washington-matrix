@@ -1,5 +1,15 @@
 const learnRouter = require('express').Router();
 const fs = require('fs');
+const mongoose = require('mongoose');
+const mongoConn = require('./mongoConn');
+const puzzleModel = require('./models/puzzleModel');
+
+const db = mongoConn.getDb();
+const puzzle = mongoose.model('PuzzlesModel', puzzleModel);
+let dbcount = 0;
+puzzle.estimatedDocumentCount().then((res) => {
+    dbcount = res;
+});
 
 /*
     Docs: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
@@ -115,6 +125,20 @@ learnRouter.get('/patterns', async (req, res, next) => {
             materialAdv: 'material advantage data',
         },
     });
+});
+
+learnRouter.get('/puzzles', async (req, res, next) => {
+    let randomNum = Math.floor(Math.random() * dbcount);
+    puzzle
+        .findOne()
+        .skip(randomNum)
+        .then((response) => {
+            res.json({
+                data: {
+                    puzzleFen: response.FEN,
+                },
+            });
+        });
 });
 
 module.exports = learnRouter;
