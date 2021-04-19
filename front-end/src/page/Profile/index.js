@@ -1,8 +1,9 @@
 import React from 'react';
 import './style.css';
 import profilepic from './profile.png';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
+import Edit from '../../components/EditModal';
 
 const Line = () => (
     <hr
@@ -38,11 +39,13 @@ class Profile extends React.Component {
             <div>
                 <Layout id="sidebarneedsstyle">
                     <div>
+                        <div id="edit">
+                            <Edit />
+                        </div>
+                        <Image id="propic" src={profilepic} alt="ProfilePic" />
                         <div>
                             <h2 id="user">Username</h2>
                             <h4 id="name">Name</h4>
-                            <img id="propic" src={profilepic} alt="ProfilePic" />
-                            <Button id="edit">Edit</Button>
                         </div>
                     </div>
                     <Line />
@@ -76,7 +79,7 @@ class Profile extends React.Component {
                     </div>
                 </Layout>
                 <Grid className="univbackground">
-                    <Grid.Row style={{ height: '80vh' }}></Grid.Row>
+                    <Grid.Row style={{ height: '50vh' }}></Grid.Row>
                 </Grid>
             </div>
         );
