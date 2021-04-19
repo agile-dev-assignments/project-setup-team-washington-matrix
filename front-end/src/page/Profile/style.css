@@ -12,27 +12,28 @@ div {
 }
 
 #user {
-    position: absolute;
-    margin-left: 180px;
     margin-top: 90px;
+    position: absolute;
+    top: 190px;
+    left: 160px;
 }
 
 #name {
-    position: absolute;
-    margin-left: 180px;
     margin-top: 130px;
+    position: absolute;
+    top: 190px;
+    left: 160px;
 }
 
 #edit {
     position: absolute;
-    right: 30px;
-    margin-top: 115px;
+    left: 300px;
+    top: 300px;
 }
 
 #propic {
     height: 160px;
     width: 160px;
-    margin-right: 20px;
 }
 
 .header {
@@ -59,3 +60,4 @@ div {
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
