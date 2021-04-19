@@ -22,7 +22,7 @@ class HumanVsHuman extends Component {
     };
 
     componentDidMount() {
-        this.game = new Chess();
+        this.game = this.state.fen !== 'start' ? new Chess(this.state.fen) : new Chess();
     }
 
     componentDidUpdate(prevProps) {
@@ -79,7 +79,9 @@ class HumanVsHuman extends Component {
             squareStyles: squareStyling({ pieceSquare, history }),
         }));
 
-        await this.props.postMoveHook(this.game);
+        if (this.props.postMoveHook) {
+            await this.props.postMoveHook(this.game);
+        }
     };
 
     onMouseOverSquare = (square) => {
