@@ -1,8 +1,11 @@
 import React from 'react';
+import { Grid, Menu, Icon, Segment, Table } from 'semantic-ui-react';
+
 import WithMoveValidation from './../../components/boards/WithMoveValidation';
 import Layout from '../../components/Layout';
-import { Grid, Menu, Icon, Segment, Table } from 'semantic-ui-react';
 import './Practice.css';
+import Stockfish from '../../components/engine/Stockfish';
+import Chessboard from 'chessboardjsx';
 
 class Practice extends React.Component {
     constructor(props) {
@@ -22,12 +25,26 @@ class Practice extends React.Component {
     }
 
     render() {
+        const playerColor = 'white';
+
         return (
             <Layout id="sidebarneedsstyle">
                 <Grid>
                     <Grid.Row centered>
                         <Grid.Column width={6}>
                             <WithMoveValidation postMoveHook={this.postMoveHook} />
+                            {/*
+                                <Stockfish playerColor={playerColor} depth={5}>
+                                {({ position, onDrop }) => (
+                                    <Chessboard
+                                        id="stockfish"
+                                        position={position}
+                                        width={320}
+                                        onDrop={onDrop}
+                                        orientation={playerColor}
+                                    />
+                                )}
+                                </Stockfish> */}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
