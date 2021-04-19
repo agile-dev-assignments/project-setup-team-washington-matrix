@@ -32,8 +32,9 @@ class Practice extends React.Component {
                 <Grid>
                     <Grid.Row centered>
                         <Grid.Column width={6}>
-                            {/* <WithMoveValidation postMoveHook={this.postMoveHook} /> */}
-                            <Stockfish playerColor={playerColor}>
+                            <WithMoveValidation postMoveHook={this.postMoveHook} />
+                            {/*
+                                <Stockfish playerColor={playerColor} depth={5}>
                                 {({ position, onDrop }) => (
                                     <Chessboard
                                         id="stockfish"
@@ -43,7 +44,7 @@ class Practice extends React.Component {
                                         orientation={playerColor}
                                     />
                                 )}
-                            </Stockfish>
+                                </Stockfish> */}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

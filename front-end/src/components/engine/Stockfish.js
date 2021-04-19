@@ -49,7 +49,13 @@ class Stockfish extends Component {
                 ? STOCKFISH()
                 : new Worker(options.stockfishjs || 'stockfish.js');
         let engineStatus = {};
-        let time = { wtime: 3000, btime: 3000, winc: 1500, binc: 1500 };
+        let time = {
+            depth: this.props.depth ? this.props.depth : 10,
+            wtime: 3000,
+            btime: 3000,
+            winc: 1500,
+            binc: 1500,
+        };
         let playerColor = this.props.playerColor ? this.props.playerColor : 'white';
         let clockTimeoutID = null;
         // let isEngineRunning = false;
@@ -237,6 +243,7 @@ class Stockfish extends Component {
 export default Stockfish;
 
 // Props
+// depth
 // fen
 // playerColor: 'white' or 'black'
 // children
