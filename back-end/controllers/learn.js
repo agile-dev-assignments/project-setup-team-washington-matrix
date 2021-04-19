@@ -107,12 +107,12 @@ learnRouter.get('/checkmates', async (req, res, next) => {
 learnRouter.get('/patterns', async (req, res, next) => {
     res.json({
         data: {
-            pin: 'pin data',
-            fork: 'fork data',
-            discovered: 'discovered data',
-            skewer: 'skewer data',
-            removeDef: 'remove defender data',
-            materialAdv: 'material advantage data',
+            pin: 'A pin is when you move a piece that creates an attack on the piece behind the one you are inherently attacking. This can create a devastating attack if the player were to move the piece in the front line of the pin. ',
+            fork: 'A fork is when your piece moves into an position where it is attacking 2 pieces at once. ',
+            discovered: 'A discovered check is when you move a piece that allows another piece to attack the opponents king, thus creating a check. ',
+            skewer: 'A skewer is when you create a check on the opponents king and then when they go to move the king away it opens up an attack on another piece. ',
+            removeDef: 'Remove the defender is when you make a complex attack on the opponents pieces. Essentially you make an attack on the opponents piece that is defending another piece. Once you have successfully attacked the defending piece it gives a free attack on the piece that it was previously defending. ',
+            materialAdv: 'Material advantage is when the pieces left on the board of one side have a greater value than the opponent. The value system goes as follows: A pawn is worth one point, a knight or bishop is worth three points, a rook is worth five points and a queen is worth nine points.            ',
         },
     });
 });
