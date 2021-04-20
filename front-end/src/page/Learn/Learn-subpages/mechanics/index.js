@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import LearnSubNav from '../../../../components/LearnSubNav';
 
 function CastlingText(props) {
     const [data, setData] = useState('');
@@ -45,7 +45,6 @@ function PawnpromotionText(props) {
     return <p>{data.pieceInfo}</p>;
 }
 
-
 function DisplayedText(props) {
     const piece = props.piece;
     switch (piece) {
@@ -79,7 +78,6 @@ const pieces = [
         value: 3,
         fen: '2r5/1P6/8/8/8/8/8/8 w - - 0 1',
     },
-   
 ];
 
 const Mechanics = () => {
@@ -89,7 +87,9 @@ const Mechanics = () => {
         setPieceBoard(pieces.find(({ value }) => value === data.value).fen);
     };
     const [pieceSelected, setPieceSelected] = useState();
-    const [pieceBoard, setPieceBoard] = useState(pieces.find(({ text }) => text === 'Castling').fen);
+    const [pieceBoard, setPieceBoard] = useState(
+        pieces.find(({ text }) => text === 'Castling').fen
+    );
     console.log(pieceBoard);
     return (
         <div>
@@ -97,6 +97,7 @@ const Mechanics = () => {
                 <h1 class="title">Mechanics</h1>
 
                 <Grid className="univbackground">
+                    <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
                             placeholder="Select Option"
@@ -121,4 +122,3 @@ const Mechanics = () => {
 };
 
 export default Mechanics;
-

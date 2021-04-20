@@ -3,6 +3,7 @@ import './style.css';
 import { Grid, Button } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import LearnSubNav from '../../../../components/LearnSubNav';
 import Chess from 'chess.js';
 import axios from 'axios';
 
@@ -31,13 +32,7 @@ const Puzzles = () => {
             <Layout id="sidebarneedsstyle">
                 <h1 id="title">Puzzles</h1>
                 <Grid className="univbackground">
-                    <Grid.Row centered>
-                        <Button.Group size="large" color="grey">
-                            <Button>Easy</Button>
-                            <Button>Medium</Button>
-                            <Button>Hard</Button>
-                        </Button.Group>
-                    </Grid.Row>
+                    <LearnSubNav />
                     <Grid.Row centered>
                         <WithMoveValidation setFen={boardState} />
                     </Grid.Row>

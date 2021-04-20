@@ -3,6 +3,7 @@ import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import LearnSubNav from '../../../../components/LearnSubNav';
 import axios from 'axios';
 
 function CheckmateText(props) {
@@ -99,6 +100,7 @@ const BasicCheckmates = () => {
                 <h1 class="title">Basic Checkmates</h1>
 
                 <Grid className="univbackground">
+                    <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
                             placeholder="Select Option"

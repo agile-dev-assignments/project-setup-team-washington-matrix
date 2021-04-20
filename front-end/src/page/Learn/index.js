@@ -1,56 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import css from './style.css';
+import './style.css';
 import Layout from '../../components/Layout';
-import { Grid, GridRow } from 'semantic-ui-react';
-class Learn extends React.Component {
-    constructor(props) {
-        super(props);
+import { Button, Grid } from 'semantic-ui-react';
 
-        this.state = {
-            visible: false,
-        };
-    }
-    toggleVisible() {
-        this.setState({
-            visible: !this.state.visible,
-        });
-    }
-
-    render() {
-        return (
-            <>
-                <Layout id="sidebarneedsstyle">
-                    <h1 class="LearnTitle">Learn</h1>
-                    <div class="possLink">
-                        <a id="links" href="basic-movements">
+const Learn = () => {
+    return (
+        <Layout id="sidebarneedsstyle">
+            <h1 class="LearnTitle">Learn</h1>
+            <Grid className="univbackground">
+                <Grid.Row style={{ height: '100px' }} />
+                <Grid.Row centered>
+                    <Button.Group inverted size="massive" color="teal" vertical>
+                        <Button as={Link} to="/basic-movements">
                             Basic Movements
-                        </a>
+                        </Button>
                         <br />
-                        <a id="links" href="basic-patterns">
+                        <Button as={Link} to="/basic-patterns">
                             Basic Patterns
-                        </a>
+                        </Button>
                         <br />
-                        <a id="links" href="basic-checkmates">
+                        <Button as={Link} to="/basic-checkmates">
                             Basic Checkmates
-                        </a>
+                        </Button>
                         <br />
-                        <a id="links" href="mechanics">
+                        <Button as={Link} to="/mechanics">
                             Mechanics
-                        </a>
+                        </Button>
                         <br />
-                        <a id="links" href="puzzles">
+                        <Button as={Link} to="/puzzles">
                             Puzzles
-                        </a>
-                        <br />
-                    </div>
-                    <Grid className="univbackground">
-                        <Grid.Row style={{ height: '40vh' }}></Grid.Row>
-                    </Grid>
-                </Layout>
-            </>
-        );
-    }
-}
+                        </Button>
+                    </Button.Group>
+                </Grid.Row>
+                <Grid.Row style={{ height: '40vh' }}></Grid.Row>
+            </Grid>
+        </Layout>
+    );
+};
 
 export default Learn;

@@ -4,6 +4,7 @@ import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import LearnSubNav from '../../../../components/LearnSubNav';
 
 function KingText(props) {
     const [data, setData] = useState('');
@@ -157,6 +158,7 @@ const BasicMovements = () => {
                 <h1 class="title">Basic Movements</h1>
 
                 <Grid className="univbackground">
+                    <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
                             placeholder="Select Option"
