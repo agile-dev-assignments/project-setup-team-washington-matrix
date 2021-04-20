@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import { Grid, Dropdown, Container } from 'semantic-ui-react';
+import { Grid, Dropdown, Container, Menu } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
+import LearnSubNav from '../../../../components/LearnSubNav';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import axios from 'axios';
 
@@ -67,7 +68,7 @@ const patterns = [
         key: 5,
         text: 'Remove Defender',
         value: 5,
-        fen: '8/4pp1k/r3b1p1/7p/1pq5/1Q5P/2N2PP1/2R3K1 w - - 0 41', // source:https://lichess.org/ntiafdYa/
+        fen: '1nbbqrk1/1r3ppp/pB1p1n2/P2P4/1p6/1B3N2/1P2QPPP/R3R1K1 w - - 5 17', // https://lichess.org/IyceafFq/
     },
     {
         key: 6,
@@ -92,6 +93,7 @@ const BasicPatterns = () => {
                 <h1 class="title">Basic Patterns</h1>
 
                 <Grid className="univbackground">
+                    <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
                             placeholder="Select Option"

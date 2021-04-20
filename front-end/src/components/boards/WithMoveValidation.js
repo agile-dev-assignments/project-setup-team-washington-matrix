@@ -30,6 +30,7 @@ class HumanVsHuman extends Component {
             this.setState({
                 fen: this.props.setFen,
             });
+            this.game = new Chess(this.props.setFen);
         }
     }
 
