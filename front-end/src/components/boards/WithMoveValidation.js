@@ -157,14 +157,19 @@ class HumanVsHuman extends Component {
             onDragOverSquare: this.onDragOverSquare,
             onSquareClick: this.onSquareClick,
             onSquareRightClick: this.onSquareRightClick,
+            orientation: this.props.setOrientation,
         });
     }
 }
 
-function WithMoveValidation({ postMoveHook, setFen }) {
+function WithMoveValidation({ postMoveHook, setFen, setOrientation }) {
     return (
         <div>
-            <HumanVsHuman postMoveHook={postMoveHook} setFen={setFen}>
+            <HumanVsHuman
+                postMoveHook={postMoveHook}
+                setFen={setFen}
+                setOrientation={setOrientation}
+            >
                 {({
                     position,
                     onDrop,
@@ -175,6 +180,7 @@ function WithMoveValidation({ postMoveHook, setFen }) {
                     onDragOverSquare,
                     onSquareClick,
                     onSquareRightClick,
+                    orientation,
                 }) => (
                     <Chessboard
                         id="humanVsHuman"
@@ -192,6 +198,7 @@ function WithMoveValidation({ postMoveHook, setFen }) {
                         onDragOverSquare={onDragOverSquare}
                         onSquareClick={onSquareClick}
                         onSquareRightClick={onSquareRightClick}
+                        orientation={orientation}
                     />
                 )}
             </HumanVsHuman>

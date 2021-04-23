@@ -1,76 +1,49 @@
 const gameRouter = require('express').Router();
-
+const mongoose = require('mongoose');
+const mongoConn = require('./mongoConn');
+const gameModel = require('./models/gameModel');
+const db = mongoConn.getDb();
+mongoose.set('useFindAndModify', false);
+const game = mongoose.model('GameModel', gameModel);
 /*
     Docs: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
 */
-gameRouter.get('/', async (req, res, next) => {
-    console.log({
-        query: req.query,
-    });
-    res.status(200).json({
-        success: true,
-        data: {
-            id: 1234567890,
-            time: 5,
-            incr: 3,
-            playerside: 'WHITE',
-            board: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
-        },
+gameRouter.get('/play', async (req, res, next) => {
+    game.findOne({ idset: 1 }).then((response) => {
+        if (response.playerSide == 'random') {
+            let sides = ['white', 'black'];
+            let which = Math.floor(Math.random() * 2);
+            console.log(which);
+            res.json({
+                data: {
+                    timeControl: response.timeControl,
+                    playerSide: sides[which],
+                },
+            });
+            return;
+        }
+        res.json({
+            data: {
+                timeControl: response.timeControl,
+                playerSide: response.playerSide,
+            },
+        });
     });
 });
 
 gameRouter.post('/create', async (req, res, next) => {
-    console.log({
-        body: req.body,
+    game.findOneAndUpdate(
+        { idset: 1 },
+        { timeControl: req.body.timeControl, playerSide: req.body.playerSide }
+    ).then((err, doc) => {
+        if (err) return console.log(err);
+        console.log('doc saved success');
     });
     res.status(200).json({
-        success: true,
         data: {
-            post: true,
-            id: 987654321,
-            time: 10,
-            incr: 15,
-            playerside: 'BLACK',
-            board: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
-        },
-    });
-});
-
-gameRouter.patch('/', async (req, res, next) => {
-    console.log({
-        body: req.body,
-    });
-    res.status(200).json({
-        success: true,
-        data: {
-            patch: true,
-        },
-    });
-});
-
-gameRouter.put('/', async (req, res, next) => {
-    console.log({
-        body: req.body,
-    });
-
-    res.status(200).json({
-        success: true,
-        data: {
-            put: true,
-        },
-    });
-});
-
-gameRouter.delete('/:id', async (req, res, next) => {
-    console.log('delete example');
-    console.log({
-        id: req.params.id,
-    });
-
-    res.status(200).json({
-        success: true,
-        data: {
-            delete: true,
+            idset: 1,
+            timeControl: req.body.timeControl,
+            playerSide: req.body.playerSide,
         },
     });
 });
