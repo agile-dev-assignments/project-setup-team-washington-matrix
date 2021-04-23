@@ -103,7 +103,7 @@ const BasicCheckmates = () => {
                     <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
-                            placeholder="Select Option"
+                            placeholder="Smothered"
                             selection
                             options={mates}
                             onChange={handleDropdownClick}

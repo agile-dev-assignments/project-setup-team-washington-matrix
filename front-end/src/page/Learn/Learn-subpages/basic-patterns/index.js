@@ -96,7 +96,7 @@ const BasicPatterns = () => {
                     <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
-                            placeholder="Select Option"
+                            placeholder="Pin"
                             selection
                             options={patterns}
                             onChange={handleDropdownClick}
