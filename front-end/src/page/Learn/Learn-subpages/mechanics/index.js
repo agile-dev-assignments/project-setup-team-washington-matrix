@@ -100,7 +100,7 @@ const Mechanics = () => {
                     <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
-                            placeholder="Select Option"
+                            placeholder="Castling"
                             selection
                             options={pieces}
                             onChange={handleDropdownClick}

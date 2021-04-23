@@ -161,7 +161,7 @@ const BasicMovements = () => {
                     <LearnSubNav />
                     <Grid.Row centered>
                         <Dropdown
-                            placeholder="Select Option"
+                            placeholder="Pawn"
                             selection
                             options={pieces}
                             onChange={handleDropdownClick}
