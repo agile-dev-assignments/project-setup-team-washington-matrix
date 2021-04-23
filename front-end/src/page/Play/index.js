@@ -12,7 +12,6 @@ class Play extends React.Component {
         super(props);
         this.postMoveHook = this.postMoveHook.bind(this);
         this.state = {
-            position: 'start',
             timer: null,
             game: null,
             history: null,
@@ -36,9 +35,6 @@ class Play extends React.Component {
 
     componentWillUnmount() {
         clearTimeout(this.state.timer);
-        this.setState({
-            position: 'start',
-        });
     }
 
     postMoveHook(game) {
