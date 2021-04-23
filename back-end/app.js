@@ -7,6 +7,9 @@ mongoConn.connectToServer((err, client) => {
     if (err) console.log(err);
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cors());
 // Main Routes
 app.get('/', (req, res, next) => {

@@ -19,6 +19,10 @@ class Stockfish extends Component {
         this.engineGame().prepareMove();
     }
 
+    componentWillUnmount() {
+        this.setState({ fen: 'start' });
+    }
+
     onDrop = ({ sourceSquare, targetSquare }) => {
         // see if the move is legal
         const move = game.move({

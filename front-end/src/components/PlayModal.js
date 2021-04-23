@@ -1,14 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Modal, Button, Icon, Form, Grid, Menu } from 'semantic-ui-react';
+import axios from 'axios';
 
 class PlayModal extends React.Component {
     constructor(props) {
         super(props);
+        this.postClick = this.postClick.bind(this);
         this.state = {
             open: false,
-            activeItem: 'first',
+            activeItem: '3+2',
             activeItem2: 'white',
         };
+    }
+
+    postClick() {
+        axios
+            .post('http://localhost:4000/game/create', {
+                timeControl: this.state.activeItem,
+                playerSide: this.state.activeItem2,
+            })
+            .then((response) => {
+                console.log(response);
+            });
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -37,50 +51,50 @@ class PlayModal extends React.Component {
                 <Modal.Content className="modalalign" style={{ margin: '0px' }}>
                     <Button
                         as={Menu.Item}
-                        name="first"
+                        name="3+2"
                         size="massive"
-                        color={activeItem === 'first' ? 'blue' : null}
-                        active={activeItem === 'first'}
+                        color={activeItem === '3+2' ? 'blue' : null}
+                        active={activeItem === '3+2'}
                         onClick={this.handleItemClick}
                     >
                         3+2
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="second"
+                        name="3+5"
                         size="massive"
-                        color={activeItem === 'second' ? 'blue' : null}
-                        active={activeItem === 'Second'}
+                        color={activeItem === '3+5' ? 'blue' : null}
+                        active={activeItem === '3+5'}
                         onClick={this.handleItemClick}
                     >
                         3+5
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="third"
+                        name="5+5"
                         size="massive"
-                        color={activeItem === 'third' ? 'blue' : null}
-                        active={activeItem === 'third'}
+                        color={activeItem === '5+5' ? 'blue' : null}
+                        active={activeItem === '5+5'}
                         onClick={this.handleItemClick}
                     >
                         5+5
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="fourth"
+                        name="10+15"
                         size="massive"
-                        color={activeItem === 'fourth' ? 'blue' : null}
-                        active={activeItem === 'fourth'}
+                        color={activeItem === '10+15' ? 'blue' : null}
+                        active={activeItem === '10+15'}
                         onClick={this.handleItemClick}
                     >
                         10+15
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="fifth"
+                        name="15+15"
                         size="massive"
-                        color={activeItem === 'fifth' ? 'blue' : null}
-                        active={activeItem === 'fifth'}
+                        color={activeItem === '15+15' ? 'blue' : null}
+                        active={activeItem === '15+15'}
                         onClick={this.handleItemClick}
                     >
                         15+15
@@ -129,7 +143,9 @@ class PlayModal extends React.Component {
                         content="Alright, let's play!"
                         labelPosition="right"
                         icon="play"
-                        onClick={() => this.toggleOpen(false)}
+                        as={Link}
+                        to={this.props.buttonText == 'Play Locally' ? '/practice' : '/play'}
+                        onClick={this.postClick}
                         positive
                     />
                 </Modal.Actions>

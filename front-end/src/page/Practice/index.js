@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Menu, Icon, Segment, Table } from 'semantic-ui-react';
-
+import { Grid, Table } from 'semantic-ui-react';
+import axios from 'axios';
 import WithMoveValidation from './../../components/boards/WithMoveValidation';
 import Layout from '../../components/Layout';
 import './Practice.css';
@@ -12,9 +12,29 @@ class Practice extends React.Component {
         super(props);
         this.postMoveHook = this.postMoveHook.bind(this);
         this.state = {
+            timer: null,
             game: null,
             history: null,
+            timeControl: null,
+            playerColor: 'white',
         };
+    }
+
+    componentDidMount() {
+        this.state.timer = setTimeout(() => {
+            console.log('waiting for updated document');
+            axios.get('http://localhost:4000/game/play').then((response) => {
+                this.setState({
+                    timeControl: response.data.data.timeControl,
+                    playerColor: response.data.data.playerSide,
+                });
+                console.log(response);
+            });
+        }, 2000);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.state.timer);
     }
 
     postMoveHook(game) {
@@ -25,14 +45,15 @@ class Practice extends React.Component {
     }
 
     render() {
-        const playerColor = 'white';
-
         return (
             <Layout id="sidebarneedsstyle">
                 <Grid>
                     <Grid.Row centered>
                         <Grid.Column width={6}>
-                            <WithMoveValidation postMoveHook={this.postMoveHook} />
+                            <WithMoveValidation
+                                postMoveHook={this.postMoveHook}
+                                setOrientation={this.state.playerColor}
+                            />
                             {/*
                                 <Stockfish playerColor={playerColor} depth={5}>
                                 {({ position, onDrop }) => (
