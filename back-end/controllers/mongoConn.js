@@ -7,6 +7,7 @@ var db;
 module.exports = {
     connectToServer: function (callback) {
         mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.set('useCreateIndex', true);
         db = mongoose.connection;
     },
 
