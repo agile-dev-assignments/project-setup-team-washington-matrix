@@ -1,7 +1,7 @@
 const gameRouter = require('express').Router();
 const mongoose = require('mongoose');
 const mongoConn = require('./mongoConn');
-const gameModel = require('./models/gameModel');
+const gameModel = require('../models/gameModel');
 const db = mongoConn.getDb();
 mongoose.set('useFindAndModify', false);
 const game = mongoose.model('GameModel', gameModel);

@@ -2,6 +2,9 @@ const express = require('express');
 const app = express(); // instantiate an Express object
 const cors = require('cors');
 const mongoConn = require('./controllers/mongoConn');
+const passport = require('passport');
+
+require('./auth');
 
 mongoConn.connectToServer((err, client) => {
     if (err) console.log(err);
@@ -27,6 +30,9 @@ app.use('/game', gameController);
 
 const learnController = require('./controllers/learn');
 app.use('/learn', learnController);
+
+const userController = require('./controllers/user');
+app.use('/user', passport.authenticate('jwt', { session: false }), userController);
 
 // Start the server
 const PORT = 4000;

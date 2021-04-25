@@ -1,85 +1,39 @@
 const authRouter = require('express').Router();
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
-/*
-    Docs: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
-*/
-authRouter.get('/', async (req, res, next) => {
-    console.log({
-        query: req.query,
-    });
-    res.status(200).json({
-        success: true,
-        data: {
-            get: true,
-        },
-    });
-});
+authRouter.post(
+    '/signup',
+    passport.authenticate('signup', { session: false }),
+    async (req, res, next) => {
+        res.json({
+            message: 'Signup successful',
+            user: req.user,
+        });
+    }
+);
 
-authRouter.get('/all', async (req, res, next) => {
-    res.status(200).json({
-        success: true,
-        data: [
-            {
-                id: 1,
-                property: 'Example One',
-            },
-            {
-                id: 2,
-                property: 'Example Two',
-            },
-        ],
-    });
-});
+authRouter.post('/login', async (req, res, next) => {
+    passport.authenticate('login', async (err, user, info) => {
+        try {
+            if (err || !user) {
+                const error = new Error('An error occurred.');
 
-authRouter.post('/', async (req, res, next) => {
-    console.log({
-        body: req.body,
-    });
-    res.status(200).json({
-        success: true,
-        data: {
-            post: true,
-        },
-    });
-});
+                return next(error);
+            }
 
-authRouter.patch('/', async (req, res, next) => {
-    console.log({
-        body: req.body,
-    });
-    res.status(200).json({
-        success: true,
-        data: {
-            patch: true,
-        },
-    });
-});
+            req.login(user, { session: false }, async (error) => {
+                if (error) return next(error);
 
-authRouter.put('/', async (req, res, next) => {
-    console.log({
-        body: req.body,
-    });
+                const body = { _id: user._id, email: user.email };
+                const token = jwt.sign({ user: body }, 'TOP_SECRET');
 
-    res.status(200).json({
-        success: true,
-        data: {
-            put: true,
-        },
-    });
-});
-
-authRouter.delete('/:id', async (req, res, next) => {
-    console.log('delete example');
-    console.log({
-        id: req.params.id,
-    });
-
-    res.status(200).json({
-        success: true,
-        data: {
-            delete: true,
-        },
-    });
+                return res.json({ token });
+            });
+        } catch (error) {
+            return next(error);
+        }
+    })(req, res, next);
 });
 
 module.exports = authRouter;
