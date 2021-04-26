@@ -148,6 +148,8 @@ learnRouter.get('/puzzles', async (req, res, next) => {
         .then((response) => {
             res.json({
                 data: {
+                    puzzleTheme: response.Themes,
+                    puzzleRating: response.Rating,
                     puzzleFen: response.FEN,
                 },
             });
