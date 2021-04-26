@@ -27,14 +27,14 @@ const LoginForm = () => {
             setisLoggedIn(true);
         }
         if (localStorage.getItem('justSignedUp')) {
-            toast('Successfully signup! Log in now!');
+            toast.success('Successfully signup! Log in now!');
             localStorage.removeItem('justSignedUp');
         }
     }, []);
     return (
         <div>
             {isLoggedIn ? (
-                <Redirect to="/"></Redirect>
+                <Redirect to="/" />
             ) : (
                 <Layout id="sidebarneedsstyle">
                     <ToastContainer />
@@ -49,11 +49,15 @@ const LoginForm = () => {
                                     initialValues={initialValues}
                                     validationSchema={LoginSchema}
                                     onSubmit={(values) => {
-                                        login(values.email, values.password).then((res) => {
-                                            if (res.token) {
-                                                setisLoggedIn(true);
-                                            }
-                                        });
+                                        login(values.email, values.password)
+                                            .then((res) => {
+                                                if (res.token) {
+                                                    setisLoggedIn(true);
+                                                }
+                                            })
+                                            .catch((err) => {
+                                                toast.error('Incorrect username or password');
+                                            });
                                     }}
                                 >
                                     <Form size="large">
