@@ -36,21 +36,31 @@ const Signup = () => {
                         }}
                     >
                         <Form size="large">
-                            <Input name="email" placeholder="Email" errorPrompt />
+                            <Input
+                                name="email"
+                                icon="user"
+                                iconPosition="left"
+                                placeholder="Email"
+                                errorPrompt
+                            />
                             <Input
                                 name="password"
                                 type="password"
                                 placeholder="Password"
+                                icon="lock"
+                                iconPosition="left"
                                 errorPrompt
                             />
                             <Input
                                 name="password2"
                                 type="password"
                                 placeholder="Confirm Password"
+                                icon="lock"
+                                iconPosition="left"
                                 errorPrompt
                             />
                             <SubmitButton fluid color="teal">
-                                Login
+                                Signup
                             </SubmitButton>
                             <ResetButton fluid secondary>
                                 Reset Form
