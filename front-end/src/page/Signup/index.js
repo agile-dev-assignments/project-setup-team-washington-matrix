@@ -42,7 +42,6 @@ const Signup = () => {
                                         initialValues={initialValues}
                                         validationSchema={SignupSchema}
                                         onSubmit={(values) => {
-                                            toast('Creating account...');
                                             register(values.email, values.password).then((res) => {
                                                 if (res.data.message === 'Signup successful') {
                                                     localStorage.setItem('justSignedUp', true);
@@ -89,16 +88,6 @@ const Signup = () => {
                     </Layout>
                 )}
             </div>
-            {isSignedUp && (
-                <Container text>
-                    <Message positive id="message-styled">
-                        <Message.Header id="message-header">Sign Up Successful !!</Message.Header>
-                        <p id="message-content">
-                            Go to your <b>special offers</b> page to see now.
-                        </p>
-                    </Message>
-                </Container>
-            )}
         </>
     );
 };
