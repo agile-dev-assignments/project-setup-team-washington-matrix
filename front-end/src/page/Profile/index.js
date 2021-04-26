@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import profilepic from './profile.png';
 import { Grid, Image } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Edit from '../../components/EditModal';
-
+import { getUserProfile } from '../../services/userService';
+import { Redirect } from 'react-router-dom';
 const Line = () => (
     <hr
         style={{
@@ -15,75 +16,74 @@ const Line = () => (
     />
 );
 
-class Profile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opengame: false,
-            openpuzzle: false,
-        };
-        this.toggleg = this.toggleg.bind(this);
-        this.togglep = this.togglep.bind(this);
-    }
+const Profile = () => {
+    const [openGame, setopenGame] = useState(false);
+    const [openPuzzle, setopenPuzzle] = useState(false);
+    const [currentUser, setCurrentUser] = useState(undefined);
+    const toggleOpenGame = () => {
+        setopenGame(!openGame);
+    };
 
-    toggleg(game) {
-        this.setState({ opengame: !this.state.opengame });
-    }
+    const toggleOpenPuzzle = () => {
+        setopenPuzzle(!openPuzzle);
+    };
 
-    togglep(puzzle) {
-        this.setState({ openpuzzle: !this.state.openpuzzle });
-    }
+    useEffect(() => {
+        getUserProfile().then((res) => {
+            setCurrentUser(res.data.user);
+        });
+    }, [currentUser]);
 
-    render() {
-        return (
-            <div>
-                <Layout id="sidebarneedsstyle">
-                    <div>
-                        <div id="edit">
-                            <Edit />
-                        </div>
-                        <Image id="propic" src={profilepic} alt="ProfilePic" />
+    return (
+        <div>
+            {currentUser ? (
+                <div>
+                    <Layout id="sidebarneedsstyle">
                         <div>
-                            <h2 id="user">Username</h2>
-                            <h4 id="name">Name</h4>
-                        </div>
-                    </div>
-                    <Line />
-                    <div>
-                        <div name="game" onClick={(game) => this.toggleg(game)} className="header">
-                            Games
-                        </div>
-                        {this.state.opengame ? (
-                            <div className="content">
-                                <h4>Total Games Played: 48</h4>
-                                <h4>Wins: 32</h4>
-                                <h4>Losses: 14</h4>
+                            <div id="edit">
+                                <Edit />
                             </div>
-                        ) : null}
-                    </div>
+                            <Image id="propic" src={profilepic} alt="ProfilePic" />
+                            <div>
+                                <h2 id="user">{currentUser.email}</h2>
+                                <h4 id="name">Name</h4>
+                            </div>
+                        </div>
+                        <Line />
+                        <div>
+                            <div name="game" onClick={toggleOpenGame} className="header">
+                                Games
+                            </div>
+                            {openGame ? (
+                                <div className="content">
+                                    <h4>Total Games Played: 48</h4>
+                                    <h4>Wins: 32</h4>
+                                    <h4>Losses: 14</h4>
+                                </div>
+                            ) : null}
+                        </div>
 
-                    <div>
-                        <div
-                            name="puzzle"
-                            onClick={(puzzle) => this.togglep(puzzle)}
-                            className="header"
-                        >
-                            Puzzles
-                        </div>
-                        {this.state.openpuzzle ? (
-                            <div className="content">
-                                <h4>Total Puzzles Completed: 152</h4>
+                        <div>
+                            <div name="puzzle" onClick={toggleOpenPuzzle} className="header">
+                                Puzzles
                             </div>
-                        ) : null}
-                        {/* i'm assuming we will have more info about statistics */}
-                    </div>
-                </Layout>
-                <Grid className="univbackground">
-                    <Grid.Row style={{ height: '50vh' }}></Grid.Row>
-                </Grid>
-            </div>
-        );
-    }
-}
+                            {openPuzzle ? (
+                                <div className="content">
+                                    <h4>Total Puzzles Completed: 152</h4>
+                                </div>
+                            ) : null}
+                            {/* i'm assuming we will have more info about statistics */}
+                        </div>
+                    </Layout>
+                    <Grid className="univbackground">
+                        <Grid.Row style={{ height: '50vh' }}></Grid.Row>
+                    </Grid>
+                </div>
+            ) : (
+                <h1>Not signed in</h1>
+            )}
+        </div>
+    );
+};
 
 export default Profile;

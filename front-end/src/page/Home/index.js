@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { Grid, Button } from 'semantic-ui-react';
 import PlayModal from '../../components/PlayModal';
 import Layout from '../../components/Layout';
-
+import { getCurrentUser, logout } from '../../services/authService';
 const Home = () => {
+    const [currentUser, setCurrentUser] = useState(undefined);
+    useEffect(() => {
+        const user = getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+    }, []);
+
+    const handleLogOut = () => {
+        logout();
+        setCurrentUser(undefined);
+    };
     return (
         <div>
             <Layout
                 buttongroup={
                     <Button.Group size="large" color="grey">
-                        <Button as={Link} to="/login">
-                            Log in
-                        </Button>
-                        <Button.Or />
-                        <Button as={Link} to="/signup">
-                            Sign Up
-                        </Button>
+                        {currentUser ? (
+                            <>
+                                <Button as={Link} to="/profile">
+                                    Profile
+                                </Button>
+                                <Button.Or />
+                                <Button as={Link} to="/" onClick={handleLogOut}>
+                                    Logout
+                                </Button>
+                            </>
+                        ) : (
+                            <>
+                                <Button as={Link} to="/login">
+                                    Log in
+                                </Button>
+                                <Button.Or />
+                                <Button as={Link} to="/signup">
+                                    Sign Up
+                                </Button>
+                            </>
+                        )}
                     </Button.Group>
                 }
                 id="sidebarneedsstyle"
