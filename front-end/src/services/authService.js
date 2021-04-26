@@ -17,10 +17,8 @@ const login = (email, password) => {
         })
         .then((response) => {
             if (response.data.token) {
-                console.log('saving token');
                 localStorage.setItem('token', JSON.stringify(response.data.token));
             }
-
             return response.data;
         });
 };
