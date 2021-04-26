@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Header, Button, Grid, Image, Segment, Message } from 'semantic-ui-react';
 import './style.css';
 import Layout from '../../components/Layout';
-import axios from 'axios';
+import { login } from '../../services/authService';
 import { Formik } from 'formik';
 import { Form, Input, SubmitButton, ResetButton } from 'formik-semantic-ui-react';
 import * as Yup from 'yup';
+import { getCurrentUser } from '../../services/authService';
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
@@ -17,75 +19,80 @@ const LoginForm = () => {
         email: '',
         password: '',
     };
-    return (
-        <Layout id="sidebarneedsstyle">
-            <Grid textAlign="center" style={{ height: '73vh' }} verticalAlign="middle">
-                <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as="h2" color="teal" textAlign="center">
-                        <Image src="/img/chesslogo.png" /> Login to your account
-                    </Header>
-                    {/* <Form size="large">
-                        <Segment stacked>
-                            <Form.Input
-                                fluid
-                                icon="user"
-                                iconPosition="left"
-                                placeholder="Email Address"
-                            />
-                            <Form.Input
-                                fluid
-                                icon="lock"
-                                iconPosition="left"
-                                placeholder="Password"
-                                type="password"
-                            />
-                            <Button color="teal" fluid size="large" type="submit">
-                                Login
-                            </Button>
-                        </Segment>
-                    </Form> */}
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={LoginSchema}
-                        onSubmit={(values) => {
-                            console.log('Form Submit');
-                            console.log(values);
-                        }}
-                    >
-                        <Form size="large">
-                            <Input
-                                name="email"
-                                placeholder="Email"
-                                icon="user"
-                                iconPosition="left"
-                                errorPrompt
-                            />
-                            <Input
-                                name="password"
-                                type="password"
-                                icon="lock"
-                                iconPosition="left"
-                                placeholder="Password"
-                                errorPrompt
-                            />
+    const [isLoggedIn, setisLoggedIn] = useState(false);
 
-                            <SubmitButton fluid color="teal">
-                                Login
-                            </SubmitButton>
-                            <ResetButton fluid secondary>
-                                Reset Form
-                            </ResetButton>
-                        </Form>
-                    </Formik>
-                    <Message>
-                        New here?
-                        <Link color="teal" to="/signup">
-                            Sign up
-                        </Link>
-                    </Message>
-                </Grid.Column>
-            </Grid>
-        </Layout>
+    useEffect(() => {
+        const user = getCurrentUser();
+        if (user) {
+            setisLoggedIn(true);
+        }
+        if (localStorage.getItem('justSignedUp')) {
+            toast('Successfully signup! Log in now!');
+            localStorage.removeItem('justSignedUp');
+        }
+    }, []);
+    return (
+        <div>
+            {isLoggedIn ? (
+                <Redirect to="/"></Redirect>
+            ) : (
+                <Layout id="sidebarneedsstyle">
+                    <ToastContainer />
+
+                    <Grid textAlign="center" style={{ height: '73vh' }} verticalAlign="middle">
+                        <Grid.Column style={{ maxWidth: 450 }}>
+                            <Segment inverted stacked>
+                                <Header as="h2" color="teal" textAlign="center">
+                                    <Image src="/img/chesslogo.png" /> Login to your account
+                                </Header>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validationSchema={LoginSchema}
+                                    onSubmit={(values) => {
+                                        login(values.email, values.password).then((res) => {
+                                            if (res.token) {
+                                                setisLoggedIn(true);
+                                            }
+                                        });
+                                    }}
+                                >
+                                    <Form size="large">
+                                        <Input
+                                            name="email"
+                                            placeholder="Email"
+                                            icon="user"
+                                            iconPosition="left"
+                                            errorPrompt
+                                        />
+                                        <Input
+                                            name="password"
+                                            type="password"
+                                            icon="lock"
+                                            iconPosition="left"
+                                            placeholder="Password"
+                                            errorPrompt
+                                        />
+
+                                        <SubmitButton fluid color="teal">
+                                            Login
+                                        </SubmitButton>
+                                        <ResetButton fluid secondary>
+                                            Reset Form
+                                        </ResetButton>
+                                    </Form>
+                                </Formik>
+                                <Message>
+                                    New here?
+                                    <Link color="teal" to="/signup">
+                                        Sign up
+                                    </Link>
+                                </Message>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid>
+                </Layout>
+            )}
+        </div>
     );
 };
 
