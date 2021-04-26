@@ -1,8 +1,8 @@
 export default function authParams() {
-    const user = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
-    if (user && user.accessToken) {
-        return { secret_token: user.accessToken };
+    if (token) {
+        return { secret_token: token };
     } else {
         return {};
     }
