@@ -64,7 +64,7 @@ const pieces = [
         key: 1,
         text: 'Castling',
         value: 1,
-        fen: '8/8/8/8/4P3/1PN5/PBPQ1PPP/R3KBNR w - - 0 1',
+        fen: '8/8/8/8/4P3/1PN5/PBPQ1PPP/R3KBNR w Q - 0 1',
     },
     {
         key: 2,
@@ -81,16 +81,27 @@ const pieces = [
 ];
 
 const Mechanics = () => {
+    const gameOvers = [
+        '8/8/8/8/4P3/1PN5/PBPQ1PPP/2KR1BNR b - - 1 1',
+        'rnbqkb1r/ppppp1pp/5P2/3n4/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 4',
+        '1Qr5/8/8/8/8/8/8/8 b - - 0 1',
+        '2Q5/8/8/8/8/8/8/8 b - - 0 1',
+    ];
     const handleDropdownClick = async (event, data) => {
-        console.log(data);
         setPieceSelected(data.value);
         setPieceBoard(pieces.find(({ value }) => value === data.value).fen);
+        setDisabled(false);
     };
     const [pieceSelected, setPieceSelected] = useState();
     const [pieceBoard, setPieceBoard] = useState(
         pieces.find(({ text }) => text === 'Castling').fen
     );
-    console.log(pieceBoard);
+    const [disabled, setDisabled] = useState(false);
+    function postMoveHook(game) {
+        if (gameOvers.includes(game.fen())) {
+            setDisabled(true);
+        }
+    }
     return (
         <div>
             <Layout id="sidebarneedsstyle">
@@ -107,7 +118,9 @@ const Mechanics = () => {
                         />
                     </Grid.Row>
                     <Grid.Row centered>
-                        <WithMoveValidation setFen={pieceBoard} />
+                        <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                            <WithMoveValidation postMoveHook={postMoveHook} setFen={pieceBoard} />
+                        </div>
                     </Grid.Row>
                     <Grid.Row centered>
                         <Container text>

@@ -48,42 +48,49 @@ const mates = [
         text: 'Smothered',
         value: 1,
         fen: '1r4k1/4b1pp/p2p1P2/2rP4/3Q3P/n1B2P1B/PPq5/K2R2R1 b - - 0 29',
+        orientation: 'black',
     },
     {
         key: 2,
         text: 'Back Rank',
         value: 2,
         fen: '3r2kr/1p3ppp/pN3b2/2Q1pN2/4P3/8/PPP1nPPP/1K1R4 b - - 0 20',
+        orientation: 'black',
     },
     {
         key: 3,
         text: "Scholar's",
         value: 3,
         fen: 'r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4',
+        orientation: 'white',
     },
     {
         key: 4,
         text: "Fool's",
         value: 4,
         fen: 'rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2',
+        orientation: 'black',
     },
     {
         key: 5,
         text: 'King and Queen',
         value: 5,
         fen: '4k3/8/8/8/8/8/5Q2/4K3 w - - 0 1',
+        orientation: 'white',
     },
     {
         key: 6,
         text: '2 Rooks',
         value: 6,
         fen: '8/8/8/8/8/7k/1R6/R3K3 w - - 0 1',
+        orientation: 'white',
     },
     {
         key: 7,
         text: 'King and Rook',
         value: 7,
         fen: '8/8/8/8/8/7k/4R3/4K3 w - - 0 1',
+        orientation: 'white',
     },
 ];
 
@@ -91,9 +98,18 @@ const BasicCheckmates = () => {
     const handleDropdownClick = async (event, data) => {
         setMateSelected(data.value);
         setMateBoard(mates.find(({ value }) => value === data.value).fen);
+        setBoardOrient(mates.find(({ value }) => value === data.value).orientation);
+        setDisabled(false);
     };
     const [mateSelected, setMateSelected] = useState(1);
     const [mateBoard, setMateBoard] = useState(mates.find(({ text }) => text === 'Smothered').fen);
+    const [boardOrient, setBoardOrient] = useState('white');
+    const [disabled, setDisabled] = useState(false);
+    function postMoveHook(game) {
+        if (game.game_over()) {
+            setDisabled(true);
+        }
+    }
     return (
         <div>
             <Layout id="sidebarneedsstyle">
@@ -110,7 +126,13 @@ const BasicCheckmates = () => {
                         />
                     </Grid.Row>
                     <Grid.Row centered>
-                        <WithMoveValidation setFen={mateBoard} />
+                        <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                            <WithMoveValidation
+                                postMoveHook={postMoveHook}
+                                setFen={mateBoard}
+                                setOrientation={boardOrient}
+                            />
+                        </div>
                     </Grid.Row>
                     <Grid.Row centered>
                         <Container text>

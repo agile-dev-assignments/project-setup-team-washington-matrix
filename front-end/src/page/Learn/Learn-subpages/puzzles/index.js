@@ -7,26 +7,42 @@ import LearnSubNav from '../../../../components/LearnSubNav';
 import Chess from 'chess.js';
 import axios from 'axios';
 
-function DisplayedText(props) {
-    const text = props.text;
-    return text;
-}
 const Puzzles = () => {
     const [isLoading, setLoading] = useState(true);
     const [boardState, setBoardState] = useState();
-    const boardstate = new Chess();
     const [rating, setRating] = useState();
     const [theme, setTheme] = useState();
+    const [gameUrl, setGameUrl] = useState();
+    const [moves, setMoves] = useState();
+    const [disabled, setDisabled] = useState(false);
+    const [orient, setOrient] = useState();
+    function postMoveHook(game) {
+        if (game.game_over()) {
+            setDisabled(true);
+        }
+    }
 
     useEffect(() => {
         axios
             .get('http://localhost:4000/learn/puzzles')
             .then((response) => {
+                let tokens = response.data.data.puzzleFen.split(' ');
+                switch (tokens[1]) {
+                    case 'w':
+                        setOrient('black');
+                        break;
+                    case 'b':
+                        setOrient('white');
+                        break;
+                    default:
+                        setOrient('white');
+                }
                 setBoardState(response.data.data.puzzleFen);
-                setLoading(false);
                 setRating(response.data.data.puzzleRating);
                 setTheme(response.data.data.puzzleTheme);
-                console.log(response.data.data.puzzleRating);
+                setGameUrl(response.data.data.puzzleSource);
+                setMoves(response.data.data.puzzleMoves);
+                setLoading(false);
             })
             .catch((error) => {
                 console.log(error);
@@ -36,20 +52,42 @@ const Puzzles = () => {
     if (isLoading) {
         return <p> Loading...</p>;
     }
+    let moveList = moves.split(' ');
     return (
         <div>
             <Layout id="sidebarneedsstyle">
                 <h1 id="title">Puzzles</h1>
-                <Grid className="univbackground">
+                <Grid padded className="univbackground">
                     <LearnSubNav />
                     <Grid.Row centered>
-                        <Container text>Rating:{rating}</Container>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Container text>Theme: {theme}</Container>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <WithMoveValidation setFen={boardState} />
+                        <Grid.Column width={5}>
+                            <Container text>Rating:{rating}</Container>
+                            <br />
+                            <Container text>
+                                Theme: <br /> {theme}
+                            </Container>
+                            <br />
+                            <Container text>Source: {gameUrl}</Container>
+                            <br />
+                            <Button
+                                onClick={() => {
+                                    window.location.reload();
+                                    setDisabled(false);
+                                }}
+                            >
+                                New Puzzle
+                            </Button>
+                        </Grid.Column>
+                        <Grid.Column width={11}>
+                            <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                                <WithMoveValidation
+                                    postMoveHook={postMoveHook}
+                                    setFen={boardState}
+                                    setOrientation={orient}
+                                    firstMove={moveList[0]}
+                                />
+                            </div>
+                        </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{ height: '40vh' }}></Grid.Row>
                 </Grid>

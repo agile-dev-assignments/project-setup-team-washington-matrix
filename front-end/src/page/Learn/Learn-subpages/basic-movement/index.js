@@ -3,7 +3,7 @@ import axios from 'axios';
 import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
-import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import WithMoveValidationOneSide from './../../../../components/boards/WithMoveValidationOneSide';
 import LearnSubNav from '../../../../components/LearnSubNav';
 
 function KingText(props) {
@@ -145,13 +145,26 @@ const pieces = [
 
 const BasicMovements = () => {
     const handleDropdownClick = async (event, data) => {
-        console.log(data);
         setPieceSelected(data.value);
         setPieceBoard(pieces.find(({ value }) => value === data.value).fen);
+        setDisabled(false);
     };
     const [pieceSelected, setPieceSelected] = useState();
     const [pieceBoard, setPieceBoard] = useState(pieces.find(({ text }) => text === 'Pawn').fen);
-    console.log(pieceBoard);
+    const [disabled, setDisabled] = useState(false);
+    function postMoveHook(game) {
+        let bPieces = 0;
+        game.board().forEach((row) => {
+            row.forEach((item) => {
+                if (item != null && item.color == 'b') {
+                    bPieces++;
+                }
+            });
+        });
+        if (bPieces == 0) {
+            setDisabled(true);
+        }
+    }
     return (
         <div>
             <Layout id="sidebarneedsstyle">
@@ -168,7 +181,13 @@ const BasicMovements = () => {
                         />
                     </Grid.Row>
                     <Grid.Row centered>
-                        <WithMoveValidation setFen={pieceBoard} />
+                        <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                            <WithMoveValidationOneSide
+                                postMoveHook={postMoveHook}
+                                setFen={pieceBoard}
+                                setOrientation="white"
+                            />
+                        </div>
                     </Grid.Row>
                     <Grid.Row centered>
                         <Container text>
