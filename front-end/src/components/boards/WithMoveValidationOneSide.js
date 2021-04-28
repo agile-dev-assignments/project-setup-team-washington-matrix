@@ -23,12 +23,6 @@ class HumanVsHuman extends Component {
 
     componentDidMount() {
         this.game = this.state.fen !== 'start' ? new Chess(this.state.fen) : new Chess();
-        if (this.props.firstMove) {
-            this.game.move(this.props.firstMove, { sloppy: true });
-            this.setState({
-                fen: this.game.fen(),
-            });
-        }
     }
 
     componentDidUpdate(prevProps) {
@@ -80,6 +74,10 @@ class HumanVsHuman extends Component {
 
         // illegal move
         if (move === null) return;
+        let tokens = this.game.fen().split(' ');
+        tokens[1] = this.props.setOrientation.split('')[0];
+        tokens[3] = '-';
+        this.game.load(tokens.join(' '));
         this.setState(({ history, pieceSquare }) => ({
             fen: this.game.fen(),
             history: this.game.history({ verbose: true }),
@@ -135,14 +133,18 @@ class HumanVsHuman extends Component {
 
         // illegal move
         if (move === null) return;
-
+        let tokens = this.game.fen().split(' ');
+        tokens[1] = this.props.setOrientation.split('')[0];
+        tokens[3] = '-';
+        this.game.load(tokens.join(' '));
         this.setState({
             fen: this.game.fen(),
             history: this.game.history({ verbose: true }),
             pieceSquare: '',
         });
-
-        await this.props.postMoveHook(this.game);
+        if (this.props.postMoveHook) {
+            await this.props.postMoveHook(this.game);
+        }
     };
 
     onSquareRightClick = (square) =>
@@ -168,14 +170,13 @@ class HumanVsHuman extends Component {
     }
 }
 
-function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove }) {
+function WithMoveValidationOneSide({ postMoveHook, setFen, setOrientation }) {
     return (
         <div>
             <HumanVsHuman
                 postMoveHook={postMoveHook}
                 setFen={setFen}
                 setOrientation={setOrientation}
-                firstMove={firstMove}
             >
                 {({
                     position,
@@ -232,4 +233,4 @@ const squareStyling = ({ pieceSquare, history }) => {
     };
 };
 
-export default WithMoveValidation;
+export default WithMoveValidationOneSide;

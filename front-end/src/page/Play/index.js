@@ -16,7 +16,10 @@ class Play extends React.Component {
             game: null,
             history: null,
             timeControl: null,
-            playerColor: 'white',
+            playerColor: null,
+            loading: true,
+            disabled: false,
+            winCond: '',
         };
     }
 
@@ -27,6 +30,7 @@ class Play extends React.Component {
                 this.setState({
                     timeControl: response.data.data.timeControl,
                     playerColor: response.data.data.playerSide,
+                    loading: false,
                 });
                 console.log(response);
             });
@@ -42,19 +46,53 @@ class Play extends React.Component {
             game,
             history: game.history({ verbose: true }),
         });
+        if (game.game_over()) {
+            this.setState({
+                disabled: true,
+            });
+            if (game.in_checkmate()) {
+                switch (game.turn()) {
+                    case 'w':
+                        this.setState({
+                            winCond: `Black wins!`,
+                        });
+                        break;
+                    case 'b':
+                        this.setState({
+                            winCond: `White wins!`,
+                        });
+                        break;
+                }
+            } else {
+                this.setState({
+                    winCond: `It's a draw!`,
+                });
+            }
+        }
     }
 
     render() {
+        const { disabled } = this.state;
+        if (this.state.loading) {
+            return <p> Loading... </p>;
+        }
         return (
             <Layout id="sidebarneedsstyle">
-                <Grid>
+                <Grid className="univbackground">
+                    <Grid.Row centered style={disabled ? { opacity: '1' } : { opacity: '0' }}>
+                        {this.state.winCond}
+                    </Grid.Row>
                     <Grid.Row centered>
-                        <Grid.Column width={6}>
-                            {/* <WithMoveValidation
+                        {/* <WithMoveValidation
                                 postMoveHook={this.postMoveHook}
                                 setOrientation={this.state.playerColor}
                             /> */}
-                            <Stockfish playerColor={this.state.playerColor} depth={5}>
+                        <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                            <Stockfish
+                                postMoveHook={this.postMoveHook}
+                                playerColor={this.state.playerColor}
+                                depth={0}
+                            >
                                 {({ position, onDrop }) => (
                                     <Chessboard
                                         id="stockfish"
@@ -65,11 +103,9 @@ class Play extends React.Component {
                                     />
                                 )}
                             </Stockfish>
-                        </Grid.Column>
+                        </div>
                     </Grid.Row>
-                </Grid>
-                <Grid centered className="univbackground">
-                    <Grid.Row>
+                    <Grid.Row centered>
                         <Grid.Column width={12}>
                             <div className="table-container">
                                 <Table inverted color="grey" celled>
@@ -97,8 +133,7 @@ class Play extends React.Component {
                             </div>
                         </Grid.Column>
                     </Grid.Row>
-
-                    <Grid.Row style={{ height: '40vh' }} />
+                    <Grid.Row style={{ height: '100px' }} />
                 </Grid>
             </Layout>
         );

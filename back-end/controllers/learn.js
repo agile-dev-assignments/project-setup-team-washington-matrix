@@ -151,6 +151,8 @@ learnRouter.get('/puzzles', async (req, res, next) => {
                     puzzleTheme: response.Themes,
                     puzzleRating: response.Rating,
                     puzzleFen: response.FEN,
+                    puzzleSource: response.GameUrl,
+                    puzzleMoves: response.Moves,
                 },
             });
         });

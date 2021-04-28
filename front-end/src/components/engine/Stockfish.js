@@ -23,7 +23,7 @@ class Stockfish extends Component {
         this.setState({ fen: 'start' });
     }
 
-    onDrop = ({ sourceSquare, targetSquare }) => {
+    onDrop = async ({ sourceSquare, targetSquare }) => {
         // see if the move is legal
         const move = game.move({
             from: sourceSquare,
@@ -33,7 +33,9 @@ class Stockfish extends Component {
 
         // illegal move
         if (move === null) return;
-
+        if (this.props.postMoveHook) {
+            await this.props.postMoveHook(game);
+        }
         return new Promise((resolve) => {
             this.setState({ fen: game.fen() });
             resolve();
@@ -129,7 +131,7 @@ class Stockfish extends Component {
             return moves;
         }
 
-        const prepareMove = () => {
+        const prepareMove = async () => {
             stopClock();
             let turn = game.turn() === 'w' ? 'white' : 'black';
             if (!game.game_over()) {
@@ -158,6 +160,9 @@ class Stockfish extends Component {
                 if (game.history().length >= 2 && !time.depth && !time.nodes) {
                     startClock();
                 }
+            }
+            if (this.props.postMoveHook) {
+                await this.props.postMoveHook(game);
             }
         };
 
