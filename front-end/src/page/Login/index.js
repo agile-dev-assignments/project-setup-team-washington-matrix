@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Header, Button, Grid, Image, Segment, Message } from 'semantic-ui-react';
+import { Header, Grid, Image, Segment, Message } from 'semantic-ui-react';
 import './style.css';
 import Layout from '../../components/Layout';
 import { login } from '../../services/authService';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import { Grid, Dropdown, Container, Menu } from 'semantic-ui-react';
+import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import LearnSubNav from '../../../../components/LearnSubNav';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';

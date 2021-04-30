@@ -156,12 +156,12 @@ const BasicMovements = () => {
         let bPieces = 0;
         game.board().forEach((row) => {
             row.forEach((item) => {
-                if (item != null && item.color == 'b') {
+                if (item != null && item.color === 'b') {
                     bPieces++;
                 }
             });
         });
-        if (bPieces == 0) {
+        if (bPieces === 0) {
             setDisabled(true);
         }
     }

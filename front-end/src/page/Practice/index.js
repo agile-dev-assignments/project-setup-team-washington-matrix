@@ -4,8 +4,8 @@ import axios from 'axios';
 import WithMoveValidation from './../../components/boards/WithMoveValidation';
 import Layout from '../../components/Layout';
 import './Practice.css';
-import Stockfish from '../../components/engine/Stockfish';
-import Chessboard from 'chessboardjsx';
+// import Stockfish from '../../components/engine/Stockfish';
+// import Chessboard from 'chessboardjsx';
 
 class Practice extends React.Component {
     constructor(props) {
@@ -21,6 +21,7 @@ class Practice extends React.Component {
     }
 
     componentDidMount() {
+      // eslint-disable-next-line
         this.state.timer = setTimeout(() => {
             console.log('waiting for updated document');
             axios.get('http://localhost:4000/game/play').then((response) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, Button, Icon, Form, Grid, Menu } from 'semantic-ui-react';
+import { Modal, Button, Icon, Menu } from 'semantic-ui-react';
 import axios from 'axios';
 
 class PlayModal extends React.Component {
@@ -144,7 +144,7 @@ class PlayModal extends React.Component {
                         labelPosition="right"
                         icon="play"
                         as={Link}
-                        to={this.props.buttonText == 'Play Locally' ? '/practice' : '/play'}
+                        to={this.props.buttonText === 'Play Locally' ? '/practice' : '/play'}
                         onClick={this.postClick}
                         positive
                     />

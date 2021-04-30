@@ -5,7 +5,7 @@ import { Grid, Image } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Edit from '../../components/EditModal';
 import { getUserProfile } from '../../services/userService';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 const Line = () => (
     <hr
         style={{

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Table } from 'semantic-ui-react';
 import './Play.css';
-import WithMoveValidation from './../../components/boards/WithMoveValidation';
+// import WithMoveValidation from './../../components/boards/WithMoveValidation';
 import Layout from '../../components/Layout';
 import Stockfish from '../../components/engine/Stockfish';
 import Chessboard from 'chessboardjsx';
@@ -24,6 +24,7 @@ class Play extends React.Component {
     }
 
     componentDidMount() {
+      // eslint-disable-next-line
         this.state.timer = setTimeout(() => {
             console.log('waiting for updated document');
             axios.get('http://localhost:4000/game/play').then((response) => {
@@ -62,6 +63,10 @@ class Play extends React.Component {
                             winCond: `White wins!`,
                         });
                         break;
+                    default:
+                      this.setState({
+                          winCond: `No winner`
+                      })
                 }
             } else {
                 this.setState({
