@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header, Grid, Image, Segment, Message, Container } from 'semantic-ui-react';
 import './style.css';
 import Layout from '../../components/Layout';

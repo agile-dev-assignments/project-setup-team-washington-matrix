@@ -16,7 +16,7 @@ function CheckmateText(props) {
         return () => {
             setData('');
         };
-    }, []);
+    }, [data]);
     return <p>{data[props.matetext]}</p>;
 }
 

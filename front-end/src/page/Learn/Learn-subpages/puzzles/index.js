@@ -4,7 +4,7 @@ import { Grid, Button, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import LearnSubNav from '../../../../components/LearnSubNav';
-import Chess from 'chess.js';
+// import Chess from 'chess.js';
 import axios from 'axios';
 
 const Puzzles = () => {
