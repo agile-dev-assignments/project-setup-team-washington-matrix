@@ -31,7 +31,6 @@ class Play extends React.Component {
     }
 
     componentDidMount() {
-        this.timeRef = React.createRef();
         console.log('waiting for updated document');
         axios.get('http://localhost:4000/game/play').then((response) => {
             this.setState({
