@@ -9,7 +9,7 @@ class PlayModal extends React.Component {
         this.postClick = this.postClick.bind(this);
         this.state = {
             open: false,
-            activeItem: '3+2',
+            activeItem: '3 min',
             activeItem2: 'white',
         };
     }
@@ -51,53 +51,64 @@ class PlayModal extends React.Component {
                 <Modal.Content className="modalalign" style={{ margin: '0px' }}>
                     <Button
                         as={Menu.Item}
-                        name="3+2"
+                        name="3 min"
                         size="massive"
-                        color={activeItem === '3+2' ? 'blue' : null}
-                        active={activeItem === '3+2'}
+                        color={activeItem === '3 min' ? 'blue' : null}
+                        active={activeItem === '3 min'}
                         onClick={this.handleItemClick}
                     >
-                        3+2
+                        3 min
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="3+5"
+                        name="4 min"
                         size="massive"
-                        color={activeItem === '3+5' ? 'blue' : null}
-                        active={activeItem === '3+5'}
+                        color={activeItem === '4 min' ? 'blue' : null}
+                        active={activeItem === '4 min'}
                         onClick={this.handleItemClick}
                     >
-                        3+5
+                        4 min
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="5+5"
+                        name="5 min"
                         size="massive"
-                        color={activeItem === '5+5' ? 'blue' : null}
-                        active={activeItem === '5+5'}
+                        color={activeItem === '5 min' ? 'blue' : null}
+                        active={activeItem === '5 min'}
                         onClick={this.handleItemClick}
                     >
-                        5+5
+                        5 min
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="10+15"
+                        name="10 min"
                         size="massive"
-                        color={activeItem === '10+15' ? 'blue' : null}
-                        active={activeItem === '10+15'}
+                        color={activeItem === '10 min' ? 'blue' : null}
+                        active={activeItem === '10 min'}
                         onClick={this.handleItemClick}
                     >
-                        10+15
+                        10 min
                     </Button>
                     <Button
                         as={Menu.Item}
-                        name="15+15"
+                        name="15 min"
                         size="massive"
-                        color={activeItem === '15+15' ? 'blue' : null}
-                        active={activeItem === '15+15'}
+                        color={activeItem === '15 min' ? 'blue' : null}
+                        active={activeItem === '15 min'}
                         onClick={this.handleItemClick}
                     >
-                        15+15
+                        15 min
+                    </Button>
+                    <br /> <br />
+                    <Button
+                        as={Menu.Item}
+                        name="No Time Limit"
+                        size="massive"
+                        color={activeItem === 'No Time Limit' ? 'blue' : null}
+                        active={activeItem === 'No Time Limit'}
+                        onClick={this.handleItemClick}
+                    >
+                        No Time Limit
                     </Button>
                     <br /> <br />
                     <Button.Group size="massive">
