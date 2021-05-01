@@ -31,12 +31,15 @@ class Play extends React.Component {
     }
 
     componentDidMount() {
-        console.log('waiting for updated document');
-        axios.get('http://localhost:4000/game/play').then((response) => {
-            this.setState({
-                timeControl: response.data.data.timeControl,
-                playerColor: response.data.data.playerSide,
-                loading: false,
+        this.state.timer = setTimeout(() => {
+            console.log('waiting for updated document');
+            axios.get('http://localhost:4000/game/play').then((response) => {
+                this.setState({
+                    timeControl: response.data.data.timeControl,
+                    playerColor: response.data.data.playerSide,
+                    loading: false,
+                });
+                console.log(response);
             });
         });
     }
