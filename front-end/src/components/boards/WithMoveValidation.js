@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import Chess from 'chess.js'; // import Chess from  "chess.js"(default) if recieving an error about new Chess() not being a constructor
 
@@ -169,6 +169,16 @@ class HumanVsHuman extends Component {
 }
 
 function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove }) {
+    const [pointer, setPointer] = useState('grab');
+
+    const changeCursor = () => {
+        setPointer((prevState) => {
+            if (prevState === 'grab') {
+                return 'grabbing';
+            }
+            return 'grab';
+        });
+    };
     return (
         <div>
             <HumanVsHuman
@@ -206,6 +216,8 @@ function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove })
                         onSquareClick={onSquareClick}
                         onSquareRightClick={onSquareRightClick}
                         orientation={orientation}
+                        onPieceClick={changeCursor}
+                        style={{ cursor: pointer }}
                     />
                 )}
             </HumanVsHuman>
