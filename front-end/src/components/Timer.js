@@ -1,13 +1,13 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
+import React, { useEffect } from 'react';
 import { useTimer } from 'react-timer-hook';
-import { Container, Button } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 let controls = {
     flag: true,
     pause: true,
     resume: true,
 };
 const Timer = ({ expiryTimestamp, startTime, timePause, timeResume, playerSide, expired }) => {
-    const { seconds, minutes, hours, days, isRunning, start, pause, resume, restart } = useTimer({
+    const { seconds, minutes, start, pause, resume } = useTimer({
         expiryTimestamp,
         onExpire: () => {
             expired();
