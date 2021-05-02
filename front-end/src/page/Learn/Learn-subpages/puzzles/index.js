@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import { Grid, Button, Container } from 'semantic-ui-react';
+import { Grid, Button, Container, Reveal, Icon } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
 import LearnSubNav from '../../../../components/LearnSubNav';
-// import Chess from 'chess.js';
 import axios from 'axios';
 
 const Puzzles = () => {
@@ -16,11 +15,7 @@ const Puzzles = () => {
     const [moves, setMoves] = useState();
     const [disabled, setDisabled] = useState(false);
     const [orient, setOrient] = useState();
-    function postMoveHook(game) {
-        if (game.game_over()) {
-            setDisabled(true);
-        }
-    }
+    const [gameHistory, setHistory] = useState(1);
 
     useEffect(() => {
         axios
@@ -53,6 +48,13 @@ const Puzzles = () => {
         return <p> Loading...</p>;
     }
     let moveList = moves.split(' ');
+
+    function postMoveHook(game) {
+        if (game.game_over() || game.history().length === moveList.length) {
+            setDisabled(true);
+        }
+        setHistory(game.history().length);
+    }
     return (
         <div>
             <Layout id="sidebarneedsstyle">
@@ -77,6 +79,34 @@ const Puzzles = () => {
                             >
                                 New Puzzle
                             </Button>
+                            <br />
+                            <br />
+                            <Reveal
+                                animated="move up"
+                                style={{
+                                    border: '0px',
+                                    backgroundColor: 'green',
+                                    borderRadius: '30px',
+                                }}
+                            >
+                                <Reveal.Content
+                                    visible
+                                    style={{
+                                        border: '0px',
+                                        backgroundColor: 'teal',
+                                    }}
+                                >
+                                    <Container>
+                                        <Icon name="question circle" />
+                                        Hint?
+                                    </Container>
+                                </Reveal.Content>
+                                <Reveal.Content hidden style={{ border: '0px' }}>
+                                    <Container textAlign="center">
+                                        {moveList[gameHistory]}
+                                    </Container>
+                                </Reveal.Content>
+                            </Reveal>
                         </Grid.Column>
                         <Grid.Column width={11}>
                             <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
@@ -85,6 +115,7 @@ const Puzzles = () => {
                                     setFen={boardState}
                                     setOrientation={orient}
                                     firstMove={moveList[0]}
+                                    moveList={moveList}
                                 />
                             </div>
                         </Grid.Column>
