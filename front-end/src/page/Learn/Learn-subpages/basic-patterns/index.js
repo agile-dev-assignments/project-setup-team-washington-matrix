@@ -46,20 +46,23 @@ const patterns = [
         value: 1,
         fen: '3rr1k1/5ppp/7b/8/8/1P6/PBP5/1K4RR w K - 0 1',
         orientation: 'white',
+        moveList: ['h1h6'],
     },
     {
         key: 2,
         text: 'Fork',
         value: 2,
-        fen: 'r2qk1nr/ppp2ppp/2np4/2b1p1N1/2B1P1b1/3P4/PPP2PPP/RNBQK2R w KQkq - 2 6',
+        fen: 'r2qk1nr/pppbbppp/2np4/4p1N1/2B1P3/3P4/PPP2PPP/RNBQK2R w KQkq - 3 6',
         orientation: 'white',
+        moveList: ['g5f7', 'd8c8', 'f7h8'],
     },
     {
         key: 3,
         text: 'Discovered Check',
         value: 3,
-        fen: '4r2k/2r2p1p/4n1p1/6b1/8/1PN5/PBP5/1K1R3R w K - 0 1',
+        fen: '4r2k/2r2p1p/1n4p1/6b1/8/1PN5/PBP5/1K1R3R w - - 0 1',
         orientation: 'white',
+        moveList: ['c3b5', 'h8g8', 'b5c7'],
     },
     {
         key: 4,
@@ -67,13 +70,15 @@ const patterns = [
         value: 4,
         fen: '8/pp2R3/8/7k/6p1/P7/1P3K2/7r w - - 0 57',
         orientation: 'white',
+        moveList: ['e7h7', 'h5g6', 'h7h1'],
     },
     {
         key: 5,
         text: 'Remove Defender',
         value: 5,
-        fen: '1nbbqrk1/1r3ppp/pB1p1n2/P2P4/1p6/1B3N2/1P2QPPP/R3R1K1 w - - 5 17', // https://lichess.org/IyceafFq/
+        fen: 'rn3rnk/pp3p1b/2pb2q1/5N1Q/2BP1PP1/2N4P/PP6/R4RK1 w - - 5 19', // https://lichess.org/3i6lRA0M/
         orientation: 'white',
+        moveList: ['h5g6', 'f7g6', 'f5d6'],
     },
     {
         key: 6,
@@ -81,6 +86,7 @@ const patterns = [
         value: 6,
         fen: '2kr4/ppp2ppp/3rb3/5n2/1P3P2/P1PqP2P/3BBRP1/R2Q2K1 b - - 6 19', // source: https://lichess.org/EASIizUV/
         orientation: 'black',
+        moveList: ['d3d2', 'd1d2', 'd6d2'],
     },
 ];
 
@@ -89,12 +95,21 @@ const BasicPatterns = () => {
         setPatternSelected(data.value);
         setPatternBoard(patterns.find(({ value }) => value === data.value).fen);
         setBoardOrient(patterns.find(({ value }) => value === data.value).orientation);
+        setMoves(patterns.find(({ value }) => value === data.value).moveList);
+        setDisabled(false);
     };
     const [patternSelected, setPatternSelected] = useState(1);
     const [patternBoard, setPatternBoard] = useState(
         patterns.find(({ text }) => text === 'Pin').fen
     );
     const [boardOrient, setBoardOrient] = useState('white');
+    const [moves, setMoves] = useState(patterns.find(({ text }) => text === 'Pin').moveList);
+    const [disabled, setDisabled] = useState(false);
+    function postMoveHook(game) {
+        if (game.history().length === moves.length) {
+            setDisabled(true);
+        }
+    }
     return (
         <div>
             <Layout id="sidebarneedsstyle">
@@ -111,7 +126,14 @@ const BasicPatterns = () => {
                         />
                     </Grid.Row>
                     <Grid.Row centered>
-                        <WithMoveValidation setFen={patternBoard} setOrientation={boardOrient} />
+                        <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                            <WithMoveValidation
+                                postMoveHook={postMoveHook}
+                                setFen={patternBoard}
+                                setOrientation={boardOrient}
+                                moveList={moves}
+                            />
+                        </div>
                     </Grid.Row>
                     <Grid.Row centered>
                         <Container text>
