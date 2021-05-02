@@ -36,6 +36,99 @@ class PlayModal extends React.Component {
 
     render() {
         const { activeItem, activeItem2 } = this.state;
+        if (this.props.buttonText === 'Play Locally') {
+            return (
+                <Modal
+                    onClose={() => this.toggleOpen(false)}
+                    onOpen={() => this.toggleOpen(true)}
+                    open={this.state.open}
+                    trigger={<Button size="large">{this.props.buttonText}</Button>}
+                    dimmer={'blurring'}
+                >
+                    <Modal.Header>
+                        <Icon name="chess pawn" />
+                        Play Settings
+                    </Modal.Header>
+                    <Modal.Content className="modalalign" style={{ margin: '0px' }}>
+                        <Button
+                            as={Menu.Item}
+                            name="3 min"
+                            size="massive"
+                            color={activeItem === '3 min' ? 'blue' : null}
+                            active={activeItem === '3 min'}
+                            onClick={this.handleItemClick}
+                        >
+                            3 min
+                        </Button>
+                        <Button
+                            as={Menu.Item}
+                            name="4 min"
+                            size="massive"
+                            color={activeItem === '4 min' ? 'blue' : null}
+                            active={activeItem === '4 min'}
+                            onClick={this.handleItemClick}
+                        >
+                            4 min
+                        </Button>
+                        <Button
+                            as={Menu.Item}
+                            name="5 min"
+                            size="massive"
+                            color={activeItem === '5 min' ? 'blue' : null}
+                            active={activeItem === '5 min'}
+                            onClick={this.handleItemClick}
+                        >
+                            5 min
+                        </Button>
+                        <Button
+                            as={Menu.Item}
+                            name="10 min"
+                            size="massive"
+                            color={activeItem === '10 min' ? 'blue' : null}
+                            active={activeItem === '10 min'}
+                            onClick={this.handleItemClick}
+                        >
+                            10 min
+                        </Button>
+                        <Button
+                            as={Menu.Item}
+                            name="15 min"
+                            size="massive"
+                            color={activeItem === '15 min' ? 'blue' : null}
+                            active={activeItem === '15 min'}
+                            onClick={this.handleItemClick}
+                        >
+                            15 min
+                        </Button>
+                        <br /> <br />
+                        <Button
+                            as={Menu.Item}
+                            name="No Time Limit"
+                            size="massive"
+                            color={activeItem === 'No Time Limit' ? 'blue' : null}
+                            active={activeItem === 'No Time Limit'}
+                            onClick={this.handleItemClick}
+                        >
+                            No Time Limit
+                        </Button>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button color="black" onClick={() => this.toggleOpen(false)}>
+                            Not so fast
+                        </Button>
+                        <Button
+                            content="Alright, let's play!"
+                            labelPosition="right"
+                            icon="play"
+                            as={Link}
+                            to="/playlocal"
+                            onClick={this.postClick}
+                            positive
+                        />
+                    </Modal.Actions>
+                </Modal>
+            );
+        }
         return (
             <Modal
                 onClose={() => this.toggleOpen(false)}
@@ -155,7 +248,7 @@ class PlayModal extends React.Component {
                         labelPosition="right"
                         icon="play"
                         as={Link}
-                        to={this.props.buttonText === 'Play Locally' ? '/practice' : '/play'}
+                        to="/play"
                         onClick={this.postClick}
                         positive
                     />

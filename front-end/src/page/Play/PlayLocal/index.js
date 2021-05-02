@@ -1,10 +1,9 @@
 import React from 'react';
 import { Grid, Table } from 'semantic-ui-react';
-import './Play.css';
-import Layout from '../../components/Layout';
-import Stockfish from '../../components/engine/Stockfish';
-import Timer from '../../components/Timer';
-import Chessboard from 'chessboardjsx';
+import './PlayLocal.css';
+import WithMoveValidation from './../../../components/boards/WithMoveValidation';
+import Layout from '../../../components/Layout';
+import Timer from '../../../components/Timer';
 import axios from 'axios';
 
 class Play extends React.Component {
@@ -22,7 +21,7 @@ class Play extends React.Component {
             gamestate: null,
             history: null,
             timeControl: null,
-            playerColor: null,
+            playerColor: 'white',
             loading: true,
             disabled: false,
             winCond: '',
@@ -36,7 +35,6 @@ class Play extends React.Component {
             axios.get('http://localhost:4000/game/play').then((response) => {
                 this.setState({
                     timeControl: response.data.data.timeControl,
-                    playerColor: response.data.data.playerSide,
                     loading: false,
                 });
                 console.log(response);
@@ -52,6 +50,7 @@ class Play extends React.Component {
         this.setState({
             gamestate: game,
             history: game.history({ verbose: true }),
+            playerColor: game.turn() === 'w' ? 'white' : 'black',
         });
         if (this.state.timeControl !== 'No Time Limit') {
             if (game.history().length === 1) {
@@ -145,21 +144,10 @@ class Play extends React.Component {
                         </Grid.Row>
                         <Grid.Row centered>
                             <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
-                                <Stockfish
+                                <WithMoveValidation
                                     postMoveHook={this.postMoveHook}
-                                    playerColor={this.state.playerColor}
-                                    depth={1}
-                                >
-                                    {({ position, onDrop }) => (
-                                        <Chessboard
-                                            id="stockfish"
-                                            position={position}
-                                            width={500}
-                                            onDrop={onDrop}
-                                            orientation={this.state.playerColor}
-                                        />
-                                    )}
-                                </Stockfish>
+                                    setOrientation={this.state.playerColor}
+                                />
                             </div>
                         </Grid.Row>
                         <Grid.Row centered>
@@ -214,21 +202,10 @@ class Play extends React.Component {
                     </Grid.Row>
                     <Grid.Row centered>
                         <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
-                            <Stockfish
+                            <WithMoveValidation
                                 postMoveHook={this.postMoveHook}
-                                playerColor={this.state.playerColor}
-                                depth={1}
-                            >
-                                {({ position, onDrop }) => (
-                                    <Chessboard
-                                        id="stockfish"
-                                        position={position}
-                                        width={500}
-                                        onDrop={onDrop}
-                                        orientation={this.state.playerColor}
-                                    />
-                                )}
-                            </Stockfish>
+                                setOrientation={this.state.playerColor}
+                            />
                         </div>
                         <Grid.Column>
                             <div
@@ -287,23 +264,17 @@ class Play extends React.Component {
                                     </Table.Header>
 
                                     <Table.Body>
-                                        <div style={{ height: '500px', overflow: 'scroll' }}>
-                                            {this.state.history &&
-                                                this.state.history.map((move, i) => {
-                                                    return (
-                                                        <Table.Row>
-                                                            <Table.Cell>{i + 1}</Table.Cell>
-                                                            <Table.Cell>
-                                                                {move.color === 'w'
-                                                                    ? 'White'
-                                                                    : 'Black'}
-                                                                {': '}
-                                                                {move.san}
-                                                            </Table.Cell>
-                                                        </Table.Row>
-                                                    );
-                                                })}
-                                        </div>
+                                        {this.state.history &&
+                                            this.state.history.map((move, i) => {
+                                                return (
+                                                    <Table.Row>
+                                                        <Table.Cell>
+                                                            {move.color === 'w' ? 'White' : 'Black'}
+                                                        </Table.Cell>
+                                                        <Table.Cell>{move.to}</Table.Cell>
+                                                    </Table.Row>
+                                                );
+                                            })}
                                     </Table.Body>
                                 </Table>
                             </div>

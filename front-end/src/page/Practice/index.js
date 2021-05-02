@@ -1,12 +1,16 @@
 import React from 'react';
-import { Grid, Table } from 'semantic-ui-react';
-import axios from 'axios';
+import { Button, Grid, Table, Progress } from 'semantic-ui-react';
 import WithMoveValidation from './../../components/boards/WithMoveValidation';
 import Layout from '../../components/Layout';
 import './Practice.css';
-// import Stockfish from '../../components/engine/Stockfish';
-// import Chessboard from 'chessboardjsx';
 
+let evaler = new Worker('stockfish.js');
+function uciCmd(cmd, which) {
+    (which || evaler).postMessage(cmd);
+}
+uciCmd('uci');
+uciCmd('ucinewgame');
+uciCmd('isready');
 class Practice extends React.Component {
     constructor(props) {
         super(props);
@@ -15,27 +19,22 @@ class Practice extends React.Component {
             timer: null,
             game: null,
             history: null,
-            timeControl: null,
             playerColor: 'white',
+            evalScore: 0,
+            mateScore: 0,
         };
     }
 
-    componentDidMount() {
-      // eslint-disable-next-line
-        this.state.timer = setTimeout(() => {
-            console.log('waiting for updated document');
-            axios.get('http://localhost:4000/game/play').then((response) => {
-                this.setState({
-                    timeControl: response.data.data.timeControl,
-                    playerColor: response.data.data.playerSide,
-                });
-                console.log(response);
-            });
-        }, 2000);
-    }
+    get_moves() {
+        let moves = '';
+        let history = this.state.history;
 
-    componentWillUnmount() {
-        clearTimeout(this.state.timer);
+        for (let i = 0; i < history.length; ++i) {
+            let move = history[i];
+            moves += ' ' + move.from + move.to + (move.promotion ? move.promotion : '');
+        }
+
+        return moves;
     }
 
     postMoveHook(game) {
@@ -43,6 +42,37 @@ class Practice extends React.Component {
             game,
             history: game.history({ verbose: true }),
         });
+        uciCmd('position startpos moves' + this.get_moves());
+        uciCmd('go');
+        evaler.onmessage = (event) => {
+            let line;
+            if (event && typeof event === 'object') {
+                line = event.data;
+            } else {
+                line = event;
+            }
+            if (line === 'uciok' || line === 'readyok' || line.substr(0, 11) === 'option name') {
+                return;
+            }
+            let match;
+
+            if ((match = line.match(/^info .*\bscore (\w+) (-?\d+)/))) {
+                let score = parseInt(match[2], 10) * (game.turn() === 'w' ? 1 : -1);
+                let mateScore;
+                if (match[1] === 'cp') {
+                    mateScore = (score / 100.0).toFixed(2);
+                    score = (score / 100.0).toFixed(2);
+                } else if (match[1] === 'mate') {
+                    mateScore = Math.sign(score) * 100;
+                    score = 'Mate in ' + Math.abs(score);
+                }
+                this.setState({
+                    evalScore: score,
+                    mateScore: mateScore,
+                });
+                uciCmd('stop');
+            }
+        };
     }
 
     render() {
@@ -50,23 +80,27 @@ class Practice extends React.Component {
             <Layout id="sidebarneedsstyle">
                 <Grid>
                     <Grid.Row centered>
+                        <div style={{ float: 'left' }}>
+                            <Button
+                                onClick={() => {
+                                    this.setState({
+                                        playerColor:
+                                            this.state.playerColor === 'white' ? 'black' : 'white',
+                                    });
+                                }}
+                            >
+                                Switch Orientation
+                            </Button>
+                            <br />
+                            <br />
+                            <br />
+                            {this.state.evalScore}
+                        </div>
                         <Grid.Column width={6}>
                             <WithMoveValidation
                                 postMoveHook={this.postMoveHook}
                                 setOrientation={this.state.playerColor}
                             />
-                            {/*
-                                <Stockfish playerColor={playerColor} depth={5}>
-                                {({ position, onDrop }) => (
-                                    <Chessboard
-                                        id="stockfish"
-                                        position={position}
-                                        width={320}
-                                        onDrop={onDrop}
-                                        orientation={playerColor}
-                                    />
-                                )}
-                                </Stockfish> */}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -75,25 +109,37 @@ class Practice extends React.Component {
                         <Grid.Column width={12}>
                             <div className="table-container">
                                 <Table inverted color="grey" celled>
+                                    <Progress
+                                        total={200}
+                                        value={100 + parseFloat(this.state.mateScore)}
+                                        active
+                                        color="teal"
+                                    />
                                     <Table.Header>
                                         <Table.Row>
-                                            <Table.HeaderCell>Color</Table.HeaderCell>
+                                            <Table.HeaderCell>Ply</Table.HeaderCell>
                                             <Table.HeaderCell>Move</Table.HeaderCell>
                                         </Table.Row>
                                     </Table.Header>
 
                                     <Table.Body>
-                                        {this.state.history &&
-                                            this.state.history.map((move, i) => {
-                                                return (
-                                                    <Table.Row>
-                                                        <Table.Cell>
-                                                            {move.color === 'w' ? 'White' : 'Black'}
-                                                        </Table.Cell>
-                                                        <Table.Cell>{move.to}</Table.Cell>
-                                                    </Table.Row>
-                                                );
-                                            })}
+                                        <div style={{ height: '500px', overflow: 'scroll' }}>
+                                            {this.state.history &&
+                                                this.state.history.map((move, i) => {
+                                                    return (
+                                                        <Table.Row>
+                                                            <Table.Cell>{i + 1}</Table.Cell>
+                                                            <Table.Cell>
+                                                                {move.color === 'w'
+                                                                    ? 'White'
+                                                                    : 'Black'}
+                                                                {': '}
+                                                                {move.san}
+                                                            </Table.Cell>
+                                                        </Table.Row>
+                                                    );
+                                                })}
+                                        </div>
                                     </Table.Body>
                                 </Table>
                             </div>
