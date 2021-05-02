@@ -264,17 +264,23 @@ class Play extends React.Component {
                                     </Table.Header>
 
                                     <Table.Body>
-                                        {this.state.history &&
-                                            this.state.history.map((move, i) => {
-                                                return (
-                                                    <Table.Row>
-                                                        <Table.Cell>
-                                                            {move.color === 'w' ? 'White' : 'Black'}
-                                                        </Table.Cell>
-                                                        <Table.Cell>{move.to}</Table.Cell>
-                                                    </Table.Row>
-                                                );
-                                            })}
+                                        <div style={{ height: '500px', overflow: 'scroll' }}>
+                                            {this.state.history &&
+                                                this.state.history.map((move, i) => {
+                                                    return (
+                                                        <Table.Row>
+                                                            <Table.Cell>{i + 1}</Table.Cell>
+                                                            <Table.Cell>
+                                                                {move.color === 'w'
+                                                                    ? 'White'
+                                                                    : 'Black'}
+                                                                {': '}
+                                                                {move.san}
+                                                            </Table.Cell>
+                                                        </Table.Row>
+                                                    );
+                                                })}
+                                        </div>
                                     </Table.Body>
                                 </Table>
                             </div>
