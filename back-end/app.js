@@ -20,11 +20,6 @@ app.get('/', (req, res, next) => {
         status: 'live',
     });
 });
-app.get('/learn', (req, res, next) => {
-    res.json({
-        status: 'live',
-    });
-});
 
 // Controllers
 const authController = require('./controllers/auth');
