@@ -19,24 +19,50 @@ class HumanVsHuman extends Component {
         square: '',
         // array of past game moves
         history: [],
+        undo: false,
+        moveList: this.props.moveList,
+        firstMove: this.props.firstMove,
     };
 
     componentDidMount() {
         this.game = this.state.fen !== 'start' ? new Chess(this.state.fen) : new Chess();
-        if (this.props.firstMove) {
-            this.game.move(this.props.firstMove, { sloppy: true });
-            this.setState({
-                fen: this.game.fen(),
-            });
-        }
+
+        setTimeout(() => {
+            this.makeFirstMove();
+        }, 250);
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.setFen !== this.props.setFen) {
+            this.game = new Chess(this.props.setFen);
             this.setState({
                 fen: this.props.setFen,
             });
-            this.game = new Chess(this.props.setFen);
+        }
+        if (prevProps.firstMove !== this.props.firstMove) {
+            this.setState({
+                firstMove: this.props.firstMove,
+            });
+            setTimeout(() => {
+                this.makeFirstMove();
+            }, 250);
+        }
+        if (prevProps.moveList !== this.props.moveList) {
+            this.setState({
+                moveList: this.props.moveList,
+            });
+        }
+    }
+
+    makeFirstMove() {
+        if (this.state.firstMove) {
+            this.game.move(this.state.firstMove, { sloppy: true });
+            this.setState(({ history, pieceSquare }) => ({
+                fen: this.game.fen(),
+                history: this.game.history({ verbose: true }),
+                squareStyles: squareStyling({ pieceSquare, history }),
+            }));
+            console.log(this.state.history);
         }
     }
 
@@ -85,7 +111,34 @@ class HumanVsHuman extends Component {
             history: this.game.history({ verbose: true }),
             squareStyles: squareStyling({ pieceSquare, history }),
         }));
-
+        if (
+            this.state.moveList &&
+            this.state.moveList[this.state.history.length - 1] !==
+                `${this.state.history[this.state.history.length - 1].from}${
+                    this.state.history[this.state.history.length - 1].to
+                }`
+        ) {
+            this.game.undo();
+            this.setState({
+                fen: this.game.fen(),
+                history: this.game.history({ verbose: true }),
+            });
+        } else if (
+            this.state.moveList &&
+            this.state.moveList[this.state.history.length - 1] ===
+                `${this.state.history[this.state.history.length - 1].from}${
+                    this.state.history[this.state.history.length - 1].to
+                }`
+        ) {
+            this.game.move(this.state.moveList[this.state.history.length], {
+                sloppy: true,
+            });
+            this.setState(({ history, pieceSquare }) => ({
+                fen: this.game.fen(),
+                history: this.game.history({ verbose: true }),
+                squareStyles: squareStyling({ pieceSquare, history }),
+            }));
+        }
         if (this.props.postMoveHook) {
             await this.props.postMoveHook(this.game);
         }
@@ -151,7 +204,7 @@ class HumanVsHuman extends Component {
         });
 
     render() {
-        const { fen, dropSquareStyle, squareStyles } = this.state;
+        const { fen, dropSquareStyle, squareStyles, undo } = this.state;
 
         return this.props.children({
             squareStyles,
@@ -163,12 +216,13 @@ class HumanVsHuman extends Component {
             onDragOverSquare: this.onDragOverSquare,
             onSquareClick: this.onSquareClick,
             onSquareRightClick: this.onSquareRightClick,
+            undo: undo,
             orientation: this.props.setOrientation,
         });
     }
 }
 
-function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove }) {
+function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove, moveList }) {
     const [pointer, setPointer] = useState('grab');
 
     const changeCursor = () => {
@@ -186,6 +240,7 @@ function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove })
                 setFen={setFen}
                 setOrientation={setOrientation}
                 firstMove={firstMove}
+                moveList={moveList}
             >
                 {({
                     position,
@@ -197,6 +252,7 @@ function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove })
                     onDragOverSquare,
                     onSquareClick,
                     onSquareRightClick,
+                    undo,
                     orientation,
                 }) => (
                     <Chessboard
@@ -215,6 +271,7 @@ function WithMoveValidation({ postMoveHook, setFen, setOrientation, firstMove })
                         onDragOverSquare={onDragOverSquare}
                         onSquareClick={onSquareClick}
                         onSquareRightClick={onSquareRightClick}
+                        undo={undo}
                         orientation={orientation}
                         onPieceClick={changeCursor}
                         style={{ cursor: pointer }}

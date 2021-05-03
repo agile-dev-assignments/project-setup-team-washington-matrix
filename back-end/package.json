@@ -6,6 +6,7 @@
         "start": "node app.js",
         "dev": "nodemon app.js",
         "test": "nyc mocha"
+
     },
     "repository": {
         "type": "git",
@@ -35,6 +36,8 @@
         "passport-local": "^1.0.0"
     },
     "devDependencies": {
+        "chai": "^4.3.4",
+        "mocha": "^8.3.2",
         "nodemon": "^2.0.7",
         "prettier": "2.2.1"
     }

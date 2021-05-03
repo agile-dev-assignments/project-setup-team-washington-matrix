@@ -65,18 +65,21 @@ const pieces = [
         text: 'Castling',
         value: 1,
         fen: '8/8/8/8/4P3/1PN5/PBPQ1PPP/R3KBNR w Q - 0 1',
+        moveList: ['e1c1'],
     },
     {
         key: 2,
         text: 'En Passant',
         value: 2,
-        fen: 'rnbqkb1r/ppppp1pp/8/3nPp2/3P4/8/PPP2PPP/RNBQKBNR w KQkq f6 0 4',
+        fen: 'rnbqkb1r/pppppppp/8/3nP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3',
+        moveList: ['f7f5', 'e5f6'],
     },
     {
         key: 3,
         text: 'Pawn Promotion',
         value: 3,
         fen: '2r5/1P6/8/8/8/8/8/8 w - - 0 1',
+        moveList: false,
     },
 ];
 
@@ -90,12 +93,14 @@ const Mechanics = () => {
     const handleDropdownClick = async (event, data) => {
         setPieceSelected(data.value);
         setPieceBoard(pieces.find(({ value }) => value === data.value).fen);
+        setMoves(pieces.find(({ value }) => value === data.value).moveList);
         setDisabled(false);
     };
     const [pieceSelected, setPieceSelected] = useState();
     const [pieceBoard, setPieceBoard] = useState(
         pieces.find(({ text }) => text === 'Castling').fen
     );
+    const [moves, setMoves] = useState(pieces.find(({ text }) => text === 'Castling').moveList);
     const [disabled, setDisabled] = useState(false);
     function postMoveHook(game) {
         if (gameOvers.includes(game.fen())) {
@@ -119,7 +124,12 @@ const Mechanics = () => {
                     </Grid.Row>
                     <Grid.Row centered>
                         <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
-                            <WithMoveValidation postMoveHook={postMoveHook} setFen={pieceBoard} />
+                            <WithMoveValidation
+                                postMoveHook={postMoveHook}
+                                setFen={pieceBoard}
+                                moveList={moves}
+                                firstMove={moves.length === 2 ? moves[0] : false}
+                            />
                         </div>
                     </Grid.Row>
                     <Grid.Row centered>

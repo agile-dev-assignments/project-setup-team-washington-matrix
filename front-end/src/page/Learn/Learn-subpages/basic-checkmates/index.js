@@ -3,7 +3,9 @@ import './style.css';
 import { Grid, Dropdown, Container } from 'semantic-ui-react';
 import Layout from '../../../../components/Layout';
 import WithMoveValidation from './../../../../components/boards/WithMoveValidation';
+import StockfishSetPos from './../../../../components/engine/StockfishSetPos';
 import LearnSubNav from '../../../../components/LearnSubNav';
+import Chessboard from 'chessboardjsx';
 import axios from 'axios';
 
 function CheckmateText(props) {
@@ -16,7 +18,7 @@ function CheckmateText(props) {
         return () => {
             setData('');
         };
-    }, [data]);
+    }, []);
     return <p>{data[props.matetext]}</p>;
 }
 
@@ -30,7 +32,7 @@ function DisplayedText(props) {
         case 3:
             return <CheckmateText matetext="scholars" />;
         case 4:
-            return <CheckmateText matetext="fools" />;
+            return <CheckmateText matetext="fool" />;
         case 5:
             return <CheckmateText matetext="kqmate" />;
         case 6:
@@ -110,6 +112,54 @@ const BasicCheckmates = () => {
             setDisabled(true);
         }
     }
+
+    if ([5, 6, 7].includes(mateSelected)) {
+        return (
+            <div>
+                <Layout id="sidebarneedsstyle">
+                    <h1 class="title">Basic Checkmates</h1>
+
+                    <Grid className="univbackground">
+                        <LearnSubNav />
+                        <Grid.Row centered>
+                            <Dropdown
+                                placeholder="Smothered"
+                                selection
+                                options={mates}
+                                onChange={handleDropdownClick}
+                            />
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <div style={disabled ? { pointerEvents: 'none', opacity: '0.4' } : {}}>
+                                <StockfishSetPos
+                                    postMoveHook={postMoveHook}
+                                    depth={20}
+                                    setFen={mateBoard}
+                                >
+                                    {({ position, onDrop }) => (
+                                        <Chessboard
+                                            id="stockfish"
+                                            position={position}
+                                            width={500}
+                                            onDrop={onDrop}
+                                            orientation={boardOrient}
+                                        />
+                                    )}
+                                </StockfishSetPos>
+                            </div>
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <Container text>
+                                <DisplayedText mate={mateSelected} />
+                            </Container>
+                        </Grid.Row>
+                        <Grid.Row style={{ height: '50vh' }}></Grid.Row>
+                    </Grid>
+                </Layout>
+            </div>
+        );
+    }
+
     return (
         <div>
             <Layout id="sidebarneedsstyle">

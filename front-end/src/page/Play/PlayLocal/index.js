@@ -22,6 +22,8 @@ class Play extends React.Component {
             history: null,
             timeControl: null,
             playerColor: 'white',
+            p1: 'white',
+            p2: 'black',
             loading: true,
             disabled: false,
             winCond: '',
@@ -54,14 +56,14 @@ class Play extends React.Component {
         });
         if (this.state.timeControl !== 'No Time Limit') {
             if (game.history().length === 1) {
-                if (this.state.playerColor.charAt(0) === game.turn()) {
+                if (this.state.p1.charAt(0) === game.turn()) {
                     this.setState({ flag: true });
                 } else {
                     this.setState({ flag2: true });
                 }
             }
             if (game.history().length === 2) {
-                if (this.state.playerColor.charAt(0) === game.turn()) {
+                if (this.state.p1.charAt(0) === game.turn()) {
                     this.setState({
                         clockPause2: true,
                         clockResume: true,
@@ -79,7 +81,7 @@ class Play extends React.Component {
                     flag: false,
                 });
 
-                if (this.state.playerColor.charAt(0) === game.turn()) {
+                if (this.state.p1.charAt(0) === game.turn()) {
                     this.setState({
                         clockPause: false,
                         clockPause2: true,
@@ -220,9 +222,7 @@ class Play extends React.Component {
                                     startTime={this.state.flag2}
                                     timePause={this.state.clockPause2}
                                     timeResume={this.state.clockResume2}
-                                    playerSide={
-                                        this.state.playerColor === 'white' ? 'black' : 'white'
-                                    }
+                                    playerSide={this.state.p2}
                                     expired={() => {
                                         this.setState({
                                             disabled: true,
@@ -238,7 +238,7 @@ class Play extends React.Component {
                                     startTime={this.state.flag}
                                     timePause={this.state.clockPause}
                                     timeResume={this.state.clockResume}
-                                    playerSide={this.state.playerColor}
+                                    playerSide={this.state.p1}
                                     expired={() => {
                                         this.setState({
                                             disabled: true,
