@@ -116,3 +116,41 @@ describe('Test route', () => {
         });
     });
 });
+describe('Test route', () => {
+    describe('Test Get route /learn/mechanics/castling', () => {
+        it('Status should be 200', (done) => {
+            chai.request(server)
+                .get('/learn/mechanics/castling')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+});
+describe('Test route', () => {
+    describe('Test Get route /learn/mechanics/enpassant', () => {
+        it('Status should be 200', (done) => {
+            chai.request(server)
+                .get('/learn/mechanics/enpassant')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+});
+describe('Test route', () => {
+    describe('Test Get route /learn/mechanics/pawnpromotion', () => {
+        it('Status should be 200', (done) => {
+            chai.request(server)
+                .get('/learn/mechanics/pawnpromotion')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+});
+
+
