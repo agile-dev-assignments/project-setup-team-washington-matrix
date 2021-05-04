@@ -6,7 +6,7 @@ import Layout from '../../../components/Layout';
 import Timer from '../../../components/Timer';
 import axios from 'axios';
 
-class Play extends React.Component {
+class PlayLocal extends React.Component {
     constructor(props) {
         super(props);
         this.postMoveHook = this.postMoveHook.bind(this);
@@ -293,4 +293,4 @@ class Play extends React.Component {
     }
 }
 
-export default Play;
+export default PlayLocal;
