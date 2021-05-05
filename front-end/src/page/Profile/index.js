@@ -46,7 +46,7 @@ const Profile = () => {
                             <Image id="propic" src={profilepic} alt="ProfilePic" />
                             <div>
                                 <h2 id="user">{currentUser.email}</h2>
-                                <h4 id="name">Name</h4>
+                                <h2 id="user">{currentUser.username}</h2>
                             </div>
                         </div>
                         <Line />
@@ -56,9 +56,9 @@ const Profile = () => {
                             </div>
                             {openGame ? (
                                 <div className="content">
-                                    <h4>Total Games Played: 48</h4>
-                                    <h4>Wins: 32</h4>
-                                    <h4>Losses: 14</h4>
+                                    <h4>Total Games Played: 1</h4>
+                                    <h4>Wins: 1</h4>
+                                    <h4>Losses: 0</h4>
                                 </div>
                             ) : null}
                         </div>
