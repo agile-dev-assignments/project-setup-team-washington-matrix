@@ -9,7 +9,7 @@ import LearnSubNav from '../../../../components/LearnSubNav';
 function KingText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/king').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/king').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -22,7 +22,7 @@ function KingText(props) {
 function QueenText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/queen').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/queen').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -35,7 +35,7 @@ function QueenText(props) {
 function RookText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/rook').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/rook').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -48,7 +48,7 @@ function RookText(props) {
 function BishopText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/bishop').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/bishop').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -61,7 +61,7 @@ function BishopText(props) {
 function KnightText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/knight').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/knight').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -74,7 +74,7 @@ function KnightText(props) {
 function PawnText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/movements/pawn').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/movements/pawn').then((res) => {
             setData(res.data.data);
         });
         return () => {

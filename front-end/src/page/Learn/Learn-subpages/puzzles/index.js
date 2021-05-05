@@ -19,7 +19,7 @@ const Puzzles = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:4000/learn/puzzles')
+            .get(process.env.REACT_APP_API_ROUTE + '/learn/puzzles')
             .then((response) => {
                 let tokens = response.data.data.puzzleFen.split(' ');
                 switch (tokens[1]) {

@@ -16,7 +16,7 @@ class PlayModal extends React.Component {
 
     postClick() {
         axios
-            .post('http://localhost:4000/game/create', {
+            .post(process.env.REACT_APP_API_ROUTE + '/game/create', {
                 timeControl: this.state.activeItem,
                 playerSide: this.state.activeItem2,
             })

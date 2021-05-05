@@ -34,7 +34,7 @@ class PlayLocal extends React.Component {
         // eslint-disable-next-line
         this.state.timer = setTimeout(() => {
             console.log('waiting for updated document');
-            axios.get('http://localhost:4000/game/play').then((response) => {
+            axios.get(process.env.REACT_APP_API_ROUTE + '/game/play').then((response) => {
                 this.setState({
                     timeControl: response.data.data.timeControl,
                     loading: false,

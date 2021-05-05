@@ -11,7 +11,7 @@ import axios from 'axios';
 function CheckmateText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/checkmates').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/checkmates').then((res) => {
             setData(res.data.data);
             console.log(data);
         });

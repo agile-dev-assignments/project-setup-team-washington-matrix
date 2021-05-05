@@ -18,45 +18,45 @@ import 'semantic-ui-css/semantic.min.css';
 function App() {
     return (
         <div>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
-                <Route exact path="/" component={Home} />
-                <Route path="/practice">
+            <BrowserRouter>
+                <Route path="/" component={Home} />
+                <Route exact path="/practice">
                     <Practice />
                 </Route>
-                <Route path="/learn">
+                <Route exact path="/learn">
                     <Learn />
                 </Route>
-                <Route path="/info">
+                <Route exact path="/info">
                     <Info />
                 </Route>
-                <Route path="/login">
+                <Route exact path="/login">
                     <Login />
                 </Route>
-                <Route path="/play">
+                <Route exact path="/play">
                     <Play />
                 </Route>
-                <Route path="/profile">
+                <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route path="/signup">
+                <Route exact path="/signup">
                     <Signup />
                 </Route>
-                <Route path="/basic-checkmates">
+                <Route exact path="/basic-checkmates">
                     <BasicCheckmates />
                 </Route>
-                <Route path="/basic-movements">
+                <Route exact path="/basic-movements">
                     <BasicMovements />
                 </Route>
-                <Route path="/basic-patterns">
+                <Route exact path="/basic-patterns">
                     <BasicPatterns />
                 </Route>
-                <Route path="/mechanics">
+                <Route exact path="/mechanics">
                     <Mechanics />
                 </Route>
-                <Route path="/puzzles">
+                <Route exact path="/puzzles">
                     <Puzzles />
                 </Route>
-                <Route path="/playlocal">
+                <Route exact path="/playlocal">
                     <PlayLocal />
                 </Route>
             </BrowserRouter>

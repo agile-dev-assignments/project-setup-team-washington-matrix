@@ -9,7 +9,7 @@ import axios from 'axios';
 function PatternText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/patterns').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/patterns').then((res) => {
             setData(res.data.data);
         });
         return () => {

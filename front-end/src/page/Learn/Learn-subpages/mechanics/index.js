@@ -9,7 +9,7 @@ import LearnSubNav from '../../../../components/LearnSubNav';
 function CastlingText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/mechanics/castling').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/mechanics/castling').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -22,7 +22,7 @@ function CastlingText(props) {
 function EnpassantText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/mechanics/enpassant').then((res) => {
+        axios.get(process.env.REACT_APP_API_ROUTE + '/learn/mechanics/enpassant').then((res) => {
             setData(res.data.data);
         });
         return () => {
@@ -35,9 +35,11 @@ function EnpassantText(props) {
 function PawnpromotionText(props) {
     const [data, setData] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:4000/learn/mechanics/pawnpromotion').then((res) => {
-            setData(res.data.data);
-        });
+        axios
+            .get(process.env.REACT_APP_API_ROUTE + '/learn/mechanics/pawnpromotion')
+            .then((res) => {
+                setData(res.data.data);
+            });
         return () => {
             setData('');
         };
