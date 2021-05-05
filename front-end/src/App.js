@@ -19,7 +19,7 @@ function App() {
     return (
         <div>
             <BrowserRouter>
-                <Route path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route path="/practice">
                     <Practice />
                 </Route>
