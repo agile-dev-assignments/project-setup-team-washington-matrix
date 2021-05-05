@@ -20,43 +20,43 @@ function App() {
         <div>
             <BrowserRouter>
                 <Route path="/" component={Home} />
-                <Route exact path="/practice">
+                <Route path="/practice">
                     <Practice />
                 </Route>
-                <Route exact path="/learn">
+                <Route path="/learn">
                     <Learn />
                 </Route>
-                <Route exact path="/info">
+                <Route path="/info">
                     <Info />
                 </Route>
-                <Route exact path="/login">
+                <Route path="/login">
                     <Login />
                 </Route>
-                <Route exact path="/play">
+                <Route path="/play">
                     <Play />
                 </Route>
-                <Route exact path="/profile">
+                <Route path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/signup">
+                <Route path="/signup">
                     <Signup />
                 </Route>
-                <Route exact path="/basic-checkmates">
+                <Route path="/basic-checkmates">
                     <BasicCheckmates />
                 </Route>
-                <Route exact path="/basic-movements">
+                <Route path="/basic-movements">
                     <BasicMovements />
                 </Route>
-                <Route exact path="/basic-patterns">
+                <Route path="/basic-patterns">
                     <BasicPatterns />
                 </Route>
-                <Route exact path="/mechanics">
+                <Route path="/mechanics">
                     <Mechanics />
                 </Route>
-                <Route exact path="/puzzles">
+                <Route path="/puzzles">
                     <Puzzles />
                 </Route>
-                <Route exact path="/playlocal">
+                <Route path="/playlocal">
                     <PlayLocal />
                 </Route>
             </BrowserRouter>
