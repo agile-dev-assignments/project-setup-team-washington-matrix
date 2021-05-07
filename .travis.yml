@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-    - 'node'
+    - node
     - '12'
 
 install:
-    - cd ./back-end
+    - cd back-end/
     - npm install
-
-script:
     - npm test
-    - npm run start
+
+script: 'true'
