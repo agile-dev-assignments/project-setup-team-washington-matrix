@@ -51,6 +51,7 @@ const mates = [
         value: 1,
         fen: '1r4k1/4b1pp/p2p1P2/2rP4/3Q3P/n1B2P1B/PPq5/K2R2R1 b - - 0 29',
         orientation: 'black',
+        moveList: ['c2b1', 'd1b1', 'a3c2'],
     },
     {
         key: 2,
@@ -58,6 +59,7 @@ const mates = [
         value: 2,
         fen: '3r2kr/1p3ppp/pN3b2/2Q1pN2/4P3/8/PPP1nPPP/1K1R4 b - - 0 20',
         orientation: 'black',
+        moveList: ['d8d1'],
     },
     {
         key: 3,
@@ -65,6 +67,7 @@ const mates = [
         value: 3,
         fen: 'r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4',
         orientation: 'white',
+        moveList: ['f3f7'],
     },
     {
         key: 4,
@@ -72,6 +75,7 @@ const mates = [
         value: 4,
         fen: 'rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2',
         orientation: 'black',
+        moveList: ['d8h4'],
     },
     {
         key: 5,
@@ -79,6 +83,7 @@ const mates = [
         value: 5,
         fen: '4k3/8/8/8/8/8/5Q2/4K3 w - - 0 1',
         orientation: 'white',
+        moveList: false,
     },
     {
         key: 6,
@@ -86,6 +91,7 @@ const mates = [
         value: 6,
         fen: '8/8/8/8/8/7k/1R6/R3K3 w - - 0 1',
         orientation: 'white',
+        moveList: false,
     },
     {
         key: 7,
@@ -93,6 +99,7 @@ const mates = [
         value: 7,
         fen: '8/8/8/8/8/7k/4R3/4K3 w - - 0 1',
         orientation: 'white',
+        moveList: false,
     },
 ];
 
@@ -101,10 +108,12 @@ const BasicCheckmates = () => {
         setMateSelected(data.value);
         setMateBoard(mates.find(({ value }) => value === data.value).fen);
         setBoardOrient(mates.find(({ value }) => value === data.value).orientation);
+        setMoves(mates.find(({ value }) => value === data.value).moveList);
         setDisabled(false);
     };
     const [mateSelected, setMateSelected] = useState(1);
     const [mateBoard, setMateBoard] = useState(mates.find(({ text }) => text === 'Smothered').fen);
+    const [moves, setMoves] = useState(mates.find(({ text }) => text === 'Smothered').moveList);
     const [boardOrient, setBoardOrient] = useState('white');
     const [disabled, setDisabled] = useState(false);
     function postMoveHook(game) {
@@ -181,6 +190,7 @@ const BasicCheckmates = () => {
                                 postMoveHook={postMoveHook}
                                 setFen={mateBoard}
                                 setOrientation={boardOrient}
+                                moveList={moves}
                             />
                         </div>
                     </Grid.Row>
