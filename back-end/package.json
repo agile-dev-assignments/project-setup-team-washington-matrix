@@ -1,12 +1,12 @@
 {
-    "name": "back-end",
+    "name": "back-end-chess",
     "version": "1.0.0",
     "description": "The back-end of your project will live in this directory.",
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon app.js",
-        "test": "nyc mocha"
-
+        "test": "mocha --exit",
+        "coverage": "nyc npm run test"
     },
     "repository": {
         "type": "git",
